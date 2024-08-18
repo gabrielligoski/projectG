@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
             {
                 lastClicked.gameObject.GetComponent<RoomHandler>().toggleOutline(false);
             }
-            if(currentCollider != null)
+            if (currentCollider != null)
             {
                 if (!currentCollider.tag.Contains("Core") && currentCollider != lastClicked)
                 {
@@ -41,11 +41,16 @@ public class PlayerController : MonoBehaviour
                 if (currentCollider == lastClicked)
                 {
                     lastClicked = null;
-                } else {
+                }
+                else
+                {
                     lastClicked = currentCollider;
                 }
             }
-        
+            else {
+                lastClicked = null;
+            }
+
         }
     }
 }

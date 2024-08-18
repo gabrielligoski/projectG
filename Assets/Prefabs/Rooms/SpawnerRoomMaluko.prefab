@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5286615840061677551}
   - component: {fileID: 6138797499350442279}
   - component: {fileID: -1086286444799677231}
-  - component: {fileID: 7229545532328361794}
+  - component: {fileID: -1595420473252672398}
   m_Layer: 0
-  m_Name: Blank
+  m_Name: SpawnerRoomMaluko
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,8 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1c8c6e895762c40bf09fb791761213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shader: {fileID: 7229545532328361794}
---- !u!114 &7229545532328361794
+--- !u!114 &-1595420473252672398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,13 +131,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5745954314644160665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Script: {fileID: 11500000, guid: 95dc2f672c454a545b63545702e92031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineOnTop: 0
-  outlineMode: 0
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 0
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
+  name: soldierSpawner
+  pfb: {fileID: 5745954314644160665, guid: 57a4134664e4e1e4eaf030e34972e676, type: 3}
+  quantity: 3
+  spawnTimer: 3
+  spawns: []

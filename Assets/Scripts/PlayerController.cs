@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 mousePos;
     private Collider currentCollider;
     private Collider lastClicked;
+
+    public static Room.RoomType roomToInstance = Room.RoomType.none;
+
     void Start()
     {
         lastClicked = null;
@@ -27,9 +30,22 @@ public class PlayerController : MonoBehaviour
 
     public void onClick(InputAction.CallbackContext callback) {
         var wasPressed = callback.action.WasReleasedThisFrame();
-        if (wasPressed) 
+        if (wasPressed && roomToInstance == Room.RoomType.none) 
         {
             toggleHighlightRoom();
+        } else if (wasPressed && currentCollider)
+        {
+            Debug.Log(roomToInstance.ToString());
+            GameMaster.Instance.swapRoom(currentCollider.gameObject, roomToInstance);
+        }
+    }
+
+    public void setEmptyRoom(InputAction.CallbackContext callback) {
+        var wasPressed = callback.action.WasReleasedThisFrame();
+        if (wasPressed)
+        {
+            Debug.Log("set empty");
+            roomToInstance = Room.RoomType.empty;
         }
     }
 

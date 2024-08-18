@@ -17,13 +17,36 @@ public class GameMaster : MonoBehaviour
     public static GameObject core;
     public static GameObject floor;
 
+    public static GameMaster Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         var coreRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.core);
-        var emptyRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.empty);
-        (map, floor, core) = GenerateMap.createMap(size, roomGap, coreRoom, emptyRoom, floorPfb);
+        var rockRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.rock);
+        (map, floor, core) = GenerateMap.createMap(size, roomGap, coreRoom, rockRoom, floorPfb);
         navMeshSurface = floor.GetComponent<NavMeshSurface>();
         navMeshSurface.BuildNavMesh();
+    }
+
+    public void swapRoom(GameObject target, Room.RoomType newRoomType) {
+        if (!target.tag.Contains("Core"))
+        {
+            var newRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == newRoomType);
+            map.ForEach((row) => {
+                int index = row.FindIndex(room => room == target);
+                if(index != -1)
+                {
+                    row[index] = Instantiate(newRoom, target.transform.position, Quaternion.identity, target.transform.parent);
+                    Destroy(target);
+                    return;
+                }
+            });
+        }
 
     }
 

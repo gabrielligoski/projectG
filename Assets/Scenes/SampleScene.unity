@@ -150,8 +150,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 11
   roomGap: 0.25
-  coreRoom: {fileID: 5745954314644160665, guid: 592272ea4fbd53e499244f4a92a29113, type: 3}
-  blankRoom: {fileID: 5745954314644160665, guid: 0dc4496384e8b36468de1b5061eee3e0, type: 3}
+  rooms:
+  - {fileID: 5745954314644160665, guid: 40c71fbd06b56cf4db627a4f78188556, type: 3}
+  - {fileID: 5745954314644160665, guid: 592272ea4fbd53e499244f4a92a29113, type: 3}
+  - {fileID: 5745954314644160665, guid: 0dc4496384e8b36468de1b5061eee3e0, type: 3}
   floorPfb: {fileID: 1852709211219570942, guid: 2e89a83755dcb324994b67d02480b2fa, type: 3}
 --- !u!4 &148893589
 Transform:
@@ -594,6 +596,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6ac9894c-4487-4616-aba2-31ea96330ff4
     m_ActionName: 'Player/Click[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1824044811}
+        m_TargetAssemblyTypeName: PlayerController, Scripts
+        m_MethodName: setEmptyRoom
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3e9e3387-b9f3-4e15-a0fd-17df2d12ebe9
+    m_ActionName: 'Player/selectEmpty[/Keyboard/q]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

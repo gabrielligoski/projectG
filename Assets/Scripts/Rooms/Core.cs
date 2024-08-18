@@ -21,9 +21,12 @@ public class Core : Room
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.TryGetComponent<Enemy>(out Enemy e)) {
-            takeDamage(e.damage);
-            Destroy(e.gameObject);
+        if (collider.TryGetComponent<CharacterController>(out CharacterController e)) {
+            if(e.type == CharacterController.CharacterType.human)
+            {
+                takeDamage(e.damage);
+                Destroy(e.gameObject);
+            }
         }
     }
 

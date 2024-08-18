@@ -35,11 +35,12 @@ public class PlayerController : MonoBehaviour
 
     public void toggleHighlightRoom()
     {
-        lastClicked?.gameObject.GetComponent<RoomHandler>().toggleOutline(false);
 
-        if (currentCollider && !currentCollider.tag.Contains("Core") && currentCollider != lastClicked)
+        lastClicked?.gameObject.GetComponent<RoomHandler>().toggleOutline(false);
+        
+        if (currentCollider && currentCollider.TryGetComponent(out RoomHandler rh) && !currentCollider.tag.Contains("Core") && currentCollider != lastClicked)
         {
-            currentCollider?.gameObject.GetComponent<RoomHandler>().toggleOutline(true);
+            rh.toggleOutline(true);
             lastClicked = currentCollider;
         }
         else

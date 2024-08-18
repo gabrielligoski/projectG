@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 91b277b7dba0cae41af1b64092e427de
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 256996
+  packageName: Breeze - Advanced Character Behaviour
+  packageVersion: 1.02
+  assetPath: Assets/Breeze/Scripts/Helpers/Integrations/BreezeSTP.cs
+  uploadId: 630973

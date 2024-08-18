@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: eefb7ecb069277d48a1df0fc7e8377d6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 256996
+  packageName: Breeze - Advanced Character Behaviour
+  packageVersion: 1.02
+  assetPath: Assets/Breeze/Scripts/Helpers/Integrations/BreezeNeoFPS.cs
+  uploadId: 630973

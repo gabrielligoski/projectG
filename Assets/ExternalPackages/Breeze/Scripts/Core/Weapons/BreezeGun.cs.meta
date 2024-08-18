@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 513e1025aa9e9bf47896c6fb8f9b4eb4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 256996
+  packageName: Breeze - Advanced Character Behaviour
+  packageVersion: 1.02
+  assetPath: Assets/Breeze/Scripts/Core/Weapons/BreezeGun.cs
+  uploadId: 630973

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 302dcc7b4eae53d478dc799a3820c96f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 256996
+  packageName: Breeze - Advanced Character Behaviour
+  packageVersion: 1.02
+  assetPath: Assets/Breeze/Scripts/Helpers/Actions/BreezeCustomAction.cs
+  uploadId: 630973

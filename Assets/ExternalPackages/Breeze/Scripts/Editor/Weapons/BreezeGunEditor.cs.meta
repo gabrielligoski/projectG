@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 26be0e14bfd398e4b9f66e8a0cf74f22
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 256996
+  packageName: Breeze - Advanced Character Behaviour
+  packageVersion: 1.02
+  assetPath: Assets/Breeze/Scripts/Editor/Weapons/BreezeGunEditor.cs
+  uploadId: 630973

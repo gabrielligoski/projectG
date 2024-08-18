@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
     }
 
     public void onMouseMove(InputAction.CallbackContext callback) {

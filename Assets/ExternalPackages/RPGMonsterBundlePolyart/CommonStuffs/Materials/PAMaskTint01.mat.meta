@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6dde8a74ee2c4433b62a4c9b27a167f1
+timeCreated: 1575283783
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 261480
+  packageName: RPG Monster BUNDLE Polyart
+  packageVersion: 1.0
+  assetPath: Assets/RPGMonsterBundlePolyart/CommonStuffs/Materials/PAMaskTint01.mat
+  uploadId: 602801

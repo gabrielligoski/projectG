@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cce03de98df876a43a08ed846997ffe7
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 256996
+  packageName: Breeze - Advanced Character Behaviour
+  packageVersion: 1.02
+  assetPath: Assets/Breeze/Resources/Prefabs/Example Bullet.prefab
+  uploadId: 630973

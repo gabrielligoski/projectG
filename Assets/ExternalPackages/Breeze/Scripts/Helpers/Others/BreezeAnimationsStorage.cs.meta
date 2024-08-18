@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b62838d5807b4c14ebd6cccf74044b73
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 256996
+  packageName: Breeze - Advanced Character Behaviour
+  packageVersion: 1.02
+  assetPath: Assets/Breeze/Scripts/Helpers/Others/BreezeAnimationsStorage.cs
+  uploadId: 630973

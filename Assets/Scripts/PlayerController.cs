@@ -34,13 +34,14 @@ public class PlayerController : MonoBehaviour
             }
             if(currentCollider != null)
             {
+                if (!currentCollider.tag.Contains("Core") && currentCollider != lastClicked)
+                {
+                    currentCollider.gameObject.GetComponent<RoomHandler>().toggleOutline(true);
+                }
                 if (currentCollider == lastClicked)
                 {
                     lastClicked = null;
-                }
-                else if (!currentCollider.tag.Contains("Core"))
-                {
-                    currentCollider.gameObject.GetComponent<RoomHandler>().toggleOutline(true);
+                } else {
                     lastClicked = currentCollider;
                 }
             }

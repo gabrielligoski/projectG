@@ -21,22 +21,29 @@ public class PlayerController : MonoBehaviour
     public void onMouseMove(InputAction.CallbackContext callback) {
         var value = callback.ReadValue<Vector2>();
         Physics.Raycast(Camera.main.ScreenPointToRay(value), out hit);
-        if(hit.collider != null)
-        {
-            mousePos = value;
-            currentCollider = hit.collider;
-        }
+        mousePos = value;
+        currentCollider = hit.collider;
     }
 
     public void onClick(InputAction.CallbackContext callback) {
         var wasPressed = callback.action.WasReleasedThisFrame();
-        if (wasPressed && currentCollider) {
-            if(lastClicked != null)
+        if (wasPressed) {
+            if(lastClicked != null && !lastClicked.tag.Contains("Core"))
             {
                 lastClicked.gameObject.GetComponent<RoomHandler>().toggleOutline(false);
             }
-            lastClicked = currentCollider;
-            currentCollider.gameObject.GetComponent<RoomHandler>().toggleOutline(true);
+            if(currentCollider != null)
+            {
+                if (currentCollider == lastClicked)
+                {
+                    lastClicked = null;
+                }
+                else if (!currentCollider.tag.Contains("Core"))
+                {
+                    currentCollider.gameObject.GetComponent<RoomHandler>().toggleOutline(true);
+                    lastClicked = currentCollider;
+                }
+            }
         
         }
     }

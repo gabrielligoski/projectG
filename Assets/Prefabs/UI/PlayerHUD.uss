@@ -1,0 +1,5 @@
+rooms-shop {
+	min-width: 300px;
+	width: 25%;
+	height: 100%;
+}

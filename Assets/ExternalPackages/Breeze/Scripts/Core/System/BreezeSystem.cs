@@ -60,7 +60,7 @@ namespace Breeze.Core
     }
 
     #endregion
-    
+
     public class BreezeSystem : MonoBehaviour, BreezeDamageable
     {
         #region Public Variables
@@ -168,7 +168,7 @@ namespace Breeze.Core
 
         //Companion Variables
         public BreezeEnums.AttackBehaviour AttackBehaviour = BreezeEnums.AttackBehaviour.Aggressive;
-        [Range(5,90)]
+        [Range(5, 90)]
         public int FriendlyDamageThreshold = 40;
         public float CFollowingDistance = 4.5f;
         public float CSprintFollowDistance = 12f;
@@ -341,7 +341,7 @@ namespace Breeze.Core
             //Initialize Hit Position
             if (HitPosition == null)
                 HitPosition = transform;
-            
+
             //Check & Set Waypoints
             for (int i = 0; i < Waypoints.Count; i++)
             {
@@ -369,13 +369,13 @@ namespace Breeze.Core
                     ? gameObject.AddComponent<Animator>()
                     : GetComponent<Animator>();
             }
-            
+
             if (nav == null)
             {
 #if !Breeze_AI_Pathfinder_Enabled
                 nav = GetComponent<NavMeshAgent>() == null
                     ? gameObject.AddComponent<NavMeshAgent>()
-                    : GetComponent<NavMeshAgent>();    
+                    : GetComponent<NavMeshAgent>();
 #else
                 nav = GetComponent<AIPath>() == null
                     ? gameObject.AddComponent<AIPath>()
@@ -402,7 +402,7 @@ namespace Breeze.Core
         private void Awake()
         {
             System = this;
-            
+
             if (BreezeSoundManager.Instance == null)
             {
                 GameObject obj = new GameObject("Sound PAI");
@@ -440,7 +440,7 @@ namespace Breeze.Core
             {
                 col = GetComponent<Collider>();
             }
-            
+
             //Check & Add Required Components
             if (anim == null)
             {
@@ -448,13 +448,13 @@ namespace Breeze.Core
                     ? gameObject.AddComponent<Animator>()
                     : GetComponent<Animator>();
             }
-            
+
             if (nav == null)
             {
 #if !Breeze_AI_Pathfinder_Enabled
                 nav = GetComponent<NavMeshAgent>() == null
                     ? gameObject.AddComponent<NavMeshAgent>()
-                    : GetComponent<NavMeshAgent>();    
+                    : GetComponent<NavMeshAgent>();
 #else
                 nav = GetComponent<AIPath>() == null
                     ? gameObject.AddComponent<AIPath>()
@@ -536,7 +536,7 @@ namespace Breeze.Core
             Invoke(nameof(disableErrorChecking), 3f);
             initializeIntegrations();
         }
-        
+
         //Check For Automatic Integrations
         private void initializeIntegrations()
         {
@@ -556,7 +556,7 @@ namespace Breeze.Core
                 }
             }
 #endif
-            
+
 #if HQ_FPS_TEMPLATE
             if (FindObjectOfType<Player>())
             {
@@ -573,7 +573,7 @@ namespace Breeze.Core
                 }
             }
 #endif
-            
+
 #if SURVIVAL_TEMPLATE_PRO
             if (FindObjectOfType<Player>())
             {
@@ -590,7 +590,7 @@ namespace Breeze.Core
                 }
             }
 #endif
-            
+
 #if INVECTOR_MELEE
             if (FindObjectOfType<vThirdPersonController>())
             {
@@ -607,7 +607,7 @@ namespace Breeze.Core
                 }
             }
 #endif
-            
+
 #if FIRST_PERSON_CONTROLLER || THIRD_PERSON_CONTROLLER
             if (FindObjectOfType<CharacterHealth>())
             {
@@ -675,13 +675,13 @@ namespace Breeze.Core
                 enabled = false;
 #endif
             }
-            
+
             //Check Current Target Health & Stop State
             if (CurrentHealth <= 0)
             {
                 return;
             }
-            
+
             //Check Sound
             if (searchingSound)
             {
@@ -698,10 +698,10 @@ namespace Breeze.Core
                     soundSource = null;
                 }
             }
-            
+
             UpdateMovement();
 
-            if(stopAI)
+            if (stopAI)
                 return;
 
             //Check If Movement Changed
@@ -715,7 +715,7 @@ namespace Breeze.Core
             {
                 if (GetTarget() == null)
                 {
-                    FocusOnTarget = null;   
+                    FocusOnTarget = null;
                 }
                 else if (!GetTarget().Equals(FocusOnTarget))
                 {
@@ -767,13 +767,13 @@ namespace Breeze.Core
                         PlayerScript = null;
                         TargetAIScript = ExitSender.GetComponent<BreezeSystem>();
                     }
-                    
+
                     ExitNeutral = 0;
                     CurrentTarget = ExitSender;
                     ExitSender = null;
                 }
-                
-                if(!EquipEventCalled)
+
+                if (!EquipEventCalled)
                     return;
 
                 if (UseAimIK)
@@ -963,7 +963,7 @@ namespace Breeze.Core
         private void ChaseTarget()
         {
             //Rotate To Target
-            if(!nav.hasPath)
+            if (!nav.hasPath)
                 RotateToObject(GetTarget());
 
             //Check Too Close
@@ -1056,7 +1056,7 @@ namespace Breeze.Core
                     {
                         // if(WeaponType != BreezeEnums.WeaponType.Shooter && TargetAIScript != null && TargetAIScript.Attacking)
                         //     return;
-                        
+
                         //Attack!
                         if (FirstAttack && GetTargetDistance() <= ExtendedAttackDistance)
                         {
@@ -1087,10 +1087,10 @@ namespace Breeze.Core
                     if (UseEquipSystem)
                         return;
                 }
-                
-                
+
+
                 RotateToObject(GetTarget());
-                
+
                 //Check If It's Currently Attacking
                 if (!Attacking && !anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
                 {
@@ -1122,7 +1122,7 @@ namespace Breeze.Core
         {
             if (CurrentHealth <= 0)
                 return;
-            
+
             BreezeEvents.OnAnimationEvent.Invoke("BreezeAttackEvent");
 
             //Check If Target Alive
@@ -1216,11 +1216,11 @@ namespace Breeze.Core
                 FleeDone = false;
                 Fleeing = true;
             }
-            else if(StoredTarget != null)
+            else if (StoredTarget != null)
             {
                 if (!FleeDone)
                 {
-                    if(GetDistanceReached())
+                    if (GetDistanceReached())
                     {
                         if (Vector3.Distance(transform.position, StoredTarget.transform.position) >=
                             DetectionDistance * 2)
@@ -1258,7 +1258,7 @@ namespace Breeze.Core
         {
             if (GetTarget() != null || AIBehaviour != BreezeEnums.AIBehaviour.Companion)
                 return;
-            
+
             BreezeEvents.OnAnimationEvent.Invoke("PlayerWasAttacked");
 
             TargetIsPlayer = false;
@@ -1351,7 +1351,7 @@ namespace Breeze.Core
                     PlayAnimation(BreezeEnums.AnimationType.Idle);
                     return;
                 }
-                
+
                 // RotateToObject(playerObject.gameObject);
                 PlayAnimation(BreezeEnums.AnimationType.Walk);
                 SetDestination(pos);
@@ -1778,25 +1778,25 @@ namespace Breeze.Core
             DetectionAngle /= 1.4f;
             DetectionDistance /= 1.4f;
         }
-        
+
         //Check Incoming Sound
         private bool searchingSound;
         private Transform soundSource;
         public void NotifySound(GameObject source, bool IsPlayer = false)
         {
-            if(source == null || searchingSound || GetTarget() != null)
+            if (source == null || searchingSound || GetTarget() != null)
                 return;
-            
-            if(Vector3.Distance(transform.position, source.transform.position) >= SoundDetectionLimit)
+
+            if (Vector3.Distance(transform.position, source.transform.position) >= SoundDetectionLimit)
                 return;
-            
+
             bool soundConfirmed = false;
-            
+
             if (IsPlayer)
             {
                 BreezePlayer player = source.GetComponent<BreezePlayer>();
-                
-                if(player == null)
+
+                if (player == null)
                     return;
 
                 if (AIPlayerBehaviour != BreezeEnums.BehaviourType.Friendly)
@@ -1804,7 +1804,7 @@ namespace Breeze.Core
                     soundConfirmed = true;
                 }
             }
-            else if(source.GetComponent<BreezeSystem>() != null)
+            else if (source.GetComponent<BreezeSystem>() != null)
             {
                 if (CheckFaction(source.GetComponent<BreezeSystem>().CurrentAIFaction))
                 {
@@ -1826,7 +1826,7 @@ namespace Breeze.Core
         private GameObject tempSource;
         private void checkHitTakenFirst()
         {
-            if(CheckCurrentStateTag("Hit") || GetTarget() != null)
+            if (CheckCurrentStateTag("Hit") || GetTarget() != null)
                 return;
 
             stopAI = true;
@@ -1870,12 +1870,12 @@ namespace Breeze.Core
 
             if (system != null)
             {
-                if(system.Equals(this))
+                if (system.Equals(this))
                     return;
 
-                if (!CheckFaction(system.CurrentAIFaction)) 
+                if (!CheckFaction(system.CurrentAIFaction))
                     return;
-                
+
                 TargetAIScript = system;
                 PlayerScript = null;
                 BreezeEvents.OnFoundTarget.Invoke(target);
@@ -1885,12 +1885,12 @@ namespace Breeze.Core
             {
                 BreezePlayer player = target.GetComponent<BreezePlayer>();
 
-                if (player == null || AIBehaviour == BreezeEnums.AIBehaviour.Companion) 
+                if (player == null || AIBehaviour == BreezeEnums.AIBehaviour.Companion)
                     return;
 
-                if (AIPlayerBehaviour != BreezeEnums.BehaviourType.Enemy) 
+                if (AIPlayerBehaviour != BreezeEnums.BehaviourType.Enemy)
                     return;
-                
+
                 TargetAIScript = null;
                 PlayerScript = player;
                 BreezeEvents.OnFoundTarget.Invoke(target);
@@ -1948,8 +1948,8 @@ namespace Breeze.Core
             {
                 return;
             }
-                
-            
+
+
             Collider[] pTargets = new Collider[1000];
             Physics.OverlapSphereNonAlloc(transform.position, DetectionDistance, pTargets, DetectionLayers);
 
@@ -2040,7 +2040,7 @@ namespace Breeze.Core
             {
                 if (Object == null)
                     continue;
-                
+
                 GameObject CheckTarget = Object.gameObject;
                 if (CheckTarget.tag.Equals(BreezeTag) || (CheckTarget.transform.root != null &&
                                                              CheckTarget.transform.root.tag.Equals(BreezeTag)))
@@ -2058,9 +2058,9 @@ namespace Breeze.Core
                             continue;
                         }
 
-                        if(damageable.System.Equals(this))
+                        if (damageable.System.Equals(this))
                             continue;
-                        
+
                         CheckTarget = damageable.System.gameObject;
                     }
                     else
@@ -2072,11 +2072,11 @@ namespace Breeze.Core
                 {
                     if (AIBehaviour == BreezeEnums.AIBehaviour.Companion)
                         continue;
-                    
+
                     CheckTarget = CheckTarget.tag.Equals(PlayerTag)
                         ? CheckTarget
                         : CheckTarget.transform.root.gameObject;
-                    
+
 
                     BreezePlayer TargetComponent = CheckTarget.GetComponent<BreezePlayer>();
                     if (TargetComponent == null || TargetComponent.CurrentHealth <= 0f)
@@ -2138,32 +2138,32 @@ namespace Breeze.Core
                 {
                     case true when AIBehaviour == BreezeEnums.AIBehaviour.Companion:
                         continue;
-                    
+
                     case true:
-                    {
-                        if (AIPlayerBehaviour == BreezeEnums.BehaviourType.Enemy)
                         {
-                            TargetAIScript = null;
-                            BreezeEvents.OnFoundTarget.Invoke(target);
-                            CurrentTarget = target;
-                            PlayerScript = target.GetComponent<BreezePlayer>();
+                            if (AIPlayerBehaviour == BreezeEnums.BehaviourType.Enemy)
+                            {
+                                TargetAIScript = null;
+                                BreezeEvents.OnFoundTarget.Invoke(target);
+                                CurrentTarget = target;
+                                PlayerScript = target.GetComponent<BreezePlayer>();
+                            }
+
+                            break;
                         }
 
-                        break;
-                    }
-                    
                     default:
-                    {
-                        if (CheckFaction(target.GetComponent<BreezeDamageable>().System.CurrentAIFaction))
                         {
-                            PlayerScript = null;
-                            TargetAIScript = target.GetComponent<BreezeDamageable>().System;
-                            BreezeEvents.OnFoundTarget.Invoke(target);
-                            CurrentTarget = target;
-                        }
+                            if (CheckFaction(target.GetComponent<BreezeDamageable>().System.CurrentAIFaction))
+                            {
+                                PlayerScript = null;
+                                TargetAIScript = target.GetComponent<BreezeDamageable>().System;
+                                BreezeEvents.OnFoundTarget.Invoke(target);
+                                CurrentTarget = target;
+                            }
 
-                        break;
-                    }
+                            break;
+                        }
                 }
 
 
@@ -2231,7 +2231,7 @@ namespace Breeze.Core
             UseIK = true;
             elapsedTime = 0;
         }
-        
+
         //System Command
         private void EnableHandIKCommand()
         {
@@ -2286,10 +2286,10 @@ namespace Breeze.Core
                 Quaternion newRot =
                     Quaternion.LookRotation((playerObject.transform.position - transform.position).normalized,
                         Vector3.up);
-                
+
                 newRot.eulerAngles = new Vector3(newRot.eulerAngles.x,
-                    newRot.eulerAngles.y - transform.rotation.eulerAngles.y, newRot.eulerAngles.z);   
-                
+                    newRot.eulerAngles.y - transform.rotation.eulerAngles.y, newRot.eulerAngles.z);
+
                 HeadLookQuaternion = Quaternion.Lerp(HeadLookQuaternion, UseCompanionLookIK ? newRot : Quaternion.Euler(Vector3.zero), 8 * Time.deltaTime);
 
                 if (!HeadLookQuaternion.eulerAngles.Equals(Vector3.zero))
@@ -2499,7 +2499,7 @@ namespace Breeze.Core
             lastone = AimTransform.position + dir + AimOffset;
 
             float yPos;
-            
+
             if (PlayerScript != null && PlayerScript.HitPosition != null)
             {
                 yPos = PlayerScript.HitPosition.position.y;
@@ -2561,7 +2561,7 @@ namespace Breeze.Core
                 BodyWeight = 0;
                 yield return null;
             }
-            
+
             float T = 0;
             float StartingBodyWeight = BodyWeight;
 
@@ -2569,7 +2569,7 @@ namespace Breeze.Core
             {
                 if (GetTarget() == null || anim.GetCurrentAnimatorStateInfo(0).IsTag("Hit"))
                     break;
-                
+
                 if (switchingWeapon)
                 {
                     BodyWeight = 0;
@@ -2610,7 +2610,7 @@ namespace Breeze.Core
         private int GotHitAmount;
         private float GotCompanionDamageAmount;
         private GameObject FocusOnTarget;
-        
+
         public void TakeDamage(float Amount, GameObject Sender, bool IsPlayer, bool HitReaction = true)
         {
             if (CurrentHealth <= 0)
@@ -2628,7 +2628,7 @@ namespace Breeze.Core
             {
                 return;
             }
-            
+
             CurrentHealth -= Amount;
 
             BreezeEvents.OnTakeDamage.Invoke(Amount);
@@ -2683,12 +2683,12 @@ namespace Breeze.Core
                             }
 
                             GotHitAmount = 0;
-                            LastAtacker = null;   
+                            LastAtacker = null;
                         }
                         else
                         {
                             GotHitAmount = 0;
-                            LastAtacker = null;   
+                            LastAtacker = null;
                         }
                     }
                 }
@@ -2712,7 +2712,7 @@ namespace Breeze.Core
                 BreezeSounds.PlaySound(SoundType.TookDamage);
                 PlayAnimation(BreezeEnums.AnimationType.Hit);
             }
-            
+
             if (Sender != null)
             {
                 if (GetTarget() == null && CheckDamageSender(Sender, IsPlayer))
@@ -2740,7 +2740,7 @@ namespace Breeze.Core
                                 PlayerScript = null;
                                 TargetAIScript = ExitSender.GetComponent<BreezeSystem>();
                             }
-                    
+
                             ExitNeutral = 0;
                             CurrentTarget = ExitSender;
                             ExitSender = null;
@@ -2753,12 +2753,12 @@ namespace Breeze.Core
                                 StartCoroutine(FadeInBodyIK());
                         }
                     }
-                }   
+                }
             }
         }
 
         //AI Death
-        public void  Death()
+        public void Death()
         {
             BreezeSounds.PlaySound(SoundType.Death);
 
@@ -2857,7 +2857,7 @@ namespace Breeze.Core
                 return dest;
             }
 #endif
-            
+
 
             BreezeEvents.OnPathUnreachable.Invoke();
             return Vector3.zero;
@@ -2886,7 +2886,7 @@ namespace Breeze.Core
         public void BreezeEquip()
         {
             OnEquipChanged.Invoke(true, false);
-            
+
             BreezeEvents.OnAnimationEvent.Invoke("BreezeEquip");
 
             EquipEventCalled = true;
@@ -3028,10 +3028,10 @@ namespace Breeze.Core
                 }
 
                 //Create a new destination position
-                Vector3 Destination = transform.position +
+                Vector3 Destination = Waypoints[0].transform.position +
                                       new Vector3(Random.insideUnitSphere.y, 0, Random.insideUnitSphere.z) *
                                       PatrolRadius;
-
+                Debug.Log(Destination);
                 //Check if the position is valid & reachable
                 if (CheckPath(Destination) != Vector3.zero)
                 {
@@ -3182,11 +3182,11 @@ namespace Breeze.Core
                         BreezeMeleeWeapon weapon =
                             BreezeWeaponHub.WeaponClasses[BreezeWeaponHub.currentIndex].weaponScript as
                                 BreezeMeleeWeapon;
-                        
-                        if(weapon != null)
+
+                        if (weapon != null)
                             weapon.Playsound("Swinged");
                     }
-                    
+
                     FirstAttack = false;
                     Attacking = true;
                     int rand = RandomAnimIndex(type);
@@ -3264,9 +3264,9 @@ namespace Breeze.Core
         //Rotates To Object
         private void RotateToObject(GameObject obj)
         {
-            if(CheckCurrentStateTag("Hit"))
+            if (CheckCurrentStateTag("Hit"))
                 return;
-            
+
             if (UseAimIK && BodyWeight >= 0.4f && GetTarget() != null)
             {
                 if ((GetAngle(GetTargetPosition()) * 2) <= AngleLimit - 25f)
@@ -3354,8 +3354,8 @@ namespace Breeze.Core
         {
             anim.enabled = false;
             enabled = false;
-            
-            if(DestroyAfterDeath)
+
+            if (DestroyAfterDeath)
                 Destroy(gameObject);
         }
 
@@ -3423,7 +3423,7 @@ namespace Breeze.Core
                     BreezeEnums.MovementType.Walking => "Walking",
                     BreezeEnums.MovementType.None => "Idle",
                     _ => CurrentAIState
-                };   
+                };
             }
         }
 

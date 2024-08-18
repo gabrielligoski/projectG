@@ -1,7 +1,7 @@
 using Breeze.Core;
 using UnityEngine;
 
-public class AIDestination : MonoBehaviour
+public class CharacterController : MonoBehaviour
 {
     public enum CharacterType
     {
@@ -10,16 +10,18 @@ public class AIDestination : MonoBehaviour
     }
 
     [SerializeField] private CharacterType type;
-
-    //public static BreezeWaypoint coreWaypoint;
+    public BreezeWaypoint waypoint;
 
     private void Start()
     {
-        if (type == CharacterType.human)
+        switch (type)
         {
-            var coreWaypoint = new BreezeWaypoint();
-            //coreWaypoint = 
-            GetComponent<BreezeSystem>().Waypoints.Add(coreWaypoint);
+            case CharacterType.monster:
+                GetComponent<BreezeSystem>().Waypoints.Add(waypoint);
+                break;
+            case CharacterType.human:
+                GetComponent<BreezeSystem>().Waypoints.Add(Core.core.bWaypoint);
+                break;
         }
     }
 }

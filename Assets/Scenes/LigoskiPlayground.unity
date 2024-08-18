@@ -263,6 +263,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: spider_2
       objectReference: {fileID: 0}
+    - target: {fileID: 4503233962435138895, guid: 2df88b543c5528b44a7c7f0838956521, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4962873628873955385, guid: 2df88b543c5528b44a7c7f0838956521, type: 3}
       propertyPath: hasErrors
       value: 1
@@ -328,6 +332,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: spider_1
       objectReference: {fileID: 0}
+    - target: {fileID: 4503233962435138895, guid: 2df88b543c5528b44a7c7f0838956521, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4962873628873955385, guid: 2df88b543c5528b44a7c7f0838956521, type: 3}
       propertyPath: hasErrors
       value: 0
@@ -381,56 +389,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1352624360
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1352624362}
-  - component: {fileID: 1352624361}
-  m_Layer: 0
-  m_Name: waypoint_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1352624361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1352624360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8193b10d595fa94b9309fef3503ccb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NextWaypoint: {fileID: 0}
-  WaitOnWaypoint: 1
-  MinIdleLength: 4
-  MaxIdleLength: 8
-  DrawGizmos: 1
-  GizmosColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
---- !u!4 &1352624362
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1352624360}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.49, y: 0.4, z: -6.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1380510195
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,7 +405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1380510196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,8 +420,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 11
   roomGap: 0.1
-  coreRoom: {fileID: 5745954314644160665, guid: 592272ea4fbd53e499244f4a92a29113, type: 3}
-  blankRoom: {fileID: 5745954314644160665, guid: 0dc4496384e8b36468de1b5061eee3e0, type: 3}
+  rooms:
+  - {fileID: 5745954314644160665, guid: 592272ea4fbd53e499244f4a92a29113, type: 3}
+  - {fileID: 5745954314644160665, guid: 40c71fbd06b56cf4db627a4f78188556, type: 3}
+  - {fileID: 5745954314644160665, guid: 0dc4496384e8b36468de1b5061eee3e0, type: 3}
   floorPfb: {fileID: 1852709211219570942, guid: 2e89a83755dcb324994b67d02480b2fa, type: 3}
 --- !u!4 &1380510197
 Transform:
@@ -491,6 +451,10 @@ PrefabInstance:
     - target: {fileID: 3987020723604440620, guid: b034cf31e5061cf45b3386bd9c7b3dc8, type: 3}
       propertyPath: m_Name
       value: hero
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987020723604440620, guid: b034cf31e5061cf45b3386bd9c7b3dc8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7037028884562144219, guid: b034cf31e5061cf45b3386bd9c7b3dc8, type: 3}
       propertyPath: hasErrors
@@ -560,7 +524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1665829825
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -682,56 +646,6 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 41b05a528d2ed234aa270249827a50b4, type: 2}
   m_BuildHeightMesh: 0
---- !u!1 &1818845992
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1818845994}
-  - component: {fileID: 1818845993}
-  m_Layer: 0
-  m_Name: waypoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1818845993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1818845992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8193b10d595fa94b9309fef3503ccb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NextWaypoint: {fileID: 0}
-  WaitOnWaypoint: 1
-  MinIdleLength: 4
-  MaxIdleLength: 8
-  DrawGizmos: 1
-  GizmosColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
---- !u!4 &1818845994
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1818845992}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.72, y: 0.4, z: -4.02}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2042025716
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,6 +819,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: spider
       objectReference: {fileID: 0}
+    - target: {fileID: 4503233962435138895, guid: 2df88b543c5528b44a7c7f0838956521, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -923,5 +841,3 @@ SceneRoots:
   - {fileID: 572981071}
   - {fileID: 1665829828}
   - {fileID: 1569501074}
-  - {fileID: 1818845994}
-  - {fileID: 1352624362}

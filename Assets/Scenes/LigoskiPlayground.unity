@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 222671501}
   - component: {fileID: 222671500}
   - component: {fileID: 222671502}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,11 +278,9 @@ MonoBehaviour:
   doc: {fileID: 222671500}
   css: {fileID: 7433441132597879392, guid: 4035e4232bb4d3f4ca8e33730914bee7, type: 3}
   rooms:
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Bloco
+  - Vazio
+  - Turret
 --- !u!1 &311467599
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +292,8 @@ GameObject:
   - component: {fileID: 311467603}
   - component: {fileID: 311467602}
   - component: {fileID: 311467601}
-  - component: {fileID: 311467600}
+  - component: {fileID: 311467605}
+  - component: {fileID: 311467604}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -302,24 +301,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &311467600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311467599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4d78bf4b3d541c49bba68a63e35c80c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doc: {fileID: 0}
-  css: {fileID: 0}
-  rooms:
-  - 
-  - 
-  - 
 --- !u!114 &311467601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +364,7 @@ MonoBehaviour:
     m_ActionName: 'UI/Point[/Mouse/position]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 311467600}
+      - m_Target: {fileID: 222671502}
         m_TargetAssemblyTypeName: PlayerHUD, Scripts
         m_MethodName: teste
         m_Mode: 5
@@ -474,6 +455,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &311467604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311467599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
+--- !u!114 &311467605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311467599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
 --- !u!1 &1380510195
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,8 +531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 11
   roomGap: 0.1
-  coreRoom: {fileID: 5745954314644160665, guid: 592272ea4fbd53e499244f4a92a29113, type: 3}
-  blankRoom: {fileID: 5745954314644160665, guid: 0dc4496384e8b36468de1b5061eee3e0, type: 3}
+  rooms: []
   floorPfb: {fileID: 1852709211219570942, guid: 2e89a83755dcb324994b67d02480b2fa, type: 3}
 --- !u!4 &1380510197
 Transform:

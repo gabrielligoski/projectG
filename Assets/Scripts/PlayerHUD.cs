@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -6,10 +8,12 @@ public class PlayerHUD : MonoBehaviour
 {
     [SerializeField] private UIDocument doc;
     [SerializeField] private StyleSheet css;
-    [SerializeField] private string[] rooms = new string[3];
+    private List<Button> roomsButtons = new List<Button>();
 
     private void Start()
     {
+        var rooms = Enumerable.Range(0, Enum.GetNames(typeof(Room.RoomType)).Length).ToList();
+
         var root = doc.rootVisualElement;
         root.styleSheets.Add(css);
 
@@ -22,20 +26,25 @@ public class PlayerHUD : MonoBehaviour
         roomsShop.Add(roomsShopTitle);
 
         root.Add(roomsShop);
-        for (int i = 0; i < rooms.Length; i++) { 
-            var room = new Button();
-            room.text = rooms[i];
-            room.AddToClassList("room");
-            Debug.Log(rooms[i]);
-            room.RegisterCallback<MouseUpEvent, string>(selectRoomType, rooms[i]);
-            roomsShop.Add(room);
-        }
+
+        rooms.ForEach((room) =>
+        {
+            var roomButton = new Button();
+            string roomName = Enum.GetName(typeof(Room.RoomType), room);
+            roomButton.text = roomName;
+            roomButton.AddToClassList("room");
+            roomButton.RegisterCallback<MouseUpEvent>((evt) => selectRoomType(roomButton, (Room.RoomType)room));
+            roomsShop.Add(roomButton);
+            roomsButtons.Add(roomButton);
+        });
+
     }
 
-    public void selectRoomType(MouseUpEvent evt, string texto)
+    public void selectRoomType(Button roomButton, Room.RoomType room )
     {
-        Debug.Log("Clicou");
-        Debug.Log(texto);
+        roomsButtons.ForEach((button) => button.RemoveFromClassList("room-selected"));
+        roomButton.AddToClassList("room-selected");
+        PlayerController.roomToInstance = room;
     }
 
 }

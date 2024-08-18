@@ -37,7 +37,6 @@ Transform:
   - {fileID: 5846381215473340986}
   - {fileID: 950635223140281850}
   - {fileID: 826813168708210047}
-  - {fileID: 2349897552104353829}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6138797499350442279
@@ -156,7 +155,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1014263511689119424, guid: 4fbe287af4f7b95428c3342426a215e4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -230,7 +230,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3662630625422009110, guid: 2c5c445135c147e498ca9ae73de34db3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -304,7 +305,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prop_Building_Savage_Tribal_Roof_Cloth_Bone_Peaked_01_Atlased
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4923996957707846108, guid: c2cef10417391b649ab5e1b95e83b652, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -378,7 +380,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3773197823895877414, guid: 85a72776ac85e3740a561f64c59faf60, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -387,80 +390,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5663951414926565075, guid: 85a72776ac85e3740a561f64c59faf60, type: 3}
   m_PrefabInstance: {fileID: 4876044345415103273}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &5446786997253834944
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 5536854239961162069}
-    m_Modifications:
-    - target: {fileID: 934775675763805291, guid: 458b3f9e17124c846957c0cf48b689ef, type: 3}
-      propertyPath: m_Name
-      value: Prop_Banner_Torn_Red_01_Atlased
-      objectReference: {fileID: 0}
-    - target: {fileID: 7713079248465262821, guid: 458b3f9e17124c846957c0cf48b689ef, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7713079248465262821, guid: 458b3f9e17124c846957c0cf48b689ef, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7713079248465262821, guid: 458b3f9e17124c846957c0cf48b689ef, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7713079248465262821, guid: 458b3f9e17124c846957c0cf48b689ef, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.178
-      objectReference: {fileID: 0}
-    - target: {fileID: 7713079248465262821, guid: 458b3f9e17124c846957c0cf48b689ef, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.39357617
-      objectReference: {fileID: 0}
-    - target: {fileID: 7713079248465262821, guid: 458b3f9e17124c846957c0cf48b689ef, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.336
-      objectReference: {fileID: 0}
-    - target: {fileID: 7713079248465262821, guid: 458b3f9e17124c846957c0cf48b689ef, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.8660254
-      objectReference: {fileID: 0}
-    - target: {fileID: 7713079248465262821, guid: 458b3f9e17124c846957c0cf48b689ef, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7713079248465262821, guid: 458b3f9e17124c846957c0cf48b689ef, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7713079248465262821, guid: 458b3f9e17124c846957c0cf48b689ef, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7713079248465262821, guid: 458b3f9e17124c846957c0cf48b689ef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7713079248465262821, guid: 458b3f9e17124c846957c0cf48b689ef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 7713079248465262821, guid: 458b3f9e17124c846957c0cf48b689ef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 458b3f9e17124c846957c0cf48b689ef, type: 3}
---- !u!4 &2349897552104353829 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7713079248465262821, guid: 458b3f9e17124c846957c0cf48b689ef, type: 3}
-  m_PrefabInstance: {fileID: 5446786997253834944}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6572566319392522985
 PrefabInstance:
@@ -526,7 +455,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3440458534837381522, guid: 699f00d0c551d8a4f9d503c43a27a16c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -170,7 +170,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prop_Building_Dark_Fantasy_Fort_Tower_Base_01_Atlased
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5509065553265705680, guid: 6c66e0855e4d4994287b759b441ed8db, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -244,7 +245,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prop_Fire_Static_01_Atlased
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -2496995273297396144, guid: 9f09e78d80861de428e8de75ae7dc461, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -318,7 +320,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prop_Building_Dark_Fantasy_Fort_Tower_Top_01_Atlased
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2581856028122830059, guid: c51cc7768c6323f4ba0c5959dec884dc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -392,7 +395,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -1014263511689119424, guid: 4fbe287af4f7b95428c3342426a215e4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -9,8 +9,7 @@ public class GameMaster : MonoBehaviour
 
     [SerializeField] private int size;
     [SerializeField] private float roomGap;
-    [SerializeField] private GameObject coreRoom;
-    [SerializeField] private GameObject blankRoom;
+    [SerializeField] private List<GameObject> rooms = new List<GameObject>();
     [SerializeField] private GameObject floorPfb;
 
     public static NavMeshSurface navMeshSurface;
@@ -20,7 +19,9 @@ public class GameMaster : MonoBehaviour
 
     void Start()
     {
-        (map, floor, core) = GenerateMap.createMap(size, roomGap, coreRoom, blankRoom, floorPfb);
+        var coreRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.core);
+        var emptyRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.empty);
+        (map, floor, core) = GenerateMap.createMap(size, roomGap, coreRoom, emptyRoom, floorPfb);
         navMeshSurface = floor.GetComponent<NavMeshSurface>();
         navMeshSurface.BuildNavMesh();
 

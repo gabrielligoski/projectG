@@ -152,6 +152,7 @@ MonoBehaviour:
   roomGap: 0.25
   coreRoom: {fileID: 5745954314644160665, guid: 592272ea4fbd53e499244f4a92a29113, type: 3}
   blankRoom: {fileID: 5745954314644160665, guid: 0dc4496384e8b36468de1b5061eee3e0, type: 3}
+  floorPfb: {fileID: 1852709211219570942, guid: 2e89a83755dcb324994b67d02480b2fa, type: 3}
 --- !u!4 &148893589
 Transform:
   m_ObjectHideFlags: 0

@@ -12,11 +12,12 @@ GameObject:
   - component: {fileID: 2362111237039182574}
   - component: {fileID: 5286615840061677551}
   - component: {fileID: 6138797499350442279}
-  - component: {fileID: -5704270868809489082}
-  - component: {fileID: 7957446989494457292}
+  - component: {fileID: -1086286444799677231}
+  - component: {fileID: 7229545532328361794}
+  - component: {fileID: 5441793676725070946}
   m_Layer: 0
-  m_Name: Core
-  m_TagString: Core
+  m_Name: Empty
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -67,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6dae85ad696af8d40bfc076834b8cf06, type: 2}
+  - {fileID: 2100000, guid: a417939ab7f46434ab3181d08739361f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,7 +111,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-5704270868809489082
+--- !u!114 &-1086286444799677231
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,8 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1c8c6e895762c40bf09fb791761213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shader: {fileID: 0}
---- !u!114 &7957446989494457292
+  shader: {fileID: 7229545532328361794}
+--- !u!114 &7229545532328361794
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,8 +133,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 5745954314644160665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a5e05c4af69a58489a9f47043749e7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineOnTop: 0
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &5441793676725070946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5745954314644160665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a3b92790e2b9464f960a613ffc9e6a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 5745954314644160665}
   cost: 0
-  description: Core
+  description: Teste

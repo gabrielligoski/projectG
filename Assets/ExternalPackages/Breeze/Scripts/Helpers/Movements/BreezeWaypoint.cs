@@ -40,7 +40,7 @@ namespace Breeze.Core
 
         private void Awake()
         {
-            GetComponent<Collider>().enabled = false;
+            GetComponent<Collider>().enabled = true;
         }
     }
 }

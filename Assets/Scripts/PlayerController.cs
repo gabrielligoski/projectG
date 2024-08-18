@@ -10,11 +10,12 @@ public class PlayerController : MonoBehaviour
     private Collider currentCollider;
     private Collider lastClicked;
 
-    public static Room.RoomType roomToInstance = Room.RoomType.none;
+    public static Room.RoomType roomToInstance;
 
     void Start()
     {
         lastClicked = null;
+        roomToInstance = Room.RoomType.none;
     }
 
     void Update()
@@ -37,6 +38,8 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log(roomToInstance.ToString());
             GameMaster.Instance.swapRoom(currentCollider.gameObject, roomToInstance);
+            lastClicked?.gameObject.GetComponent<RoomHandler>().toggleOutline(false);
+            lastClicked = null;
         }
     }
 
@@ -45,7 +48,7 @@ public class PlayerController : MonoBehaviour
         if (wasPressed)
         {
             Debug.Log("set empty");
-            roomToInstance = Room.RoomType.empty;
+            roomToInstance = roomToInstance == Room.RoomType.empty? Room.RoomType.none: Room.RoomType.empty;
         }
     }
 

@@ -39,6 +39,7 @@ public class RoomSpawner : MonoBehaviour
         {
             var spawnedInstance = Instantiate(pfb, gameObject.transform.position, Quaternion.identity);
             spawnedInstance.GetComponent<CharacterController>().waypoint = breezeWaypoint;
+            spawnedInstance.GetComponent<Enemy>().spawn = this;
             spawns.Add(spawnedInstance);
         }
     }

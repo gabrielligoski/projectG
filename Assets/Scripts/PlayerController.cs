@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private Collider lastClicked;
     void Start()
     {
+        lastClicked = null;
     }
 
     void Update()
@@ -27,30 +28,24 @@ public class PlayerController : MonoBehaviour
 
     public void onClick(InputAction.CallbackContext callback) {
         var wasPressed = callback.action.WasReleasedThisFrame();
-        if (wasPressed) {
-            if(lastClicked != null && !lastClicked.tag.Contains("Core"))
-            {
-                lastClicked.gameObject.GetComponent<RoomHandler>().toggleOutline(false);
-            }
-            if (currentCollider != null)
-            {
-                if (!currentCollider.tag.Contains("Core") && currentCollider != lastClicked)
-                {
-                    currentCollider.gameObject.GetComponent<RoomHandler>().toggleOutline(true);
-                }
-                if (currentCollider == lastClicked)
-                {
-                    lastClicked = null;
-                }
-                else
-                {
-                    lastClicked = currentCollider;
-                }
-            }
-            else {
-                lastClicked = null;
-            }
+        if (wasPressed) 
+        {
+            toggleHighlightRoom();
+        }
+    }
 
+    public void toggleHighlightRoom()
+    {
+        lastClicked?.gameObject.GetComponent<RoomHandler>().toggleOutline(false);
+
+        if (currentCollider && !currentCollider.tag.Contains("Core") && currentCollider != lastClicked)
+        {
+            currentCollider?.gameObject.GetComponent<RoomHandler>().toggleOutline(true);
+            lastClicked = currentCollider;
+        }
+        else
+        {
+            lastClicked = null;
         }
     }
 }

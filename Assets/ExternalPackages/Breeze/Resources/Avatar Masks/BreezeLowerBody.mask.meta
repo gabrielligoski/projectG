@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 872cf747c7d86904d9e6acf1ac6fadfb
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 31900000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 256996
+  packageName: Breeze - Advanced Character Behaviour
+  packageVersion: 1.02
+  assetPath: Assets/Breeze/Resources/Avatar Masks/BreezeLowerBody.mask
+  uploadId: 630973

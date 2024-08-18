@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0bff5e6051be4b628bf3c1161e4f663c
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 261480
+  packageName: RPG Monster BUNDLE Polyart
+  packageVersion: 1.0
+  assetPath: Assets/RPGMonsterBundlePolyart/CommonStuffs/Shader/PAMaskTint.shader
+  uploadId: 602801

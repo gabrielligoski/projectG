@@ -17,13 +17,9 @@ public class PlayerHUD : MonoBehaviour
         var root = doc.rootVisualElement;
         root.styleSheets.Add(css);
 
-        var roomsShop = new VisualElement();
+        var roomsShop = new ScrollView(ScrollViewMode.Horizontal);
+        roomsShop.mouseWheelScrollSize = 10000;
         roomsShop.AddToClassList("rooms-shop");
-
-        var roomsShopTitle = new Label();
-        roomsShopTitle.text = "Rooms Shop";
-        roomsShopTitle.AddToClassList("rooms-shop-title");
-        roomsShop.Add(roomsShopTitle);
 
         root.Add(roomsShop);
 

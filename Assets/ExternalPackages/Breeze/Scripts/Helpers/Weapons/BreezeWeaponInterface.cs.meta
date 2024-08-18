@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: a19bb8693e5ce0d4f8169b2c459c4444
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 256996
+  packageName: Breeze - Advanced Character Behaviour
+  packageVersion: 1.02
+  assetPath: Assets/Breeze/Scripts/Helpers/Weapons/BreezeWeaponInterface.cs
+  uploadId: 630973

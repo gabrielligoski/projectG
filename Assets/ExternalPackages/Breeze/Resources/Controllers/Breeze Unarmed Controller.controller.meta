@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fa2b1ee84912ee348b79e18c2d54e8de
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 256996
+  packageName: Breeze - Advanced Character Behaviour
+  packageVersion: 1.02
+  assetPath: Assets/Breeze/Resources/Controllers/Breeze Unarmed Controller.controller
+  uploadId: 630973

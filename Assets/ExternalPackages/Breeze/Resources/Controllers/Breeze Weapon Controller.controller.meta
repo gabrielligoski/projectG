@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 056436cef843b8b4a9baab8b9fa09faa
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 256996
+  packageName: Breeze - Advanced Character Behaviour
+  packageVersion: 1.02
+  assetPath: Assets/Breeze/Resources/Controllers/Breeze Weapon Controller.controller
+  uploadId: 630973

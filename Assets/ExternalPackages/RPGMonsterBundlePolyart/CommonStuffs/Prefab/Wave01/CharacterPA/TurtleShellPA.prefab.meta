@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 1d8185d9435b4336992f61038cedcc35
+timeCreated: 1581591198
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 261480
+  packageName: RPG Monster BUNDLE Polyart
+  packageVersion: 1.0
+  assetPath: Assets/RPGMonsterBundlePolyart/CommonStuffs/Prefab/Wave01/CharacterPA/TurtleShellPA.prefab
+  uploadId: 602801

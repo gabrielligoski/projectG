@@ -17,6 +17,9 @@ public class Core : Room
     {
         core = this;
         bWaypoint = GetComponent<BreezeWaypoint>();
+        bWaypoint.NextWaypoint = bWaypoint.gameObject;
+        bWaypoint.MaxIdleLength = int.MaxValue;
+        bWaypoint.MinIdleLength = int.MaxValue;
     }
 
     private void OnTriggerEnter(Collider collider)

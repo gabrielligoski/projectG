@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Floor
   - Core
+  - AI
   layers:
   - Default
   - TransparentFX

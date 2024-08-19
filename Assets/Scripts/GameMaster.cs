@@ -64,10 +64,10 @@ public class GameMaster : MonoBehaviour
 
     private bool compareAdjacentsTo(GameObject target, Room.RoomType roomType) {
         (int,int) pos = target.GetComponent<Room>().pos;
-        var adj0 = pos.Item1 - 1 >= 0 ? map[pos.Item1 - 1][pos.Item2].GetComponent<Room>().roomType() == roomType : false;
-        var adj1 = pos.Item1 + 1 < map.Count ? map[pos.Item1 + 1][pos.Item2].GetComponent<Room>().roomType() == roomType : false;
-        var adj2 = pos.Item2 - 1 >= 0 ? map[pos.Item1][pos.Item2-1].GetComponent<Room>().roomType() == roomType : false;
-        var adj3 = pos.Item2 + 1 < map[pos.Item1].Count ? map[pos.Item1][pos.Item2+1].GetComponent<Room>().roomType() == roomType : false;
+        var adj0 = pos.Item1 - 1 >= 0 ? map[pos.Item1 - 1][pos.Item2].GetComponent<Room>().roomType() == roomType : true;
+        var adj1 = pos.Item1 + 1 < map.Count ? map[pos.Item1 + 1][pos.Item2].GetComponent<Room>().roomType() == roomType : true;
+        var adj2 = pos.Item2 - 1 >= 0 ? map[pos.Item1][pos.Item2-1].GetComponent<Room>().roomType() == roomType : true;
+        var adj3 = pos.Item2 + 1 < map[pos.Item1].Count ? map[pos.Item1][pos.Item2+1].GetComponent<Room>().roomType() == roomType : true;
 
         return adj0 && adj1 && adj2 && adj3; 
     }

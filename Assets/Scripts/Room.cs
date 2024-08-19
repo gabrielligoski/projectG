@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public abstract class Room : MonoBehaviour
 {
+
+    public (int,int) pos;
     public int cost;
     public enum RoomType
     {

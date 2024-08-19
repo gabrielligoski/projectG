@@ -9,16 +9,19 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] private UIDocument doc;
     [SerializeField] private StyleSheet css;
     private List<Button> roomsButtons = new List<Button>();
+    private Room.RoomType selectedRoomType = Room.RoomType.none;
 
     private void Start()
     {
         var rooms = Enumerable.Range(0, Enum.GetNames(typeof(Room.RoomType)).Length).ToList();
+        rooms.RemoveAt(0);
 
         var root = doc.rootVisualElement;
         root.styleSheets.Add(css);
 
         var roomsShop = new ScrollView(ScrollViewMode.Horizontal);
         roomsShop.mouseWheelScrollSize = 10000;
+        roomsShop.verticalScrollerVisibility = ScrollerVisibility.Hidden;
         roomsShop.AddToClassList("rooms-shop");
 
         root.Add(roomsShop);
@@ -39,7 +42,14 @@ public class PlayerHUD : MonoBehaviour
     public void selectRoomType(Button roomButton, Room.RoomType room )
     {
         roomsButtons.ForEach((button) => button.RemoveFromClassList("room-selected"));
-        roomButton.AddToClassList("room-selected");
+        if (room == selectedRoomType) { 
+            room = Room.RoomType.none;
+        } 
+        else
+        {
+            roomButton.AddToClassList("room-selected");
+        }
+        selectedRoomType = room;
         PlayerController.roomToInstance = room;
     }
 

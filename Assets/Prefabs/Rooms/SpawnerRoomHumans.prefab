@@ -82,10 +82,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95dc2f672c454a545b63545702e92031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 0
+  description: 
   name: soldierSpawner
   pfb: {fileID: 3987020723604440620, guid: b034cf31e5061cf45b3386bd9c7b3dc8, type: 3}
   quantity: 3
-  maxQuantity: 0
+  maxQuantity: 3
   spawnTimer: 3
   spawns: []
 --- !u!1001 &309813731370620669

@@ -32,13 +32,6 @@
 	scale: 1.05;
 }
 
-.room-selected {
-	background-color: rgba(255,0,0,1);
-}
-
-.room-selected:hover {
-	background-color: rgba(255,0,0,1);
-}
 
 .unity-base-slider--horizontal .unity-base-slider__dragger {
 	height: 10px;

@@ -1,11 +1,11 @@
 using Breeze.Core;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomSpawner : Room
 {
 
-    [SerializeField] private string name;
     [SerializeField] private GameObject pfb;
     [SerializeField] private int quantity;
     [SerializeField] private int maxQuantity;
@@ -13,8 +13,16 @@ public class RoomSpawner : Room
 
     public List<GameObject> spawns = new List<GameObject>();
 
-    public override RoomType roomType() {
-        return Room.RoomType.spawner;
+    public override RoomType roomType()
+    {
+        if (Enum.TryParse(name, out RoomType parsed))
+            return parsed;
+        else
+        {
+            Debug.LogError("Spawner couldn´t find the correct enum type");
+            return RoomType.none;
+        }
+
     }
 
     private BreezeWaypoint breezeWaypoint;

@@ -29,17 +29,18 @@ public class PlayerHUD : MonoBehaviour
         rooms.ForEach((room) =>
         {
             var roomButton = new Button();
+            //roomButton.pickingMode = PickingMode.Ignore;
             string roomName = Enum.GetName(typeof(Room.RoomType), room);
             roomButton.text = roomName;
             roomButton.AddToClassList("room");
-            roomButton.RegisterCallback<MouseUpEvent>((evt) => selectRoomType(roomButton, (Room.RoomType)room));
+            roomButton.RegisterCallback<MouseUpEvent>((evt) => selectRoomType(roomButton, (Room.RoomType)room, evt));
             roomsShop.Add(roomButton);
             roomsButtons.Add(roomButton);
         });
 
     }
 
-    public void selectRoomType(Button roomButton, Room.RoomType room )
+    public void selectRoomType(Button roomButton, Room.RoomType room, MouseUpEvent evt)
     {
         roomsButtons.ForEach((button) => button.RemoveFromClassList("room-selected"));
         if (room == selectedRoomType) { 
@@ -51,6 +52,9 @@ public class PlayerHUD : MonoBehaviour
         }
         selectedRoomType = room;
         PlayerController.roomToInstance = room;
+        evt.StopPropagation();
+
+
     }
 
 }

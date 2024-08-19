@@ -311,7 +311,7 @@ MonoBehaviour:
   DetectionAngle: 70
   DetectionLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   ObstacleLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -324,9 +324,13 @@ MonoBehaviour:
   BonesToUse: 
   AimOffset: {x: 0, y: 0.5, z: 0}
   AngleLimit: 75
-  CurrentAIFaction: 0
+  CurrentAIFaction: 3
   AIPlayerBehaviour: 0
-  AIFactionsList: []
+  AIFactionsList:
+  - Factions: 0
+    behaviourType: 0
+  - Factions: 1
+    behaviourType: 0
   BreezeTag: AI
   PlayerTag: Player
   AttackBehaviour: 0

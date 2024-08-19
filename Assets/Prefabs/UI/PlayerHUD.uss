@@ -1,0 +1,73 @@
+
+.rooms-shop {
+	width: auto;
+	max-width: 100%;
+	height: 120px;
+	background-color: rgba(0,0,0,0.8);
+	padding-top: 10px;
+	bottom:0px;
+	position: absolute;
+	align-content: center;
+	align-self: center;
+
+}
+
+.room {
+	width: 80px;
+	height: 90%;
+	background-color: rgba(0,0,0,0.8);
+	border-radius: 5px;
+	border-color: rgba(100,100,100,1);
+	border-width: 1px;
+	color: rgba(255,255,255,1);
+	font-size: 25px;
+}
+
+.rooms-shop {
+	padding-left: 0px;
+}
+
+.room:hover {
+	background-color: rgba(0,0,0,1);
+	scale: 1.05;
+}
+
+.room-selected {
+	background-color: rgba(255,0,0,1);
+}
+
+.room-selected:hover {
+	background-color: rgba(255,0,0,1);
+}
+
+.unity-base-slider--horizontal .unity-base-slider__dragger {
+	height: 10px;
+	border-radius:5px;
+	background-color: rgba(0,0,0,0.8);
+}
+
+.unity-base-slider .unity-base-slider__tracker {
+	height: 10px;
+	background-color: rgba(0,0,0,0);
+	border-color: rgba(0,0,0,0);
+}
+
+.unity-base-slider__drag-container {
+	height: 10px;
+}
+
+.unity-scroller--horizontal {
+	height: 20px;
+}
+
+.unity-scroller > .unity-scroller__low-button {
+	width: 0px;
+	height: 0px;
+	opacity: 0;
+}
+
+.unity-scroller > .unity-scroller__high-button {
+	width: 0px;
+	height: 0px;
+	opacity: 0;
+}

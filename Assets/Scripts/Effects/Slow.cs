@@ -3,6 +3,8 @@ using UnityEngine;
 public class Slow : Effect
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public float effectPower = 2;
     public override EffectType type()
     {
         return EffectType.debuff;
@@ -18,15 +20,15 @@ public class Slow : Effect
         return "Slow";
     }
     // Update is called once per frame
-    public void Apply(CharacterController cc)
+    public override void Apply(CharacterController cc)
     {
-        cc.walkSpeed -= 5;
-        cc.updateBreeze();
+        cc.walkSpeed -= 2;
+        cc.runSpeed -= 2;
     }
-    public void Remove(CharacterController cc)
+    public override void Remove(CharacterController cc)
     {
-        cc.walkSpeed += 5;
-        cc.updateBreeze();
+        cc.walkSpeed += 2;
+        cc.runSpeed += 2;
     }
 }
     

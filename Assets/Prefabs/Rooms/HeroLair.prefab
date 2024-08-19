@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1086286444799677231}
   - component: {fileID: -1595420473252672398}
   m_Layer: 0
-  m_Name: SpawnerRoom
+  m_Name: HeroLair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a417939ab7f46434ab3181d08739361f, type: 2}
+  - {fileID: 2100000, guid: 721cb92dade69c44ca72a1cba4a6cb2a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -135,8 +135,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95dc2f672c454a545b63545702e92031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 0
+  description: 
   name: soldierSpawner
   pfb: {fileID: 3987020723604440620, guid: b034cf31e5061cf45b3386bd9c7b3dc8, type: 3}
   quantity: 3
+  maxQuantity: 3
   spawnTimer: 3
   spawns: []

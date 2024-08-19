@@ -2,8 +2,9 @@ using Breeze.Core;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomSpawner : MonoBehaviour
+public class RoomSpawner : Room
 {
+
     [SerializeField] private string name;
     [SerializeField] private GameObject pfb;
     [SerializeField] private int quantity;
@@ -11,6 +12,10 @@ public class RoomSpawner : MonoBehaviour
     [SerializeField] private float spawnTimer;
 
     public List<GameObject> spawns = new List<GameObject>();
+
+    public override RoomType roomType() {
+        return Room.RoomType.spawner;
+    }
 
     private BreezeWaypoint breezeWaypoint;
     private float timer = 0;

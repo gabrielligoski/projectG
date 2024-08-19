@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1086286444799677231}
   - component: {fileID: -1595420473252672398}
   m_Layer: 0
-  m_Name: SpawnerRoomMaluko
+  m_Name: SpiderLair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a417939ab7f46434ab3181d08739361f, type: 2}
+  - {fileID: 2100000, guid: 186eb29a7770480408090d8ee417e45f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1c8c6e895762c40bf09fb791761213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shader: {fileID: 0}
 --- !u!114 &-1595420473252672398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,8 +135,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95dc2f672c454a545b63545702e92031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: soldierSpawner
-  pfb: {fileID: 5745954314644160665, guid: 57a4134664e4e1e4eaf030e34972e676, type: 3}
+  cost: 0
+  description: 
+  name: spoderSpawner
+  pfb: {fileID: 4503233962435138895, guid: 2df88b543c5528b44a7c7f0838956521, type: 3}
   quantity: 3
+  maxQuantity: 3
   spawnTimer: 3
   spawns: []

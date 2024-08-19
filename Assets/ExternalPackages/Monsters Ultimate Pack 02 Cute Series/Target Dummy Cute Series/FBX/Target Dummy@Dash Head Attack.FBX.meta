@@ -1,58 +1,160 @@
 fileFormatVersion: 2
 guid: 09939cfd500b1084f938d9cc2f577f6e
+AssetOrigin:
+  serializedVersion: 1
+  productId: 179083
+  packageName: Monsters Ultimate Pack 02 Cute Series
+  packageVersion: 1.0
+  assetPath: Assets/Monsters Ultimate Pack 02 Cute Series/Target Dummy Cute Series/FBX/Target
+    Dummy@Dash Head Attack.FBX
+  uploadId: 390167
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Dummy001
-    100002: Rig
-    100004: RigLArm1
-    100006: RigLArm1Gizmo
-    100008: RigLArm2
-    100010: RigLArm2Gizmo
-    100012: RigLLeg1
-    100014: RigLLegPlatform
-    100016: RigPelvis
-    100018: RigPelvisGizmo
-    100020: RigRArm1
-    100022: RigRArm1Gizmo
-    100024: RigRArm2
-    100026: RigRArm2Gizmo
-    100028: RigRibcage
-    100030: RigRibcageGizmo
-    100032: RigRLeg1
-    100034: RigRLegPlatform
-    100036: RigSpine
-    100038: Target Dummy
-    100040: //RootNode
-    400000: Dummy001
-    400002: Rig
-    400004: RigLArm1
-    400006: RigLArm1Gizmo
-    400008: RigLArm2
-    400010: RigLArm2Gizmo
-    400012: RigLLeg1
-    400014: RigLLegPlatform
-    400016: RigPelvis
-    400018: RigPelvisGizmo
-    400020: RigRArm1
-    400022: RigRArm1Gizmo
-    400024: RigRArm2
-    400026: RigRArm2Gizmo
-    400028: RigRibcage
-    400030: RigRibcageGizmo
-    400032: RigRLeg1
-    400034: RigRLegPlatform
-    400036: RigSpine
-    400038: Target Dummy
-    400040: //RootNode
-    2100000: 'Material #25'
-    4300000: Target Dummy
-    7400000: Take 001
-    9500000: //RootNode
-    13700000: Target Dummy
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Dummy001
+  - first:
+      1: 100002
+    second: Rig
+  - first:
+      1: 100004
+    second: RigLArm1
+  - first:
+      1: 100006
+    second: RigLArm1Gizmo
+  - first:
+      1: 100008
+    second: RigLArm2
+  - first:
+      1: 100010
+    second: RigLArm2Gizmo
+  - first:
+      1: 100012
+    second: RigLLeg1
+  - first:
+      1: 100014
+    second: RigLLegPlatform
+  - first:
+      1: 100016
+    second: RigPelvis
+  - first:
+      1: 100018
+    second: RigPelvisGizmo
+  - first:
+      1: 100020
+    second: RigRArm1
+  - first:
+      1: 100022
+    second: RigRArm1Gizmo
+  - first:
+      1: 100024
+    second: RigRArm2
+  - first:
+      1: 100026
+    second: RigRArm2Gizmo
+  - first:
+      1: 100028
+    second: RigRibcage
+  - first:
+      1: 100030
+    second: RigRibcageGizmo
+  - first:
+      1: 100032
+    second: RigRLeg1
+  - first:
+      1: 100034
+    second: RigRLegPlatform
+  - first:
+      1: 100036
+    second: RigSpine
+  - first:
+      1: 100038
+    second: Target Dummy
+  - first:
+      1: 100040
+    second: //RootNode
+  - first:
+      4: 400000
+    second: Dummy001
+  - first:
+      4: 400002
+    second: Rig
+  - first:
+      4: 400004
+    second: RigLArm1
+  - first:
+      4: 400006
+    second: RigLArm1Gizmo
+  - first:
+      4: 400008
+    second: RigLArm2
+  - first:
+      4: 400010
+    second: RigLArm2Gizmo
+  - first:
+      4: 400012
+    second: RigLLeg1
+  - first:
+      4: 400014
+    second: RigLLegPlatform
+  - first:
+      4: 400016
+    second: RigPelvis
+  - first:
+      4: 400018
+    second: RigPelvisGizmo
+  - first:
+      4: 400020
+    second: RigRArm1
+  - first:
+      4: 400022
+    second: RigRArm1Gizmo
+  - first:
+      4: 400024
+    second: RigRArm2
+  - first:
+      4: 400026
+    second: RigRArm2Gizmo
+  - first:
+      4: 400028
+    second: RigRibcage
+  - first:
+      4: 400030
+    second: RigRibcageGizmo
+  - first:
+      4: 400032
+    second: RigRLeg1
+  - first:
+      4: 400034
+    second: RigRLegPlatform
+  - first:
+      4: 400036
+    second: RigSpine
+  - first:
+      4: 400038
+    second: Target Dummy
+  - first:
+      4: 400040
+    second: //RootNode
+  - first:
+      21: 2100000
+    second: Material #25
+  - first:
+      43: 4300000
+    second: Target Dummy
+  - first:
+      74: 7400000
+    second: Dash Head Attack
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Target Dummy
   externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -61,9 +163,8 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -77,7 +178,43 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Dash Head Attack
+      takeName: Take 001
+      internalID: 7400000
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.5614035
+        functionName: BreezeAttackEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -85,25 +222,36 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -112,10 +260,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -125,22 +273,20 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 179083
-  packageName: Monsters Ultimate Pack 02 Cute Series
-  packageVersion: 1.0
-  assetPath: Assets/Monsters Ultimate Pack 02 Cute Series/Target Dummy Cute Series/FBX/Target
-    Dummy@Dash Head Attack.FBX
-  uploadId: 390167

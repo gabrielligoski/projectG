@@ -32,7 +32,6 @@ public class GameMaster : MonoBehaviour
         navMeshSurface = floor.GetComponent<NavMeshSurface>();
         navMeshSurface.BuildNavMesh();
     }
-
     public void swapRoom(GameObject target, Room.RoomType newRoomType) {
         if (!target.tag.Contains("Core"))
         {

@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class CameraFollow : MonoBehaviour
 {
-    public float minY = 8;
+    public float minY = 4;
     public float maxY = 20;
     public float spd = 25f;
     public float smooth = 0.25f;

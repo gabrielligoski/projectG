@@ -3031,7 +3031,6 @@ namespace Breeze.Core
                 Vector3 Destination = Waypoints[0].transform.position +
                                       new Vector3(Random.insideUnitSphere.y, 0, Random.insideUnitSphere.z) *
                                       PatrolRadius;
-                Debug.Log(Destination);
                 //Check if the position is valid & reachable
                 if (CheckPath(Destination) != Vector3.zero)
                 {

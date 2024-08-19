@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,6 +31,10 @@ public class PlayerController : MonoBehaviour
     }
 
     public void onClick(InputAction.CallbackContext callback) {
+        if(EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         var wasPressed = callback.action.WasReleasedThisFrame();
         if (wasPressed && roomToInstance == Room.RoomType.none) 
         {

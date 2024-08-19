@@ -635,7 +635,7 @@ GameObject:
   - component: {fileID: 6959038017966367236}
   - component: {fileID: -3533397456694248298}
   m_Layer: 0
-  m_Name: spider
+  m_Name: hazard_3
   m_TagString: AI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -806,10 +806,12 @@ MonoBehaviour:
   BonesToUse: 
   AimOffset: {x: 0, y: 0.5, z: 0}
   AngleLimit: 75
-  CurrentAIFaction: 0
+  CurrentAIFaction: 1
   AIPlayerBehaviour: 0
   AIFactionsList:
   - Factions: 3
+    behaviourType: 0
+  - Factions: 0
     behaviourType: 0
   BreezeTag: AI
   PlayerTag: Player

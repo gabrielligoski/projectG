@@ -247,7 +247,7 @@ MonoBehaviour:
   DetectionAngle: 70
   DetectionLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   ObstacleLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -264,6 +264,8 @@ MonoBehaviour:
   AIPlayerBehaviour: 0
   AIFactionsList:
   - Factions: 0
+    behaviourType: 0
+  - Factions: 1
     behaviourType: 0
   BreezeTag: AI
   PlayerTag: Player

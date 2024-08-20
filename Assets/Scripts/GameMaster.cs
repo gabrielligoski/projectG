@@ -17,7 +17,7 @@ public class GameMaster : MonoBehaviour
     [SerializeField] public List<GameObject> rooms = new List<GameObject>();
     [SerializeField] public List<RobotSpawner> robotSpawners = new List<RobotSpawner>();
     [SerializeField] private GameObject floorPfb;
-
+    [SerializeField] private GameObject breakBlockVFX;
 
     public bool hasStartedWaves;
 
@@ -94,7 +94,8 @@ public class GameMaster : MonoBehaviour
         {
             resource += amount;
         }
-        else {
+        else
+        {
             resource = maxResource;
         }
         PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
@@ -224,6 +225,7 @@ public class GameMaster : MonoBehaviour
                 var cost = newRoom.GetComponent<Room>().cost;
                 useResource(cost);
                 map[targetPos.Item1][targetPos.Item2] = Instantiate(newRoom, target.transform.position, Quaternion.identity, target.transform.parent);
+                Instantiate(breakBlockVFX, target.transform.position, Quaternion.identity, null);
                 map[targetPos.Item1][targetPos.Item2].GetComponent<Room>().pos = targetPos;
                 Destroy(target);
 

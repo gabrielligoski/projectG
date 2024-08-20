@@ -977,6 +977,10 @@ PrefabInstance:
       value: 501
       objectReference: {fileID: 0}
     - target: {fileID: 482176564975802772, guid: c261813ada68c5f4d8ab0f3eec0f095c, type: 3}
+      propertyPath: breakBlockVFX
+      value: 
+      objectReference: {fileID: 395031058680739610, guid: b2f0b8902a31c8a46a1c4bb24ed9ea36, type: 3}
+    - target: {fileID: 482176564975802772, guid: c261813ada68c5f4d8ab0f3eec0f095c, type: 3}
       propertyPath: mapUpgradeAmount
       value: 4
       objectReference: {fileID: 0}

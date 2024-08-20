@@ -148,9 +148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3884437cf0a4eabf5c44673184fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  safeZoneSize: 2
   mapParent: {fileID: 0}
   maxSize: 201
-  mapUpgradeAmount: 30
+  mapUpgradeAmount: 2
   size: 11
   roomGap: 0
   rooms:

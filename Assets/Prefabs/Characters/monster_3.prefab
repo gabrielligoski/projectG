@@ -1272,8 +1272,8 @@ MonoBehaviour:
   type: 0
   walkSpeed: 2
   runSpeed: 2
-  damage: 1
-  maxHealth: 50
+  xpValue: 0
+  damageToCore: 0
   spawn: {fileID: 0}
   waypoint: {fileID: 0}
 --- !u!1 &3610577825690790652

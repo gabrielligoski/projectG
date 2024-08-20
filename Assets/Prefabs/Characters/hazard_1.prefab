@@ -1514,11 +1514,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e8ca65a9b4d0a4bbe130c973193a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   walkSpeed: 2
   runSpeed: 2
-  damage: 6
-  maxHealth: 50
+  xpValue: 3
+  damageToCore: 2
   spawn: {fileID: 0}
   waypoint: {fileID: 0}
 --- !u!1 &7575572162698929076

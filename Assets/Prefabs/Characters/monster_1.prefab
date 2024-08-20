@@ -756,10 +756,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  walkSpeed: 2
-  runSpeed: 2
-  damage: 1
-  maxHealth: 50
+  walkSpeed: 1
+  runSpeed: 1
+  xpValue: 0
+  damageToCore: 0
   spawn: {fileID: 0}
   waypoint: {fileID: 0}
 --- !u!1 &895303188029701755

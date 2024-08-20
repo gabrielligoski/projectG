@@ -681,11 +681,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e8ca65a9b4d0a4bbe130c973193a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   walkSpeed: 2
   runSpeed: 2
-  damage: 5
-  maxHealth: 50
+  xpValue: 3
+  damageToCore: 3
   spawn: {fileID: 0}
   waypoint: {fileID: 0}
 --- !u!1 &1549760510240980180

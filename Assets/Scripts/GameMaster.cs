@@ -154,6 +154,9 @@ public class GameMaster : MonoBehaviour
             switch (newRoomType)
             {
                 case Room.RoomType.empty:
+                    if (target.TryGetComponent(out Room r) && r.roomType() == Room.RoomType.bomb_trap) {
+                        return true;
+                    }
                     return !compareAdjacentsTo(target, Room.RoomType.rock) && room.roomType() == Room.RoomType.rock;
                 default:
                     return room.roomType() == Room.RoomType.empty;

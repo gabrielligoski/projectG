@@ -107,8 +107,9 @@ MonoBehaviour:
   name: 12
   cost: 50
   description: 
-  damage: 0
-  cooldown: 0
+  sfxClip: {fileID: 8300000, guid: e9c494ffdf5079e4b9455a430975b0c1, type: 3}
+  damage: 50
+  cooldown: 1
   coroutine: 0
 --- !u!95 &1722092167219548015
 Animator:

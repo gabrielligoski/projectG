@@ -47,7 +47,8 @@ public class CharacterController : MonoBehaviour
     {
         Debug.Log("slow aplicado");
         effect.Apply(this);
-        effects.Add(effect);
+        if(!effects.Contains(effect))
+            effects.Add(effect);
         updateBreeze();
     }
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static Room;
 
 public class GenerateMap : MonoBehaviour
 {
@@ -8,13 +9,13 @@ public class GenerateMap : MonoBehaviour
     {
         if (currentSize + amount < maxSize) { 
             var mapParentTransformed = mapParent.transform;
-
+    
             int midTotalMap = maxSize / 2;
             int offsetCurrentSize = currentSize / 2;
-
+    
             int currentStartingPoint = midTotalMap - offsetCurrentSize;
             int currentEndingPoint = midTotalMap + offsetCurrentSize;
-
+    
             int newStartingPoint = midTotalMap - offsetCurrentSize-(amount/2);
             int newEndingPoint = midTotalMap + offsetCurrentSize+(amount/2);
             for(int i = newStartingPoint; i <= newEndingPoint; i++)
@@ -23,10 +24,10 @@ public class GenerateMap : MonoBehaviour
                 { 
                     if(!(i >= currentStartingPoint && i <= currentEndingPoint && j >= currentStartingPoint && j <= currentEndingPoint)) 
                     {
-
+    
                         var x = (i + i * roomGap) - midTotalMap;
                         var z = (j + j * roomGap) - midTotalMap;
-
+    
                         GameObject newRoom = Instantiate(filler, new Vector3(x, 0, z), Quaternion.identity, mapParentTransformed);
                         newRoom.GetComponent<Room>().pos = (i, j);
                         map[i][j] = newRoom;
@@ -35,6 +36,30 @@ public class GenerateMap : MonoBehaviour
             }
         }
     }
+
+    //public void generateAdjacents(GameObject target, GameObject filler, List<List<GameObject>> map, GameObject mapParent, int maxSize, int size) {
+    //    (int, int) pos = target.GetComponent<Room>().pos;
+    //    if(pos.Item1 - 1 >= ((maxSize / 2) - (size / 2)) && map[pos.Item1 - 1][pos.Item2] == null)
+    //    {
+    //        var position = target.transform.position-new Vector3(1,0);
+    //        map[pos.Item1 - 1][pos.Item2] = Instantiate(filler, position, Quaternion.identity, mapParent.transform);
+    //    }
+    //    if (pos.Item1 + 1 < ((maxSize / 2) + (size / 2)) && map[pos.Item1 + 1][pos.Item2] == null)
+    //    {
+    //        var position = target.transform.position + new Vector3(1, 0);
+    //        map[pos.Item1 + 1][pos.Item2] = Instantiate(filler, position, Quaternion.identity, mapParent.transform);
+    //    }
+    //    if (pos.Item2 - 1 >= ((maxSize / 2) - (size / 2)) && map[pos.Item1][pos.Item2-1] == null)
+    //    {
+    //        var position = target.transform.position - new Vector3(0,0,1);
+    //        map[pos.Item1][pos.Item2-1] = Instantiate(filler, position, Quaternion.identity, mapParent.transform);
+    //    }
+    //    if (pos.Item2 + 1 >= ((maxSize / 2) + (size / 2)) && map[pos.Item1][pos.Item2 + 1] == null)
+    //    {
+    //        var position = target.transform.position + new Vector3(0, 0, 1);
+    //        map[pos.Item1][pos.Item2+1] = Instantiate(filler, position, Quaternion.identity, mapParent.transform);
+    //    }
+    //}
     public static (List<List<GameObject>>, GameObject, GameObject) createMap(int maxSize, int size, float roomGap, GameObject mapParent,GameObject coreRoom, GameObject filler, GameObject floor)
     {
         GameObject core = null;

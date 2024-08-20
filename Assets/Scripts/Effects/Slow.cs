@@ -10,6 +10,11 @@ public class Slow : Effect
         return EffectType.debuff;
     }
 
+    public override float duration()
+    {
+        return 5f;
+    }
+
     public override string description()
     {
         return "Debuff effect";

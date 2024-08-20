@@ -1,0 +1,97 @@
+using Breeze.Core;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem.XR;
+
+public class ExplosiveTrap : Room
+{
+    public List<Effect> effects;
+
+    public override RoomType roomType()
+    {
+        return name;
+    }
+
+    private List<CharacterController> enemies;
+
+    [SerializeField] private float damage;
+    [SerializeField] private float countdown;
+    [SerializeField] private bool coroutine;
+
+
+    private void Start()
+    {
+        enemies = new List<CharacterController>();
+    }
+    //private void Update()
+    //{
+    //    effects = new List<Effect>
+    //    {
+    //        new Slow()
+    //    };
+    //}
+    IEnumerator debuff(CharacterController controller, Effect effect)
+    {
+        controller.applyEffect(effect);
+        yield return new WaitForSeconds(effect.duration());
+        controller.removeEffect(effect);
+    }
+    void applyDebuffs(CharacterController controller)
+    {
+        effects.ForEach(effect => {
+            StartCoroutine(debuff(controller, effect));
+        });
+    }
+    private void dealHit(CharacterController controller)
+    {
+        var e = controller.GetComponent<BreezeSystem>();
+        if (e.CurrentHealth > 0)
+        {
+            controller.GetComponent<BreezeSystem>().TakeDamage(damage, gameObject, true);
+            Debug.Log("damage dealt!");
+            applyDebuffs(controller);
+        }
+    }
+    IEnumerator enemyCheck(float countdown)
+    {
+        yield return new WaitForSeconds(countdown);
+        foreach (var enemy in enemies)
+        {
+            if (enemy)
+            {
+                dealHit(enemy);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.TryGetComponent(out CharacterController e))
+        {
+            if (e.type == CharacterController.CharacterType.enemy)
+            {
+                Debug.Log("trap activated!");
+                enemies.Add(e);
+                if (!coroutine)
+                {
+                    StartCoroutine(enemyCheck(countdown));
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider collider)
+    {
+        if (collider.TryGetComponent(out CharacterController e))
+        {
+            if (e.type == CharacterController.CharacterType.enemy)
+            {
+                if (e)
+                {
+                    enemies.Remove(e);
+                }
+            }
+        }
+    }
+}

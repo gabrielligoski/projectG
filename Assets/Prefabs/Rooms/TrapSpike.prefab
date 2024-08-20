@@ -105,6 +105,9 @@ MonoBehaviour:
   name: 12
   cost: 50
   description: 
+  damage: 50
+  cooldown: 1
+  coroutine: 0
 --- !u!1001 &1365720429621661438
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 447cf09d9879fe44a9e83e3948603841
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Materials/Transparent Glow Mat.mat
+  uploadId: 679802

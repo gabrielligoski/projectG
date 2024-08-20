@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0f0590f9cdd61aa4b98c03a93f03dda0
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Tests/8 - Static meshes.unity
+  uploadId: 679802

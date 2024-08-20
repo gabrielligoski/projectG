@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -20,7 +18,6 @@ public class PlayerHUD : MonoBehaviour
     private ProgressBar coreResourceBar;
     private Label rankIconText;
 
-    //private string roomsButtonsToCreate = "empty|orc_spawner|lizardman_spawner|werewolf_spawner|skeleton_spawner|spike_trap|bomb_trap";
     private List<Room.RoomType> rooms = new List<Room.RoomType>()
     {
         Room.RoomType.empty,
@@ -74,7 +71,8 @@ public class PlayerHUD : MonoBehaviour
         evt.StopPropagation();
     }
 
-    private void CreateRoomMenu(VisualElement root) {
+    private void CreateRoomMenu(VisualElement root)
+    {
         var roomsShop = new ScrollView(ScrollViewMode.Horizontal);
         roomsShop.mouseWheelScrollSize = 10000;
         roomsShop.verticalScrollerVisibility = ScrollerVisibility.Hidden;
@@ -88,8 +86,8 @@ public class PlayerHUD : MonoBehaviour
             string roomName = Enum.GetName(typeof(Room.RoomType), room);
             if (roomName.Equals("empty"))
             {
-                var btnPickaxeImg = new StyleBackground(AssetDatabase.LoadAssetAtPath<Texture2D>($"Assets/Prefabs/UI/icons/{roomName}.png"));
-                var btnPickaxeImgBlue = new StyleBackground(AssetDatabase.LoadAssetAtPath<Texture2D>($"Assets/Prefabs/UI/icons/{roomName}_blue.png"));
+                var btnPickaxeImg = new StyleBackground(Resources.Load<Texture2D>($"{roomName}"));
+                var btnPickaxeImgBlue = new StyleBackground(Resources.Load<Texture2D>($"{roomName}_blue"));
                 roomButton.style.backgroundImage = btnPickaxeImg;
                 roomButton.AddToClassList("room");
                 roomButton.RegisterCallback<MouseUpEvent>((evt) => selectRoomType(roomButton, room, evt, btnPickaxeImgBlue));
@@ -99,17 +97,19 @@ public class PlayerHUD : MonoBehaviour
                 roomsButtonsImgsGreen.Add(btnPickaxeImg);
                 return;
             }
-            Debug.Log("Room: " + room);
+
             var cost = UnityEngine.Random.Range(10, 10000);
-            try {
+            try
+            {
                 cost = gameMaster.rooms.Find(r => r.GetComponent<Room>().roomType() == room).GetComponent<Room>().cost;
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 //ignore
             };
-            Debug.Log("Room cost" + cost);
-            var btnImgGray = new StyleBackground(AssetDatabase.LoadAssetAtPath<Texture2D>($"Assets/Prefabs/UI/icons/{roomName}_gray.png"));
-            var btnImgGreen = new StyleBackground(AssetDatabase.LoadAssetAtPath<Texture2D>($"Assets/Prefabs/UI/icons/{roomName}_green.png"));
-            var btnImgBlue = new StyleBackground(AssetDatabase.LoadAssetAtPath<Texture2D>($"Assets/Prefabs/UI/icons/{roomName}_blue.png"));
+            var btnImgGray = new StyleBackground(Resources.Load<Texture2D>($"{roomName}_gray"));
+            var btnImgGreen = new StyleBackground(Resources.Load<Texture2D>($"{roomName}_green"));
+            var btnImgBlue = new StyleBackground(Resources.Load<Texture2D>($"{roomName}_blue"));
             roomButton.style.backgroundImage = btnImgGray;
             roomButton.AddToClassList("room");
             roomButton.RegisterCallback<MouseUpEvent>((evt) => selectRoomType(roomButton, room, evt, btnImgBlue));
@@ -163,7 +163,7 @@ public class PlayerHUD : MonoBehaviour
     public void UpdateExpBar(float exp)
     {
         Debug.Log(exp);
-        coreExpBar.value = exp*100;
+        coreExpBar.value = exp * 100;
     }
 
     public void UpdateResourceBar(int resource, int maxResource)

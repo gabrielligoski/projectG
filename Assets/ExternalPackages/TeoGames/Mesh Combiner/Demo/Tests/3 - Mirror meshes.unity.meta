@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bfb40b5050c5c5249b3ce18671341a36
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Tests/3 - Mirror meshes.unity
+  uploadId: 679802

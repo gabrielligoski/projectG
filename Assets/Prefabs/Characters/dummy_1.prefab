@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 2556120307823757151}
   - component: {fileID: 2088653938056498400}
   - component: {fileID: 3334928423246197906}
+  - component: {fileID: -1379899970401690298}
   m_Layer: 0
   m_Name: dummy_1
   m_TagString: AI
@@ -604,6 +605,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 412cffa3910a39a49b3bbe49d8e90afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1379899970401690298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503904192366512733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e8ca65a9b4d0a4bbe130c973193a40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  walkSpeed: 1
+  runSpeed: 1
+  xpValue: 1
+  damageToCore: 1
+  spawn: {fileID: 0}
+  waypoint: {fileID: 0}
 --- !u!1 &767632186986104172
 GameObject:
   m_ObjectHideFlags: 0

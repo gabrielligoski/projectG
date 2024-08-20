@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9e248b2b31422d242bed737f7d98f9e2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Materials/Simple Light Blue.mat
+  uploadId: 679802

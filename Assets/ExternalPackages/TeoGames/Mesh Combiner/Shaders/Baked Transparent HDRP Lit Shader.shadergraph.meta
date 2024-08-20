@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c538af6ec3e25ae409bda876aa1f69ec
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Shaders/Baked Transparent HDRP Lit Shader.shadergraph
+  uploadId: 679802

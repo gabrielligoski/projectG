@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ab464728609882e4ab5d75bb5823f5ca
+timeCreated: 1560250850
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/7 - RPG Poly Pack - Lite.unity
+  uploadId: 679802

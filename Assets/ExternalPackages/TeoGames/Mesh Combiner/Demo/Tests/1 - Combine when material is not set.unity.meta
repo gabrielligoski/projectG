@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 304b2c64f6b915e479de618fd58378be
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Tests/1 - Combine when material is
+    not set.unity
+  uploadId: 679802

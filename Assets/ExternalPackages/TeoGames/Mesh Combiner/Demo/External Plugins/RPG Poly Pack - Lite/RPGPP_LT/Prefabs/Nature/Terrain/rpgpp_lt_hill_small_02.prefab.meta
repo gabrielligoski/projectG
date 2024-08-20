@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 6dcae7204dd466c4c862bc640ea7c02e
+timeCreated: 1559923170
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/External Plugins/RPG Poly Pack -
+    Lite/RPGPP_LT/Prefabs/Nature/Terrain/rpgpp_lt_hill_small_02.prefab
+  uploadId: 679802

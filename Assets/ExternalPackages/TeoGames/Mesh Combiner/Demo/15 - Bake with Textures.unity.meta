@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 407de9ff6c68e1f4d9e4158ad585cb9a
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/15 - Bake with Textures.unity
+  uploadId: 679802

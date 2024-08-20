@@ -11,13 +11,13 @@ public class Core : Room
     }
     private PlayerHUD playerHUD = null;
 
-    public static Core core;
+    public static Core instance;
     public BreezeWaypoint bWaypoint;
 
 
     private void Awake()
     {
-        core = this;
+        instance = this;
         playerHUD = PlayerHUD.Instance;
         playerHUD.UpdateLifeBar(life, maxLife);
         bWaypoint = GetComponent<BreezeWaypoint>();
@@ -29,9 +29,9 @@ public class Core : Room
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.TryGetComponent<CharacterController>(out CharacterController e)) {
-            if(e.type == CharacterController.CharacterType.human)
+            if(e.type == CharacterController.CharacterType.enemy)
             {
-                takeDamage(e.damage);
+                takeDamage(e.damageToCore);
                 Destroy(e.gameObject);
             }
         }

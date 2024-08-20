@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ede3eeb126abf1d4bbfd5a8b475e43bc
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Prefabs/Column.prefab
+  uploadId: 679802

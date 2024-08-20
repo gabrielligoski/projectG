@@ -8,7 +8,7 @@ public class CharacterController : MonoBehaviour
     public enum CharacterType
     {
         monster,
-        human,
+        enemy
     }
 
     [SerializeField] public CharacterType type;
@@ -18,20 +18,18 @@ public class CharacterController : MonoBehaviour
 
     public int xpValue;
 
-    public float damage = 30f;
+    public float damageToCore = 30f;
 
-    public int maxHealth = 50;
-    public RoomSpawner spawn;
-
+    public Spawner spawn;
     public List<Effect> effects;
-
-    private BreezeSystem bs; 
-
+    private BreezeSystem bs;
     public BreezeWaypoint waypoint;
+
 
     private void OnDestroy()
     {
-        spawn.spawns.Remove(gameObject);
+        if (spawn)
+            spawn.spawns.Remove(gameObject);
     }
 
 
@@ -43,17 +41,18 @@ public class CharacterController : MonoBehaviour
         var bs = GetComponent<BreezeSystem>();
         bs.RunSpeed = runSpeed;
         bs.WalkSpeed = walkSpeed;
-        bs.MaximumHealth = maxHealth;
     }
 
-    public void applyEffect(Effect effect) {
+    public void applyEffect(Effect effect)
+    {
         Debug.Log("slow aplicado");
         effect.Apply(this);
         effects.Add(effect);
         updateBreeze();
     }
 
-    public void removeEffect(Effect effect) {
+    public void removeEffect(Effect effect)
+    {
         Debug.Log("slow removido");
         effect.Remove(this);
         effects.Remove(effect);
@@ -74,9 +73,9 @@ public class CharacterController : MonoBehaviour
                 bs.Waypoints.Add(waypoint);
                 bs.Waypoints.Add(waypoint);
                 break;
-            case CharacterType.human:
-                bs.Waypoints.Add(Core.core.bWaypoint);
-                bs.Waypoints.Add(Core.core.bWaypoint);
+            case CharacterType.enemy:
+                bs.Waypoints.Add(Core.instance.bWaypoint);
+                bs.Waypoints.Add(Core.instance.bWaypoint);
                 break;
         }
     }

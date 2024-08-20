@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a0ef1890d54a0794a95b328bbe2527cf
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Prefabs/Canvas/Canvas.prefab
+  uploadId: 679802

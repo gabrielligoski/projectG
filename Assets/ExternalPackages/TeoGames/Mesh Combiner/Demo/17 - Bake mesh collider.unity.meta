@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 46805e0ef0279aa47ab59d9dca9b7a08
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/17 - Bake mesh collider.unity
+  uploadId: 679802

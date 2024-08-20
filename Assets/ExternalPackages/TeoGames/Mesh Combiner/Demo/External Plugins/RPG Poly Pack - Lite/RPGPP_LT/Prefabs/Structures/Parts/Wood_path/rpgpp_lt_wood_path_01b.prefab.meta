@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0ba258545da721e488ecb71ffd143b6f
+timeCreated: 1560256010
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/External Plugins/RPG Poly Pack -
+    Lite/RPGPP_LT/Prefabs/Structures/Parts/Wood_path/rpgpp_lt_wood_path_01b.prefab
+  uploadId: 679802

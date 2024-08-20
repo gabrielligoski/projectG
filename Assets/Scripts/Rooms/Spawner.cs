@@ -3,9 +3,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomSpawner : Room
+public class Spawner : Room
 {
-
     [SerializeField] private GameObject pfb;
     [SerializeField] private int quantity;
     [SerializeField] private int maxQuantity;
@@ -15,14 +14,7 @@ public class RoomSpawner : Room
 
     public override RoomType roomType()
     {
-        if (Enum.TryParse(name, out RoomType parsed))
-            return parsed;
-        else
-        {
-            Debug.LogError("Spawner couldn´t find the correct enum type");
-            return RoomType.none;
-        }
-
+        return name;
     }
 
     private BreezeWaypoint breezeWaypoint;
@@ -48,7 +40,7 @@ public class RoomSpawner : Room
 
     public void Spawn()
     {
-        for (int i = 0; i < quantity; i++)
+        for (int i = 0; i < quantity && spawns.Count < maxQuantity; i++)
         {
             var spawnedInstance = Instantiate(pfb, gameObject.transform.position, Quaternion.identity);
             spawnedInstance.GetComponent<CharacterController>().waypoint = breezeWaypoint;

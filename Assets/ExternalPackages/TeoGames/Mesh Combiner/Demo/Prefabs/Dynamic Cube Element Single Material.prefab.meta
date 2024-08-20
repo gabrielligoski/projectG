@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b2f421f99e366b947ace4c8561afb48a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Prefabs/Dynamic Cube Element Single
+    Material.prefab
+  uploadId: 679802

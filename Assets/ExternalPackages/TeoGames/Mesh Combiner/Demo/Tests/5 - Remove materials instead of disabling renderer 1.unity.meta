@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2aec25df4b067f245b259abbe6df65b2
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Tests/5 - Remove materials instead
+    of disabling renderer 1.unity
+  uploadId: 679802

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 92e10ed239a4655418b51a7e24a097da
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4300000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Prefabs/Container Prebaked/[SMR]
+    [S=On] Container Prebaked.asset
+  uploadId: 679802

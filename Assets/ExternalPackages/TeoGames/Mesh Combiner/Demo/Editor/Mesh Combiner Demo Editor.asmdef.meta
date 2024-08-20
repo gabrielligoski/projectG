@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: feacf16d306247045bdf5be0d3cec907
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Editor/Mesh Combiner Demo Editor.asmdef
+  uploadId: 679802

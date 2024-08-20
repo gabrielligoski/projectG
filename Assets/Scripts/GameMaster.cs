@@ -1,17 +1,17 @@
 using System.Collections.Generic;
 using Unity.AI.Navigation;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using UnityEngine.AI;
 using System;
+using Random = UnityEngine.Random;
 
 public class GameMaster : MonoBehaviour
 {
     public List<List<GameObject>> map = new List<List<GameObject>>();
+    [SerializeField] private int safeZoneSize = 2;
     public GameObject mapParent;
     [SerializeField] private int maxSize;
     [SerializeField] private int mapUpgradeAmount;
-    [SerializeField] private int size;
+    [SerializeField] public int size;
     [SerializeField] private float roomGap;
     [SerializeField] public List<GameObject> rooms = new List<GameObject>();
     [SerializeField] private GameObject floorPfb;
@@ -33,6 +33,19 @@ public class GameMaster : MonoBehaviour
 
     public int resource;
     public int maxResource;
+    public float dificulty = 1f;
+    private float goodBlockChance = .05f;
+    private float badBlockChance = .01f;
+    private List<Room.RoomType> badRooms = new List<Room.RoomType>() {
+            Room.RoomType.spider_spawner,
+            Room.RoomType.robot_spawner,
+            Room.RoomType.bat_spawner,
+            Room.RoomType.porcupine_spawner
+        };
+
+    private List<Room.RoomType> goodRooms = new List<Room.RoomType>() {
+            Room.RoomType.mining
+        };
 
     private void Awake()
     {
@@ -56,65 +69,73 @@ public class GameMaster : MonoBehaviour
         navMeshSurface.BuildNavMesh();
     }
 
-    private void useResource(int amount) {
+    private void useResource(int amount)
+    {
         if (amount > resource)
         {
             throw new Exception("Not enough resource");
         }
-        else {
+        else
+        {
             resource -= amount;
             Debug.Log(resource + "/" + maxResource);
         }
     }
 
-    private void increaseResource(int amount) {
-        if (resource + amount < maxResource) {
+    private void increaseResource(int amount)
+    {
+        if (resource + amount < maxResource)
+        {
             resource += amount;
         }
         PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
     }
 
-    private void upgradeMaxAmount() {
-        maxResource = (int)Math.Pow(currentLevel+1,2)*100;
+    private void upgradeMaxAmount()
+    {
+        maxResource = (int)Math.Pow(currentLevel + 1, 2) * 100;
         PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
     }
-    public int calculateLevel() {
-        return (int)Math.Floor(Math.Sqrt(xp/(float)100));
+
+    public int calculateLevel()
+    {
+        return (int)Math.Floor(Math.Sqrt(xp / (float)100));
     }
-    public int xpNeededPerLevel(int level) {
+    public int xpNeededPerLevel(int level)
+    {
         return (int)Math.Pow(level, 2) * 100;
     }
-    public float percentCurrentLevel() {
-        var xpNeededNext = xpNeededPerLevel(currentLevel+1);
-        return ((xp-xpNeededPerLevel(currentLevel)) / (float)xpNeededNext); 
+    public float percentCurrentLevel()
+    {
+        var xpNeededNext = xpNeededPerLevel(currentLevel + 1);
+        return ((xp - xpNeededPerLevel(currentLevel)) / (float)xpNeededNext);
     }
 
-    public void addXP(int xpAmount) {
+    public void addXP(int xpAmount)
+    {
         xp += xpAmount;
         PlayerHUD.Instance.UpdateExpBar(percentCurrentLevel());
-        Debug.Log(percentCurrentLevel()*100 + "%");
-        if(currentLevel < calculateLevel()) {
+        if (currentLevel < calculateLevel())
+        {
             currentLevel++;
             var rockRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.rock);
             upgradeMaxAmount();
             GenerateMap.upgradeMap(map, mapParent, size, maxSize, mapUpgradeAmount, roomGap, rockRoom);
             size += mapUpgradeAmount;
             string level = currentLevel <= 5 ? levels[currentLevel] : "".PadLeft(currentLevel - 5, 'S');
-;           PlayerHUD.Instance.UpdateRankIcon(level);
-            Debug.Log("Upou!");
+            PlayerHUD.Instance.UpdateRankIcon(level);
         }
-
-
     }
 
-    private bool compareAdjacentsTo(GameObject target, Room.RoomType roomType) {
-        (int,int) pos = target.GetComponent<Room>().pos;
-        var adj0 = pos.Item1 - 1 >= ((maxSize/2)-(size/2)) ? map[pos.Item1 - 1][pos.Item2].GetComponent<Room>().roomType() == roomType : true;
-        var adj1 = pos.Item1 + 1 < ((maxSize/2)+ (size / 2)) ? map[pos.Item1 + 1][pos.Item2].GetComponent<Room>().roomType() == roomType : true;
-        var adj2 = pos.Item2 - 1 >= ((maxSize / 2) - (size / 2)) ? map[pos.Item1][pos.Item2-1].GetComponent<Room>().roomType() == roomType : true;
-        var adj3 = pos.Item2 + 1 < ((maxSize / 2) + (size / 2)) ? map[pos.Item1][pos.Item2+1].GetComponent<Room>().roomType() == roomType : true;
+    private bool compareAdjacentsTo(GameObject target, Room.RoomType roomType)
+    {
+        (int, int) pos = target.GetComponent<Room>().pos;
+        var adj0 = pos.Item1 - 1 >= ((maxSize / 2) - (size / 2)) ? map[pos.Item1 - 1][pos.Item2].GetComponent<Room>().roomType() == roomType : true;
+        var adj1 = pos.Item1 + 1 < ((maxSize / 2) + (size / 2)) ? map[pos.Item1 + 1][pos.Item2].GetComponent<Room>().roomType() == roomType : true;
+        var adj2 = pos.Item2 - 1 >= ((maxSize / 2) - (size / 2)) ? map[pos.Item1][pos.Item2 - 1].GetComponent<Room>().roomType() == roomType : true;
+        var adj3 = pos.Item2 + 1 < ((maxSize / 2) + (size / 2)) ? map[pos.Item1][pos.Item2 + 1].GetComponent<Room>().roomType() == roomType : true;
 
-        return adj0 && adj1 && adj2 && adj3; 
+        return adj0 && adj1 && adj2 && adj3;
     }
 
     private bool isPossibleToSwap(GameObject target, Room.RoomType newRoomType)
@@ -129,39 +150,68 @@ public class GameMaster : MonoBehaviour
                     return room.roomType() == Room.RoomType.empty;
             }
 
-        } else {
+        }
+        else
+        {
             return false;
         }
     }
 
-    public void swapRoom(GameObject target, Room.RoomType newRoomType) {
-        if (!target.tag.Contains("Core"))
-        {
-            try {
-                var newRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == newRoomType);
-                var cost = newRoom.GetComponent<Room>().cost;
-                var targetPos = target.GetComponent<Room>().pos;
-                Debug.Log(targetPos);
-                if(isPossibleToSwap(target, newRoomType))
-                {
-                    if (newRoomType == Room.RoomType.empty) {
-                        addXP(20);
-                    }
-                    useResource(cost);
-                    map[targetPos.Item1][targetPos.Item2] = Instantiate(newRoom, target.transform.position, Quaternion.identity, target.transform.parent);
-                    map[targetPos.Item1][targetPos.Item2].GetComponent<Room>().pos = targetPos;
-                    Destroy(target);
-                    return;
-                } 
-                else
-                {
-                    Debug.Log("Not possible to swap this block");
-                }
+    private GameObject chooseRandomBlock((int, int) xz)
+    {
+        var (coreX, coreZ) = core.GetComponent<Room>().pos;
+        bool isInSafeZone = coreX - safeZoneSize <= xz.Item1 && coreX + safeZoneSize >= xz.Item1 && coreZ - safeZoneSize <= xz.Item2 && coreZ + safeZoneSize >= xz.Item2;
 
-            } catch (Exception ex)
+        if (!isInSafeZone && Random.value <= badBlockChance)
+        {
+            badBlockChance = 0.01f;
+            return rooms.Find(room => room.GetComponent<Room>().roomType() == badRooms[Random.Range(0, badRooms.Count)]);
+        }
+
+
+        if (Random.value <= goodBlockChance)
+        {
+            goodBlockChance = 0.05f;
+            return rooms.Find(room => room.GetComponent<Room>().roomType() == goodRooms[Random.Range(0, goodRooms.Count)]);
+        }
+
+        // raise the chance of something happens
+        goodBlockChance += 0.01f / dificulty;
+        badBlockChance += 0.01f * dificulty;
+
+        return rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.empty);
+
+    }
+
+
+    public void swapRoom(GameObject target, Room.RoomType newRoomType)
+    {
+        if (isPossibleToSwap(target, newRoomType))
+        {
+            try
+            {
+                var newRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == newRoomType);
+
+                var targetPos = target.GetComponent<Room>().pos;
+                if (target.GetComponent<Room>().roomType() == Room.RoomType.rock)
+                    newRoom = chooseRandomBlock(targetPos);
+
+                var cost = newRoom.GetComponent<Room>().cost;
+                useResource(cost);
+                map[targetPos.Item1][targetPos.Item2] = Instantiate(newRoom, target.transform.position, Quaternion.identity, target.transform.parent);
+                map[targetPos.Item1][targetPos.Item2].GetComponent<Room>().pos = targetPos;
+                Destroy(target);
+
+            }
+            catch (Exception ex)
             {
                 Debug.Log(ex);
+                Debug.Log(newRoomType);
             }
+        }
+        else
+        {
+            Debug.Log("Not possible to swap this block");
         }
 
     }

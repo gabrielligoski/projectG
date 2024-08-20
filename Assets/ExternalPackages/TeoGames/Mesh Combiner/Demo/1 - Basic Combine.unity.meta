@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e8520d0211665eb418ab6ff3f6c95403
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/1 - Basic Combine.unity
+  uploadId: 679802

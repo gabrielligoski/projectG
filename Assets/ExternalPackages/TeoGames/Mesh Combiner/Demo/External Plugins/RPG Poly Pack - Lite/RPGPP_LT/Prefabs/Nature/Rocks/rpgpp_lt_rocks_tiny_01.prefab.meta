@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: e1154cf6ac27b2f45b4ae35582e7e363
+timeCreated: 1559923030
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/External Plugins/RPG Poly Pack -
+    Lite/RPGPP_LT/Prefabs/Nature/Rocks/rpgpp_lt_rocks_tiny_01.prefab
+  uploadId: 679802

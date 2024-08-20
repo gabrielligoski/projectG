@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f312cf48657804a4ba965dc1c4daa035
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Materials/Simple White.mat
+  uploadId: 679802

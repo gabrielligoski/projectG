@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 68522ccb206c0f048b8ba6b971c9a99e
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Tests/4 - Bake material with different
+    render queue.unity
+  uploadId: 679802

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 40be9c49652427b45bfc1174b271e781
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Materials/Emission Blue.mat
+  uploadId: 679802

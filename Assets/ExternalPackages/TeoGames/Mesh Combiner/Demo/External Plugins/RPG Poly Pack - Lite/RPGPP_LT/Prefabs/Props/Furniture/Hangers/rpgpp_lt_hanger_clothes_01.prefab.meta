@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 9e6377f4cae22eb4194f71c6e76c37b9
+timeCreated: 1559923461
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/External Plugins/RPG Poly Pack -
+    Lite/RPGPP_LT/Prefabs/Props/Furniture/Hangers/rpgpp_lt_hanger_clothes_01.prefab
+  uploadId: 679802

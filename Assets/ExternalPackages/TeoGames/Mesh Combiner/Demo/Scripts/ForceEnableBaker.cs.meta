@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 642060fecc344a01b7b3545c6f350d23
+timeCreated: 1709069985
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Scripts/ForceEnableBaker.cs
+  uploadId: 679802

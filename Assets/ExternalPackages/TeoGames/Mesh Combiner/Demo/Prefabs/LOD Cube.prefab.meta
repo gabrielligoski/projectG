@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e29f4c98c7dd9ea418c97c41d130fdc4
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Prefabs/LOD Cube.prefab
+  uploadId: 679802

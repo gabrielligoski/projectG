@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: ddbb4d31a4a94926b02178c15208b047
+timeCreated: 1702419822
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Scripts/Combine/Lod/LodConfiguration.cs
+  uploadId: 679802

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 34451c5ee0317554585b8c982feb483f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Materials/Floor.mat
+  uploadId: 679802

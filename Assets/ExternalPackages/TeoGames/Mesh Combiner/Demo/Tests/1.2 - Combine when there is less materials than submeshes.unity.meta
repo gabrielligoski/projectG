@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f3e343e1dc7068743ac45ae71c9a780d
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Tests/1.2 - Combine when there is
+    less materials than submeshes.unity
+  uploadId: 679802

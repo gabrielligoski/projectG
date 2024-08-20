@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 93321895b40248d1b498b5f8bf46df80
+timeCreated: 1716522111
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Scripts/Editor/VisibilityToggler.cs
+  uploadId: 679802

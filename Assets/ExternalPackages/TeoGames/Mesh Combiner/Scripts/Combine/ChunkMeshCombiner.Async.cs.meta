@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: ab67dd5cc060433986ff739235ad9e82
+timeCreated: 1717041688
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Scripts/Combine/ChunkMeshCombiner.Async.cs
+  uploadId: 679802

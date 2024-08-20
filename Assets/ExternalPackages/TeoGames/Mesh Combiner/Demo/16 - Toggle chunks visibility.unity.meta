@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e6235574c48f75f45b414bc1dbbf6073
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/16 - Toggle chunks visibility.unity
+  uploadId: 679802

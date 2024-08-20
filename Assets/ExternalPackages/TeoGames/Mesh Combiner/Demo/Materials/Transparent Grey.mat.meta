@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 52be53972d9aeae45b622c302e95efa2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Materials/Transparent Grey.mat
+  uploadId: 679802

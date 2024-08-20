@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0aae23549399ae240aa3fcaf1b7ae6b0
+timeCreated: 1559923556
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/External Plugins/RPG Poly Pack -
+    Lite/RPGPP_LT/Prefabs/Props/Wall_decor/Shields/rpgpp_lt_shield_wall_01b.prefab
+  uploadId: 679802

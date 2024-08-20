@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a3b92790e2b9464f960a613ffc9e6a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 1
   cost: 0
   description: Teste
 --- !u!1001 &1365720429621661438

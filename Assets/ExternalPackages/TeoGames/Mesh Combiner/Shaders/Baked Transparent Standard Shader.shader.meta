@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: aee1d6bf9e39dd24ebd6d0aabafcac14
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Shaders/Baked Transparent Standard Shader.shader
+  uploadId: 679802

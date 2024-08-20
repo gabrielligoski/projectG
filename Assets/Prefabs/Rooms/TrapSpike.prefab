@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6138797499350442279}
   - component: {fileID: -1086286444799677231}
   - component: {fileID: 7229545532328361794}
-  - component: {fileID: 5441793676725070946}
+  - component: {fileID: 786325678384489920}
   m_Layer: 0
   m_Name: TrapSpike
   m_TagString: Untagged
@@ -90,7 +90,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &5441793676725070946
+--- !u!114 &786325678384489920
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,11 +99,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5745954314644160665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a3b92790e2b9464f960a613ffc9e6a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 108790db5fd6aae48ab5277b1aa68c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 0
-  description: Teste
+  name: 12
+  cost: 50
+  description: 
 --- !u!1001 &1365720429621661438
 PrefabInstance:
   m_ObjectHideFlags: 0

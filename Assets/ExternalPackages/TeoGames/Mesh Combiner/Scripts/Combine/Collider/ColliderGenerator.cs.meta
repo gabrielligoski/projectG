@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: c577fafe21664a08a51082b7838815ae
+timeCreated: 1717042896
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Scripts/Combine/Collider/ColliderGenerator.cs
+  uploadId: 679802

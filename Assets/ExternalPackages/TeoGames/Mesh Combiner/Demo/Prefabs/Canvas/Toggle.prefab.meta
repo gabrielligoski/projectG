@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 52a2719a9e9294744921452d79c64a87
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Prefabs/Canvas/Toggle.prefab
+  uploadId: 679802

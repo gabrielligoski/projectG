@@ -740,6 +740,7 @@ GameObject:
   - component: {fileID: 2875237054161845520}
   - component: {fileID: 8979717071598234639}
   - component: {fileID: 923083294811958313}
+  - component: {fileID: 5762113875720174470}
   m_Layer: 0
   m_Name: monster_3
   m_TagString: AI
@@ -1256,6 +1257,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 412cffa3910a39a49b3bbe49d8e90afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5762113875720174470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3514493730506785045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e8ca65a9b4d0a4bbe130c973193a40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  walkSpeed: 2
+  runSpeed: 2
+  damage: 1
+  maxHealth: 50
+  spawn: {fileID: 0}
+  waypoint: {fileID: 0}
 --- !u!1 &3610577825690790652
 GameObject:
   m_ObjectHideFlags: 0

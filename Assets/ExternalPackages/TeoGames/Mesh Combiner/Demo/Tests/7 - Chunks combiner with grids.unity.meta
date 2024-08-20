@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3eca13b779b47644a8a3cff00deada91
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Tests/7 - Chunks combiner with grids.unity
+  uploadId: 679802

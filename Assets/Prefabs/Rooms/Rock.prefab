@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225b4acf1e587a14e9a8bbb79e5bcb87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 2
   cost: 0
   description: Rock
 --- !u!208 &-2286944246748293025

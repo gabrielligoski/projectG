@@ -990,6 +990,7 @@ GameObject:
   - component: {fileID: 5402923858282357975}
   - component: {fileID: 8736200978063100827}
   - component: {fileID: 6765056511494560250}
+  - component: {fileID: -3497443137572043178}
   m_Layer: 0
   m_Name: hazard_1
   m_TagString: AI
@@ -1501,6 +1502,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 412cffa3910a39a49b3bbe49d8e90afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3497443137572043178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483889539054817231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e8ca65a9b4d0a4bbe130c973193a40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  walkSpeed: 2
+  runSpeed: 2
+  damage: 6
+  maxHealth: 50
+  spawn: {fileID: 0}
+  waypoint: {fileID: 0}
 --- !u!1 &7575572162698929076
 GameObject:
   m_ObjectHideFlags: 0

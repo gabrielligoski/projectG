@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: ad0db544ca32437285c7d59f0f65d2a6
+timeCreated: 1716429502
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Scripts/Combine/MeshCombiner.Include.cs
+  uploadId: 679802

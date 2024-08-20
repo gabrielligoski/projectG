@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 01c59be0416098e4c8db607b74069d76
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Settings/Resources/Oppaque HDRP Lit Color
+    Baker.asset
+  uploadId: 679802

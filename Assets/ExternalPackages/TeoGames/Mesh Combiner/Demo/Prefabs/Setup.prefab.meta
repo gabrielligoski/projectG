@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7059fb6f5870ccc498e5abe6e9d8bf97
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/Prefabs/Setup.prefab
+  uploadId: 679802

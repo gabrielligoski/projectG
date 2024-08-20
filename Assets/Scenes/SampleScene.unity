@@ -151,14 +151,24 @@ MonoBehaviour:
   size: 11
   roomGap: 0
   rooms:
-  - {fileID: 5745954314644160665, guid: 40c71fbd06b56cf4db627a4f78188556, type: 3}
   - {fileID: 5745954314644160665, guid: 592272ea4fbd53e499244f4a92a29113, type: 3}
+  - {fileID: 5745954314644160665, guid: 40c71fbd06b56cf4db627a4f78188556, type: 3}
+  - {fileID: 5745954314644160665, guid: 89d6fca907f3fff49a671a0228f73b7d, type: 3}
+  - {fileID: 5745954314644160665, guid: c286e05cb5d85d74b910d25c7af60212, type: 3}
+  - {fileID: 5745954314644160665, guid: 09bb17a5bdd43664cb65b5c298f1806c, type: 3}
+  - {fileID: 5745954314644160665, guid: 3e29821d98d46254ab8c32b98b800a8b, type: 3}
   - {fileID: 5745954314644160665, guid: 0dc4496384e8b36468de1b5061eee3e0, type: 3}
-  - {fileID: 5745954314644160665, guid: 32ddaa5e3f0d9fc41b022982a23ac91b, type: 3}
+  - {fileID: 5745954314644160665, guid: 2f33359813086584495c2b969ea8b173, type: 3}
+  - {fileID: 5745954314644160665, guid: e6dc4ec8bc80de54cb54f3569ed2701d, type: 3}
+  - {fileID: 5745954314644160665, guid: e43e32a8375a1794cb7e633db48636ba, type: 3}
+  - {fileID: 5745954314644160665, guid: 428c503d5fddad049920bcd53ca3f9bb, type: 3}
   - {fileID: 5745954314644160665, guid: 855a8fdb849f5d545b95b971ff3c06c1, type: 3}
+  - {fileID: 5745954314644160665, guid: 89e21b3df8878cf43bbf3f45082990b1, type: 3}
+  - {fileID: 5745954314644160665, guid: 82e1fa236e48d3a478e7e0caa44144a0, type: 3}
   floorPfb: {fileID: 1852709211219570942, guid: 2e89a83755dcb324994b67d02480b2fa, type: 3}
   resource: 0
   maxResource: 0
+  dificulty: 1
 --- !u!4 &148893589
 Transform:
   m_ObjectHideFlags: 0

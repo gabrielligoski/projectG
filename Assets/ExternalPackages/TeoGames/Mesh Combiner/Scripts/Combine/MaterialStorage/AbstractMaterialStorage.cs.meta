@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 0895186980e14e57bf5af6c03817b4c8
+timeCreated: 1680208568
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Scripts/Combine/MaterialStorage/AbstractMaterialStorage.cs
+  uploadId: 679802

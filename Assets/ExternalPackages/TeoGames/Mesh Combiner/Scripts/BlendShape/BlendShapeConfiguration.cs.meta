@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: d6b29bd87c744208aa00c12511d0fc68
+timeCreated: 1689513339
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Scripts/BlendShape/BlendShapeConfiguration.cs
+  uploadId: 679802

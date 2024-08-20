@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 434bfd6528d84e643ade0d2cd5c6fe1b
+timeCreated: 1559922638
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/External Plugins/RPG Poly Pack -
+    Lite/RPGPP_LT/Materials/rpgpp_lt_cloud_a.mat
+  uploadId: 679802

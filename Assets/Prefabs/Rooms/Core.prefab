@@ -85,6 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5e05c4af69a58489a9f47043749e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 3
   cost: 0
   description: Core
   life: 100

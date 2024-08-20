@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 48269af2b9b8509489dc3fce30c0d3a5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Settings/Resources/URP Texture Baker.asset
+  uploadId: 679802

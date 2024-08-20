@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: c2837f304244a5748a0dd501a81dcc96
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249402
+  packageName: Dynamic Mesh Combiner
+  packageVersion: 1.26
+  assetPath: Assets/TeoGames/Mesh Combiner/Demo/External Plugins/RPG Poly Pack -
+    Lite/RPGPP_LT/Scene/rpgpp_lt_scene_1.0Settings.lighting
+  uploadId: 679802

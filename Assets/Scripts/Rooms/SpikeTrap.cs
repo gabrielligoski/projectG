@@ -25,7 +25,7 @@ public class SpikeTrap : Room
     private void Start()
     {
         enemies = new List<CharacterController>();
-        effects = new List<Effect>(); 
+        effects = new List<Effect>();
         _animator = GetComponent<Animator>();
     }
     //private void Update()
@@ -50,29 +50,18 @@ public class SpikeTrap : Room
     }
     private void dealHit(CharacterController controller)
     {
-        var e = controller.GetComponent<BreezeSystem>();
-        if (e.CurrentHealth > 0)
+        if (controller && controller.TryGetComponent(out BreezeSystem bs) && bs.CurrentHealth > 0)
         {
-            _animator.SetTrigger("play");
-            SFXManager.Instance.playSFXClip(sfxClip, transform, 1f);
-            controller.GetComponent<BreezeSystem>().TakeDamage(damage, gameObject, true, false);
+            bs.TakeDamage(damage, gameObject, true, false);
             applyDebuffs(controller);
         }
     }
     IEnumerator enemyCheck(float cooldown)
     {
-        for (; ; )
+        while (true)
         {
             if (enemies.Count > 0)
-            {
-                foreach (var enemy in enemies)
-                {
-                    if (enemy)
-                    {
-                        dealHit(enemy);
-                    }
-                }
-            }
+                enemies.ForEach(enemy => dealHit(enemy));
             else
                 break;
             yield return new WaitForSeconds(cooldown);
@@ -86,11 +75,13 @@ public class SpikeTrap : Room
         {
             if (e.type == CharacterController.CharacterType.enemy)
             {
-                Debug.Log("trap activated!");
                 enemies.Add(e);
                 if (!coroutine)
                 {
                     coroutine = true;
+                    _animator.SetTrigger("play");
+                    SFXManager.Instance.playSFXClip(sfxClip, transform, 1f, 0.05f);
+                    _animator.ResetTrigger("play");
                     StartCoroutine(enemyCheck(cooldown));
                 }
             }

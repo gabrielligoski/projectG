@@ -1,19 +1,27 @@
+using System.Collections;
 using UnityEngine;
 
 public class SFXManager : MonoBehaviour
 {
     public static SFXManager Instance;
 
-    [SerializeField] private AudioSource SFXObject;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (Instance == null)
+            Instance = this;
     }
 
-    public void playSFXClip(AudioClip clip, Transform spawnTranform, float volume)
+    public void playSFXClip(AudioClip clip, Transform spawnTranform, float volume, float delay)
     {
+        StartCoroutine(playSound(clip, spawnTranform, volume, delay));
+    }
+
+    IEnumerator playSound(AudioClip clip, Transform spawnTranform, float volume, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        var soundObject = new GameObject(clip.name);
+        var SFXObject = soundObject.AddComponent<AudioSource>();
         AudioSource source = Instantiate(SFXObject, spawnTranform.position, Quaternion.identity);
 
         source.clip = clip;
@@ -23,7 +31,7 @@ public class SFXManager : MonoBehaviour
         source.Play();
 
         float clipLen = source.clip.length;
-
-        Destroy(source, clipLen);
+        Destroy(soundObject, clipLen);
     }
+
 }

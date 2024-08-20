@@ -184,7 +184,6 @@ public class PlayerHUD : MonoBehaviour
 
     public void UpdateExpBar(float exp)
     {
-        Debug.Log(exp);
         coreExpBar.value = exp * 100;
     }
 

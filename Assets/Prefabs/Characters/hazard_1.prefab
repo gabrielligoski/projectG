@@ -1116,7 +1116,7 @@ MonoBehaviour:
   DestroyDelay: 3
   ForceWalkDistance: 0
   PatrolRadius: 25
-  FleeDistance: 8.5
+  FleeDistance: 0
   MinIdleLength: 4
   MaxIdleLength: 8
   RotationSpeed: 1.4
@@ -1131,7 +1131,7 @@ MonoBehaviour:
   GetHitTolerance: 3
   AttackDistance: 1
   ExtendedAttackDistance: 1
-  EnemyTooCloseDistance: 0.75
+  EnemyTooCloseDistance: 0
   BackawayMultiplier: 1.2
   HitReactionPossibility: 100
   MinAttackDelay: 0.4

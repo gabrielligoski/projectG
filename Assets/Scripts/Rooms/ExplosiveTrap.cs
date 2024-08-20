@@ -68,14 +68,14 @@ public class ExplosiveTrap : Room
                 dealHit(enemy);
             }
         }
-        SFXManager.Instance.playSFXClip(explodeSound,transform,1f);
+        SFXManager.Instance.playSFXClip(explodeSound, transform, 1f, 0);
         destroy();
     }
 
     public void destroy()
     {
         GameMaster.Instance.swapRoom(gameObject, Room.RoomType.empty);
-        Destroy(gameObject, countdown+1);
+        Destroy(gameObject, countdown + 1);
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -84,7 +84,6 @@ public class ExplosiveTrap : Room
         {
             if (e.type == CharacterController.CharacterType.enemy)
             {
-                Debug.Log("trap activated!");
                 enemies.Add(e);
                 if (!coroutine)
                 {

@@ -85,7 +85,6 @@ public class GameMaster : MonoBehaviour
         else
         {
             resource -= amount;
-            Debug.Log(resource + "/" + maxResource);
         }
     }
 
@@ -243,10 +242,6 @@ public class GameMaster : MonoBehaviour
                 Debug.Log(ex);
                 Debug.Log(newRoomType);
             }
-        }
-        else
-        {
-            Debug.Log("Not possible to swap this block");
         }
 
     }

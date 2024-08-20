@@ -71,7 +71,6 @@ public class GenerateMap : MonoBehaviour
             }
             map.Add(row);
         }
-        Debug.Log(map.Count);
         int midTotalMap = maxSize / 2;
         int offsetSize = size / 2;
         int startPlayablePoint = midTotalMap-offsetSize;

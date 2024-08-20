@@ -45,7 +45,6 @@ public class CharacterController : MonoBehaviour
 
     public void applyEffect(Effect effect)
     {
-        Debug.Log("slow aplicado");
         effect.Apply(this);
         if(!effects.Contains(effect))
             effects.Add(effect);
@@ -54,7 +53,6 @@ public class CharacterController : MonoBehaviour
 
     public void removeEffect(Effect effect)
     {
-        Debug.Log("slow removido");
         effect.Remove(this);
         effects.Remove(effect);
         updateBreeze();

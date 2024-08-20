@@ -1533,6 +1533,8 @@ namespace Breeze.Core
 #if !Breeze_AI_Pathfinder_Enabled
             nav.nextPosition = transform.position;
 #endif
+
+
         }
 
         //Back away from Target
@@ -2655,6 +2657,12 @@ namespace Breeze.Core
                 return;
             }
 
+
+            if (!Sender.gameObject.TryGetComponent(out BreezeSystem bs))
+            {
+                return;
+            }
+
             if (switchingWeapon)
                 return;
 
@@ -2671,12 +2679,7 @@ namespace Breeze.Core
                             FocusOnTarget = Sender;
                             CurrentTarget = Sender;
 
-                            if (IsPlayer)
-                            {
-                                TargetAIScript = null;
-                                PlayerScript = Sender.GetComponent<BreezePlayer>();
-                            }
-                            else
+                            if (!IsPlayer)
                             {
                                 PlayerScript = null;
                                 TargetAIScript = Sender.GetComponent<BreezeSystem>();
@@ -2730,12 +2733,7 @@ namespace Breeze.Core
                                 AIConfidence = BreezeEnums.AIConfidence.Brave;
                             }
 
-                            if (ExitNeutral == 2)
-                            {
-                                TargetAIScript = null;
-                                PlayerScript = ExitSender.GetComponent<BreezePlayer>();
-                            }
-                            else
+                            if (ExitNeutral != 2)
                             {
                                 PlayerScript = null;
                                 TargetAIScript = ExitSender.GetComponent<BreezeSystem>();
@@ -2873,6 +2871,11 @@ namespace Breeze.Core
                     return true;
                 }
 
+                if (!isPlayer && !sender.TryGetComponent(out BreezeSystem bs))
+                {
+                    return true;
+                }
+
                 if (!isPlayer && CheckFaction(sender.GetComponent<BreezeSystem>().CurrentAIFaction))
                 {
                     return true;
@@ -2941,9 +2944,9 @@ namespace Breeze.Core
         private float StopDistance()
         {
 #if !Breeze_AI_Pathfinder_Enabled
-            return nav.stoppingDistance + 0.76f;
+            return nav.stoppingDistance;
 #else
-            return nav.endReachedDistance + 0.76f;
+            return nav.endReachedDistance;
 #endif
         }
 

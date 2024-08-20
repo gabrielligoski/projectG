@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
             toggleHighlightRoom();
         } else if (wasPressed && currentCollider)
         {
-            Debug.Log(roomToInstance.ToString());
             GameMaster.Instance.swapRoom(currentCollider.gameObject, roomToInstance);
             lastClicked?.gameObject.GetComponent<RoomHandler>().toggleOutline(false);
             lastClicked = null;
@@ -51,7 +50,6 @@ public class PlayerController : MonoBehaviour
         var wasPressed = callback.action.WasReleasedThisFrame();
         if (wasPressed)
         {
-            Debug.Log("set empty");
             roomToInstance = roomToInstance == Room.RoomType.empty? Room.RoomType.none: Room.RoomType.empty;
         }
     }

@@ -1129,9 +1129,9 @@ MonoBehaviour:
   ShouldChaseTarget: 1
   HitReactionOnAttack: 1
   GetHitTolerance: 3
-  AttackDistance: 2
-  ExtendedAttackDistance: 4
-  EnemyTooCloseDistance: 1
+  AttackDistance: 1
+  ExtendedAttackDistance: 1
+  EnemyTooCloseDistance: 0.75
   BackawayMultiplier: 1.2
   HitReactionPossibility: 100
   MinAttackDelay: 0.4

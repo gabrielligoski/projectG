@@ -13,8 +13,8 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField] public CharacterType type;
 
-    public float walkSpeed; 
-    public float runSpeed;
+    public float walkSpeed = 1; 
+    public float runSpeed = 1;
 
     public int xpValue;
 
@@ -63,8 +63,6 @@ public class CharacterController : MonoBehaviour
 
     private void Start()
     {
-        runSpeed = 5;
-        walkSpeed = 5;
         bs = GetComponent<BreezeSystem>();
         updateBreeze();
         effects = new List<Effect>();

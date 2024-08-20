@@ -13,7 +13,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
-        gameObject.transform.position = Core.instance.gameObject.transform.position + new Vector3(0, 4);
+        gameObject.transform.position = Core.instance.gameObject.transform.position + new Vector3(0, 4, -2);
     }
 
     public void getMovementInput(InputAction.CallbackContext value)
@@ -41,7 +41,7 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         var newPos = Vector3.Lerp(gameObject.transform.position, gameObject.transform.position + dir * Time.deltaTime * spd * (fastMove ? 4 : 1), smooth);
-        if (Vector2.Distance(new Vector2(newPos.x, newPos.z), new Vector2(Core.instance.gameObject.transform.position.x, Core.instance.gameObject.transform.position.z)) <= (GameMaster.Instance.size / 2 - 3))
+        if (Vector2.Distance(new Vector2(newPos.x, newPos.z), new Vector2(Core.instance.gameObject.transform.position.x, Core.instance.gameObject.transform.position.z)) <= (GameMaster.Instance.size / 2))
         {
             gameObject.transform.position = newPos;
         }

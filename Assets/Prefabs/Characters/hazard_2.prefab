@@ -289,7 +289,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4581080692532793616}
@@ -401,17 +401,17 @@ MonoBehaviour:
   MaxIdleLength: 8
   RotationSpeed: 1.4
   UseRootMotion: 0
-  WalkSpeed: 1
-  RunSpeed: 1.5
+  WalkSpeed: 0.5
+  RunSpeed: 0.5
   WalkBackwardsSpeed: 0.7
   minAlertLength: 3
   maxAlertLength: 10
   ShouldChaseTarget: 1
   HitReactionOnAttack: 1
   GetHitTolerance: 3
-  AttackDistance: 2
-  ExtendedAttackDistance: 4
-  EnemyTooCloseDistance: 1
+  AttackDistance: 1
+  ExtendedAttackDistance: 1
+  EnemyTooCloseDistance: 0.75
   BackawayMultiplier: 1.2
   HitReactionPossibility: 100
   MinAttackDelay: 0.4
@@ -796,8 +796,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  walkSpeed: 1
-  runSpeed: 1
+  walkSpeed: 0.5
+  runSpeed: 0.5
   xpValue: 3
   damageToCore: 5
   spawn: {fileID: 0}

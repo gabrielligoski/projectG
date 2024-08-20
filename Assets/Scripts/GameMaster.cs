@@ -3,6 +3,7 @@ using Unity.AI.Navigation;
 using UnityEngine;
 using System;
 using Random = UnityEngine.Random;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
@@ -15,7 +16,11 @@ public class GameMaster : MonoBehaviour
     [SerializeField] public int size;
     [SerializeField] private float roomGap;
     [SerializeField] public List<GameObject> rooms = new List<GameObject>();
+    [SerializeField] public List<RobotSpawner> robotSpawners = new List<RobotSpawner>();
     [SerializeField] private GameObject floorPfb;
+
+
+    public bool hasStartedWaves;
 
     private PlayerHUD playerHUD = null;
 
@@ -31,12 +36,13 @@ public class GameMaster : MonoBehaviour
     public int xp;
 
     public int currentLevel;
-
+    public int mineRate;
+    public int mineRatio;
     public int resource;
     public int maxResource;
     public float dificulty = 1f;
     private float goodBlockChance = .05f;
-    private float badBlockChance = .01f;
+    private float badBlockChance = .05f;
     private List<Room.RoomType> badRooms = new List<Room.RoomType>() {
             Room.RoomType.spider_spawner,
             Room.RoomType.robot_spawner,
@@ -83,11 +89,14 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-    private void increaseResource(int amount)
+    public void increaseResource(int amount)
     {
         if (resource + amount < maxResource)
         {
             resource += amount;
+        }
+        else {
+            resource = maxResource;
         }
         PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
     }
@@ -165,7 +174,7 @@ public class GameMaster : MonoBehaviour
 
         if (!isInSafeZone && Random.value <= badBlockChance)
         {
-            badBlockChance = 0.01f;
+            badBlockChance = 0.025f;
             return rooms.Find(room => room.GetComponent<Room>().roomType() == badRooms[Random.Range(0, badRooms.Count)]);
         }
 
@@ -178,10 +187,26 @@ public class GameMaster : MonoBehaviour
 
         // raise the chance of something happens
         goodBlockChance += 0.01f / dificulty;
-        badBlockChance += 0.01f * dificulty;
+        badBlockChance += 0.05f * dificulty;
 
         return rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.empty);
 
+    }
+
+    public IEnumerator SpawnWaves()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(30);
+            Dictionary<string, int> robotsToSpawn = new Dictionary<string, int>();
+
+            robotsToSpawn.Add("dummy_1", (int)((dificulty - .9f) * 10));
+            if (dificulty > 1.5f)
+                robotsToSpawn.Add("dummy_2", (int)((dificulty - 1.5f) * 5));
+            if (dificulty > 2)
+                robotsToSpawn.Add("dummy_3", (int)(dificulty - 1));
+            robotSpawners.ForEach(spawner => spawner.Spawn(robotsToSpawn));
+        }
     }
 
     public void swapRoom(GameObject target, Room.RoomType newRoomType)

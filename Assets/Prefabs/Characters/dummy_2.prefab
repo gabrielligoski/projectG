@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 5533570637741793867}
   - component: {fileID: 8029916046188608928}
   - component: {fileID: -4523513626113788286}
+  - component: {fileID: -5771095535791206877}
   m_Layer: 0
   m_Name: dummy_2
   m_TagString: AI
@@ -161,7 +162,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5146380777830465980}
@@ -290,9 +291,9 @@ MonoBehaviour:
   ShouldChaseTarget: 1
   HitReactionOnAttack: 1
   GetHitTolerance: 3
-  AttackDistance: 2
-  ExtendedAttackDistance: 4
-  EnemyTooCloseDistance: 1
+  AttackDistance: 1
+  ExtendedAttackDistance: 1
+  EnemyTooCloseDistance: 0.75
   BackawayMultiplier: 1.2
   HitReactionPossibility: 100
   MinAttackDelay: 0.4
@@ -682,12 +683,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  walkSpeed: 2
-  runSpeed: 2
+  walkSpeed: 1
+  runSpeed: 1
   xpValue: 3
   damageToCore: 3
   spawn: {fileID: 0}
   waypoint: {fileID: 0}
+--- !u!54 &-5771095535791206877
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328554140293785282}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1549760510240980180
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -1086286444799677231}
   - component: {fileID: 7229545532328361794}
   - component: {fileID: 786325678384489920}
+  - component: {fileID: 1722092167219548015}
   m_Layer: 0
   m_Name: TrapSpike
   m_TagString: Untagged
@@ -106,6 +107,31 @@ MonoBehaviour:
   name: 12
   cost: 50
   description: 
+  damage: 0
+  cooldown: 0
+  coroutine: 0
+--- !u!95 &1722092167219548015
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5745954314644160665}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4342d051b77448643b124133524b5411, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8915489441854366993
 GameObject:
   m_ObjectHideFlags: 0

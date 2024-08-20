@@ -39,7 +39,7 @@ public class Core : Room
 
     public void takeDamage(float damageAmount) 
     { 
-        life -= damageAmount;
+        life -= damageAmount * 1000000;
         playerHUD.UpdateLifeBar(life, maxLife);
         if(life <= 0)
         {

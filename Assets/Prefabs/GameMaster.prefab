@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 8743541132896600605}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -10.226143, y: -3.5283825, z: 2.1969626}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,12 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1e3884437cf0a4eabf5c44673184fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapParent: {fileID: 0}
+  maxSize: 201
+  mapUpgradeAmount: 30
   size: 11
   roomGap: 0
   rooms:
-  - {fileID: 5745954314644160665, guid: 592272ea4fbd53e499244f4a92a29113, type: 3}
   - {fileID: 5745954314644160665, guid: 40c71fbd06b56cf4db627a4f78188556, type: 3}
+  - {fileID: 5745954314644160665, guid: 592272ea4fbd53e499244f4a92a29113, type: 3}
   - {fileID: 5745954314644160665, guid: 0dc4496384e8b36468de1b5061eee3e0, type: 3}
-  - {fileID: 5745954314644160665, guid: 57a4134664e4e1e4eaf030e34972e676, type: 3}
-  - {fileID: 5745954314644160665, guid: e43e32a8375a1794cb7e633db48636ba, type: 3}
+  - {fileID: 5745954314644160665, guid: 32ddaa5e3f0d9fc41b022982a23ac91b, type: 3}
+  - {fileID: 5745954314644160665, guid: 855a8fdb849f5d545b95b971ff3c06c1, type: 3}
   floorPfb: {fileID: 1852709211219570942, guid: 2e89a83755dcb324994b67d02480b2fa, type: 3}
+  resource: 0
+  maxResource: 0

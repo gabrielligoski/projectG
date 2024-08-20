@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using Unity.AI.Navigation;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using UnityEngine.AI;
 using System;
 using Random = UnityEngine.Random;
 
 public class GameMaster : MonoBehaviour
 {
     public List<List<GameObject>> map = new List<List<GameObject>>();
-
     [SerializeField] private int safeZoneSize = 2;
+    public GameObject mapParent;
+    [SerializeField] private int maxSize;
+    [SerializeField] private int mapUpgradeAmount;
     [SerializeField] private int size;
     [SerializeField] private float roomGap;
     [SerializeField] private List<GameObject> rooms = new List<GameObject>();
@@ -22,6 +22,10 @@ public class GameMaster : MonoBehaviour
     public static GameObject floor;
 
     public static GameMaster Instance { get; private set; }
+
+    private int xp;
+
+    private int currentLevel;
 
     public int resource;
     public int maxResource;
@@ -41,16 +45,19 @@ public class GameMaster : MonoBehaviour
 
     private void Awake()
     {
+        mapParent = new GameObject("Map");
         Instance = this;
-        resource = 1000;
-        maxResource = 1000;
+        resource = 100;
+        maxResource = 100;
+        xp = 0;
+        currentLevel = 0;
     }
 
     void Start()
     {
         var coreRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.core);
         var rockRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.rock);
-        (map, floor, core) = GenerateMap.createMap(size, roomGap, coreRoom, rockRoom, floorPfb);
+        (map, floor, core) = GenerateMap.createMap(maxSize, size, roomGap, mapParent, coreRoom, rockRoom, floorPfb);
         navMeshSurface = floor.GetComponent<NavMeshSurface>();
         navMeshSurface.BuildNavMesh();
     }
@@ -76,19 +83,47 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-    private void upgradeMaxAmount(int amount)
+    private void upgradeMaxAmount()
     {
-        maxResource += amount;
+        maxResource = (int)Math.Pow(currentLevel + 1, 2) * 100;
+    }
+    public int calculateLevel()
+    {
+        return (int)Math.Floor(Math.Sqrt(xp / (float)100));
+    }
+    public int xpNeededPerLevel(int level)
+    {
+        return (int)Math.Pow(level, 2) * 100;
+    }
+    public float percentCurrentLevel()
+    {
+        var xpNeededNext = xpNeededPerLevel(currentLevel + 1);
+        return ((xp - xpNeededPerLevel(currentLevel)) / (float)xpNeededNext);
     }
 
+    public void addXP(int xpAmount)
+    {
+        xp += xpAmount;
+        Debug.Log(percentCurrentLevel() * 100 + "%");
+        if (currentLevel < calculateLevel())
+        {
+            currentLevel++;
+            var rockRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.rock);
+            upgradeMaxAmount();
+            GenerateMap.upgradeMap(map, mapParent, size, maxSize, mapUpgradeAmount, roomGap, rockRoom);
+            size += mapUpgradeAmount;
+            ;
+            Debug.Log("Upou!");
+        }
+    }
 
     private bool compareAdjacentsTo(GameObject target, Room.RoomType roomType)
     {
         (int, int) pos = target.GetComponent<Room>().pos;
-        var adj0 = pos.Item1 - 1 >= 0 ? map[pos.Item1 - 1][pos.Item2].GetComponent<Room>().roomType() == roomType : true;
-        var adj1 = pos.Item1 + 1 < map.Count ? map[pos.Item1 + 1][pos.Item2].GetComponent<Room>().roomType() == roomType : true;
-        var adj2 = pos.Item2 - 1 >= 0 ? map[pos.Item1][pos.Item2 - 1].GetComponent<Room>().roomType() == roomType : true;
-        var adj3 = pos.Item2 + 1 < map[pos.Item1].Count ? map[pos.Item1][pos.Item2 + 1].GetComponent<Room>().roomType() == roomType : true;
+        var adj0 = pos.Item1 - 1 >= ((maxSize / 2) - (size / 2)) ? map[pos.Item1 - 1][pos.Item2].GetComponent<Room>().roomType() == roomType : true;
+        var adj1 = pos.Item1 + 1 < ((maxSize / 2) + (size / 2)) ? map[pos.Item1 + 1][pos.Item2].GetComponent<Room>().roomType() == roomType : true;
+        var adj2 = pos.Item2 - 1 >= ((maxSize / 2) - (size / 2)) ? map[pos.Item1][pos.Item2 - 1].GetComponent<Room>().roomType() == roomType : true;
+        var adj3 = pos.Item2 + 1 < ((maxSize / 2) + (size / 2)) ? map[pos.Item1][pos.Item2 + 1].GetComponent<Room>().roomType() == roomType : true;
 
         return adj0 && adj1 && adj2 && adj3;
     }

@@ -13,10 +13,13 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField] public CharacterType type;
 
-    public float walkSpeed;
+    public float walkSpeed; 
     public float runSpeed;
 
+    public int xpValue;
+
     public float damageToCore = 30f;
+
     public Spawner spawn;
     public List<Effect> effects;
     private BreezeSystem bs;
@@ -29,8 +32,12 @@ public class CharacterController : MonoBehaviour
             spawn.spawns.Remove(gameObject);
     }
 
-    public void updateBreeze()
-    {
+
+    public void onDeath() {
+        GameMaster.Instance.addXP(xpValue);
+    }
+
+    public void updateBreeze() {
         var bs = GetComponent<BreezeSystem>();
         bs.RunSpeed = runSpeed;
         bs.WalkSpeed = walkSpeed;

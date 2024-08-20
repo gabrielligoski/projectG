@@ -13,8 +13,12 @@ public class GameMaster : MonoBehaviour
     [SerializeField] private int mapUpgradeAmount;
     [SerializeField] private int size;
     [SerializeField] private float roomGap;
-    [SerializeField] private List<GameObject> rooms = new List<GameObject>();
+    [SerializeField] public List<GameObject> rooms = new List<GameObject>();
     [SerializeField] private GameObject floorPfb;
+
+    private PlayerHUD playerHUD = null;
+
+    private string[] levels = { "F", "E", "D", "C", "B", "A" };
 
     public static NavMeshSurface navMeshSurface;
 
@@ -23,9 +27,9 @@ public class GameMaster : MonoBehaviour
 
     public static GameMaster Instance { get; private set; }
 
-    private int xp;
+    public int xp;
 
-    private int currentLevel;
+    public int currentLevel;
 
     public int resource;
     public int maxResource;
@@ -42,6 +46,9 @@ public class GameMaster : MonoBehaviour
 
     void Start()
     {
+        playerHUD = PlayerHUD.Instance;
+        PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
+        PlayerHUD.Instance.UpdateRankIcon(levels[currentLevel]);
         var coreRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.core);
         var rockRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.rock);
         (map, floor, core) = GenerateMap.createMap(maxSize, size, roomGap, mapParent, coreRoom, rockRoom, floorPfb);
@@ -64,10 +71,12 @@ public class GameMaster : MonoBehaviour
         if (resource + amount < maxResource) {
             resource += amount;
         }
+        PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
     }
 
     private void upgradeMaxAmount() {
         maxResource = (int)Math.Pow(currentLevel+1,2)*100;
+        PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
     }
     public int calculateLevel() {
         return (int)Math.Floor(Math.Sqrt(xp/(float)100));
@@ -82,6 +91,7 @@ public class GameMaster : MonoBehaviour
 
     public void addXP(int xpAmount) {
         xp += xpAmount;
+        PlayerHUD.Instance.UpdateExpBar(percentCurrentLevel());
         Debug.Log(percentCurrentLevel()*100 + "%");
         if(currentLevel < calculateLevel()) {
             currentLevel++;
@@ -89,9 +99,12 @@ public class GameMaster : MonoBehaviour
             upgradeMaxAmount();
             GenerateMap.upgradeMap(map, mapParent, size, maxSize, mapUpgradeAmount, roomGap, rockRoom);
             size += mapUpgradeAmount;
-;
+            string level = currentLevel <= 5 ? levels[currentLevel] : "".PadLeft(currentLevel - 5, 'S');
+;           PlayerHUD.Instance.UpdateRankIcon(level);
             Debug.Log("Upou!");
         }
+
+
     }
 
     private bool compareAdjacentsTo(GameObject target, Room.RoomType roomType) {

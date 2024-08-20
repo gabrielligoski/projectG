@@ -20,10 +20,15 @@ public class GenerateMap : MonoBehaviour
                 if (i == size / 2 && j == size / 2)
                 {
                     core = Instantiate(coreRoom, new Vector3(x, 0, z), Quaternion.identity, mapParent);
+                    core.GetComponent<Room>().pos = (i, j);
                     row.Add(core);
                 }
                 else
-                    row.Add(Instantiate(blankRoom, new Vector3(x, 0, z), Quaternion.identity, mapParent));
+                {
+                    GameObject newRoom = Instantiate(blankRoom, new Vector3(x, 0, z), Quaternion.identity, mapParent);
+                    newRoom.GetComponent<Room>().pos = (i, j);
+                    row.Add(newRoom);
+                }
             }
         }
 

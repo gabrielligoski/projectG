@@ -66,8 +66,10 @@ public class CharacterController : MonoBehaviour
         {
             case CharacterType.monster:
                 bs.Waypoints.Add(waypoint);
+                bs.Waypoints.Add(waypoint);
                 break;
             case CharacterType.human:
+                bs.Waypoints.Add(Core.core.bWaypoint);
                 bs.Waypoints.Add(Core.core.bWaypoint);
                 break;
         }

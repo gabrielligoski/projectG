@@ -2949,7 +2949,7 @@ namespace Breeze.Core
 
         private bool GetDistanceReached()
         {
-            return nav.remainingDistance <= StopDistance();
+            return Vector3.Distance(nav.destination, gameObject.transform.position) <= StopDistance();
         }
 
         public void ResetNav()

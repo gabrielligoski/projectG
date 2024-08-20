@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public abstract class Room : MonoBehaviour
 {
+    public (int,int) pos;
     [SerializeField] public string name;
 
     public int cost;

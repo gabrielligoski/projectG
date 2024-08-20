@@ -8,6 +8,7 @@ public class Core : Room
     {
         return RoomType.core;
     }
+    private PlayerHUD playerHUD = null;
 
     public static Core core;
     public BreezeWaypoint bWaypoint;
@@ -16,6 +17,8 @@ public class Core : Room
     private void Awake()
     {
         core = this;
+        playerHUD = PlayerHUD.Instance;
+        playerHUD.UpdateLifeBar(life);
         bWaypoint = GetComponent<BreezeWaypoint>();
         bWaypoint.NextWaypoint = bWaypoint.gameObject;
         bWaypoint.MaxIdleLength = int.MaxValue;
@@ -36,6 +39,7 @@ public class Core : Room
     public void takeDamage(float damageAmount) 
     { 
         life -= damageAmount;
+        playerHUD.UpdateLifeBar(life);
         if(life <= 0)
         {
             Destroy(gameObject);

@@ -7,13 +7,16 @@ using UnityEngine.UIElements;
 
 public class PlayerHUD : MonoBehaviour
 {
+    public static PlayerHUD Instance { get; private set; }
     [SerializeField] private UIDocument doc;
     [SerializeField] private StyleSheet css;
-    private GameMaster gameMaster = null;
     private List<Button> roomsButtons = new List<Button>();
     private List<StyleBackground> roomsButtonsImgsGray = new List<StyleBackground>();
     private List<StyleBackground> roomsButtonsImgsGreen = new List<StyleBackground>();
     private Room.RoomType selectedRoomType = Room.RoomType.none;
+    private ProgressBar coreLifeBar;
+    private ProgressBar coreExpBar;
+    private ProgressBar coreResourceBar;
 
     //private string roomsButtonsToCreate = "empty|orc_spawner|lizardman_spawner|werewolf_spawner|skeleton_spawner|spike_trap|bomb_trap";
     private List<Room.RoomType> rooms = new List<Room.RoomType>()
@@ -29,15 +32,24 @@ public class PlayerHUD : MonoBehaviour
 
     private void Start()
     {
-        gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
-        Debug.Log(gameMaster);
+        Instance = this;
         var root = doc.rootVisualElement;
         root.styleSheets.Add(css);
-
         CreateRoomMenu(root);
-        CreateCoreLifeBar(root);
         CreateCoreExpBar(root);
-        CreateResourcesDisplay(root);
+
+        var div = new VisualElement();
+        div.AddToClassList("div-header");
+        var rankIcon = new VisualElement();
+        rankIcon.AddToClassList("rank-icon");
+        div.Add(rankIcon);
+        var divBar = new VisualElement();
+        divBar.AddToClassList("div-bar");
+        div.Add(divBar);
+        root.Add(div);
+
+        CreateCoreLifeBar(divBar);
+        CreateResourceBar(divBar);
     }
 
     public void selectRoomType(Button roomButton, Room.RoomType room, MouseUpEvent evt, StyleBackground selectedStyle)
@@ -93,10 +105,9 @@ public class PlayerHUD : MonoBehaviour
         });
     }
 
-
     private void CreateCoreLifeBar(VisualElement root)
     {
-        var coreLifeBar = new ProgressBar();
+        coreLifeBar = new ProgressBar();
         coreLifeBar.AddToClassList("core-life-bar");
         //coreLifeBar.value = gameMaster.GetComponent<GameMaster>().life;
         root.Add(coreLifeBar);
@@ -104,33 +115,34 @@ public class PlayerHUD : MonoBehaviour
 
     private void CreateCoreExpBar(VisualElement root)
     {
-        var coreExpBar = new ProgressBar();
+        coreExpBar = new ProgressBar();
         coreExpBar.AddToClassList("core-exp-bar");
-        //coreExpBar.value = gameMaster.GetComponent<GameMaster>().exp;
+
         root.Add(coreExpBar);
     }
 
-    private void CreateResourcesDisplay(VisualElement root)
+     private void CreateResourceBar(VisualElement root)
     {
-        var resourcesDisplay = new VisualElement();
-        resourcesDisplay.AddToClassList("resources-display");
+        coreResourceBar = new ProgressBar();
+        coreResourceBar.AddToClassList("core-resource-bar");
 
-        var goldDisplay = new Label("0");
-        goldDisplay.AddToClassList("gold-display");
-        resourcesDisplay.Add(goldDisplay);
+        root.Add(coreResourceBar);
+    }
 
-        var ironDisplay = new Label("0");
-        ironDisplay.AddToClassList("iron-display");
-        resourcesDisplay.Add(ironDisplay);
+    public void UpdateLifeBar(float life)
+    {
+        coreLifeBar.value = life;
+    }
 
-        var coalDisplay = new Label("0");
-        coalDisplay.AddToClassList("coal-display");
-        resourcesDisplay.Add(coalDisplay);
+    public void UpdateExpBar(float exp)
+    {
+        Debug.Log(exp);
+        coreExpBar.value = exp*100;
+    }
 
-        var diamondDisplay = new Label("0");
-        diamondDisplay.AddToClassList("diamond-display");
-        resourcesDisplay.Add(diamondDisplay);
-
-        root.Add(resourcesDisplay);
+    public void UpdateResourceBar(int resource, int maxResource)
+    {
+        coreResourceBar.value = resource;
+        coreResourceBar.highValue = maxResource;
     }
 }

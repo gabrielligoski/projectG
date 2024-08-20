@@ -16,6 +16,8 @@ public class GameMaster : MonoBehaviour
     [SerializeField] private List<GameObject> rooms = new List<GameObject>();
     [SerializeField] private GameObject floorPfb;
 
+    private PlayerHUD playerHUD = null;
+
     public static NavMeshSurface navMeshSurface;
 
     public static GameObject core;
@@ -23,9 +25,9 @@ public class GameMaster : MonoBehaviour
 
     public static GameMaster Instance { get; private set; }
 
-    private int xp;
+    public int xp;
 
-    private int currentLevel;
+    public int currentLevel;
 
     public int resource;
     public int maxResource;
@@ -42,6 +44,8 @@ public class GameMaster : MonoBehaviour
 
     void Start()
     {
+        playerHUD = PlayerHUD.Instance;
+        PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
         var coreRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.core);
         var rockRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.rock);
         (map, floor, core) = GenerateMap.createMap(maxSize, size, roomGap, mapParent, coreRoom, rockRoom, floorPfb);
@@ -64,6 +68,7 @@ public class GameMaster : MonoBehaviour
         if (resource + amount < maxResource) {
             resource += amount;
         }
+        PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
     }
 
     private void upgradeMaxAmount() {
@@ -82,6 +87,7 @@ public class GameMaster : MonoBehaviour
 
     public void addXP(int xpAmount) {
         xp += xpAmount;
+        PlayerHUD.Instance.UpdateExpBar(percentCurrentLevel());
         Debug.Log(percentCurrentLevel()*100 + "%");
         if(currentLevel < calculateLevel()) {
             currentLevel++;

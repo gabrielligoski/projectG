@@ -6,6 +6,7 @@ using UnityEngine.InputSystem.XR;
 
 public class ExplosiveTrap : Room
 {
+    [SerializeField] private GameObject explosionVFX;
     public List<Effect> effects;
 
     public override RoomType roomType()
@@ -42,7 +43,8 @@ public class ExplosiveTrap : Room
     }
     private void applyDebuffs(CharacterController controller)
     {
-        effects.ForEach(effect => {
+        effects.ForEach(effect =>
+        {
             StartCoroutine(debuff(controller, effect));
         });
     }
@@ -52,7 +54,7 @@ public class ExplosiveTrap : Room
         if (e.CurrentHealth > 0)
         {
             controller.GetComponent<BreezeSystem>().TakeDamage(damage, gameObject, true);
-            Debug.Log("damage dealt!");
+            Instantiate(explosionVFX, transform.position + new Vector3(0, 1), Quaternion.identity, null);
             applyDebuffs(controller);
         }
     }

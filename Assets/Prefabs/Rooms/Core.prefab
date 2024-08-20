@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5745954314644160665}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.099999994, z: 0}
+  m_LocalPosition: {x: 0, y: -0.18552443, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -89,6 +89,7 @@ MonoBehaviour:
   cost: 0
   description: Core
   life: 100
+  maxLife: 100
   bWaypoint: {fileID: 0}
 --- !u!114 &1196947340697191990
 MonoBehaviour:

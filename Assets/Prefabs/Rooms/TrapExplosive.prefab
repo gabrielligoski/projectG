@@ -105,9 +105,10 @@ MonoBehaviour:
   name: 13
   cost: 50
   description: 
+  explosionVFX: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
   explodeSound: {fileID: 8300000, guid: 6d9f5d7f5fe68b44b95250abf3525ca9, type: 3}
   damage: 100
-  countdown: 0
+  countdown: 0.1
   coroutine: 0
 --- !u!82 &4682986140100445212
 AudioSource:

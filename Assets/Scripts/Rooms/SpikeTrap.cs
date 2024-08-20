@@ -15,6 +15,7 @@ public class SpikeTrap : Room
     }
 
     private List<CharacterController> enemies;
+    [SerializeField] private AudioClip sfxClip;
 
     [SerializeField] private float damage;
     [SerializeField] private float cooldown;
@@ -24,6 +25,7 @@ public class SpikeTrap : Room
     private void Start()
     {
         enemies = new List<CharacterController>();
+        effects = new List<Effect>(); 
         _animator = GetComponent<Animator>();
     }
     //private void Update()
@@ -52,7 +54,8 @@ public class SpikeTrap : Room
         if (e.CurrentHealth > 0)
         {
             _animator.SetTrigger("play");
-            controller.GetComponent<BreezeSystem>().TakeDamage(damage, gameObject, true);
+            SFXManager.Instance.playSFXClip(sfxClip, transform, 1f);
+            controller.GetComponent<BreezeSystem>().TakeDamage(damage, gameObject, true, false);
             applyDebuffs(controller);
         }
     }
@@ -74,6 +77,7 @@ public class SpikeTrap : Room
                 break;
             yield return new WaitForSeconds(cooldown);
         }
+        coroutine = false;
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -86,6 +90,7 @@ public class SpikeTrap : Room
                 enemies.Add(e);
                 if (!coroutine)
                 {
+                    coroutine = true;
                     StartCoroutine(enemyCheck(cooldown));
                 }
             }

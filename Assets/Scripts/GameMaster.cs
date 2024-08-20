@@ -155,6 +155,9 @@ public class GameMaster : MonoBehaviour
             switch (newRoomType)
             {
                 case Room.RoomType.empty:
+                    if (target.TryGetComponent(out Room r) && r.roomType() == Room.RoomType.bomb_trap) {
+                        return true;
+                    }
                     return !compareAdjacentsTo(target, Room.RoomType.rock) && room.roomType() == Room.RoomType.rock;
                 default:
                     return room.roomType() == Room.RoomType.empty;
@@ -191,6 +194,22 @@ public class GameMaster : MonoBehaviour
 
         return rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.empty);
 
+    }
+
+    public IEnumerator SpawnWaves()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(30);
+            Dictionary<string, int> robotsToSpawn = new Dictionary<string, int>();
+
+            robotsToSpawn.Add("dummy_1", (int)((dificulty - .9f) * 10));
+            if (dificulty > 1.5f)
+                robotsToSpawn.Add("dummy_2", (int)((dificulty - 1.5f) * 5));
+            if (dificulty > 2)
+                robotsToSpawn.Add("dummy_3", (int)(dificulty - 1));
+            robotSpawners.ForEach(spawner => spawner.Spawn(robotsToSpawn));
+        }
     }
 
     public IEnumerator SpawnWaves()

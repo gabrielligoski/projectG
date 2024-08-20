@@ -28,6 +28,7 @@ public class Core : Room
 
     private void OnTriggerEnter(Collider collider)
     {
+                Debug.Log("damage dealt to core called");
         if (collider.TryGetComponent<CharacterController>(out CharacterController e)) {
             if(e.type == CharacterController.CharacterType.enemy)
             {
@@ -38,8 +39,8 @@ public class Core : Room
     }
 
     public void takeDamage(float damageAmount) 
-    { 
-        life -= damageAmount * 1000000;
+    {
+        life -= damageAmount;
         playerHUD.UpdateLifeBar(life, maxLife);
         if(life <= 0)
         {

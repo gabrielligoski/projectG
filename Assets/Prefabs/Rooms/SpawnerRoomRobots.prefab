@@ -84,7 +84,7 @@ MonoBehaviour:
   name: 4
   cost: 0
   description: 
-  spawns:
+  robotPfb:
   - {fileID: 503904192366512733, guid: bfde1683f3634394f9735b8af9be16c4, type: 3}
   - {fileID: 1328554140293785282, guid: dcb50cf44a8625f47a3e9c6e6c4a44cc, type: 3}
   - {fileID: 3133859690019420660, guid: 13e42434537c0f447b28ea790bfb1d57, type: 3}

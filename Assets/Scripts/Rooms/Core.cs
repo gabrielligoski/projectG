@@ -40,12 +40,12 @@ public class Core : Room
 
     public void takeDamage(float damageAmount) 
     {
-        Debug.Log("damage dealt to core");
         life -= damageAmount;
         playerHUD.UpdateLifeBar(life, maxLife);
         if(life <= 0)
         {
             Destroy(gameObject);
+            playerHUD.showGameOverScreen();
         }
     }
 

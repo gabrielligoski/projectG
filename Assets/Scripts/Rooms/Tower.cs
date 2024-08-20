@@ -1,13 +1,22 @@
 using Breeze.Core;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Tower : Room
 {
     private List<Effect> effects;
+
     public override RoomType roomType()
     {
-        return RoomType.tower;
+        if (Enum.TryParse(name, out RoomType parsed))
+            return parsed;
+        else
+        {
+            Debug.LogError("Tower couldn´t find the correct enum type");
+            return RoomType.none;
+        }
+
     }
 
     private void Update()

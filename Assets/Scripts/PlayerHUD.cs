@@ -17,6 +17,8 @@ public class PlayerHUD : MonoBehaviour
     private ProgressBar coreExpBar;
     private ProgressBar coreResourceBar;
     private Label rankIconText;
+    private VisualElement gameOverScreen;
+    private Label scoreText;
 
     private List<Room.RoomType> rooms = new List<Room.RoomType>()
     {
@@ -37,6 +39,7 @@ public class PlayerHUD : MonoBehaviour
         root.styleSheets.Add(css);
         CreateRoomMenu(root);
         CreateCoreExpBar(root);
+        CreateGameOverScreen(root);
 
         var div = new VisualElement();
         div.AddToClassList("div-header");
@@ -153,6 +156,25 @@ public class PlayerHUD : MonoBehaviour
         root.Add(coreResourceBar);
     }
 
+    private void CreateGameOverScreen(VisualElement root)
+    {
+        gameOverScreen = new VisualElement();
+        gameOverScreen.AddToClassList("game-over-screen");
+        var gameOverText = new Label();
+        gameOverText.AddToClassList("game-over-text");
+        gameOverText.text = "Game Over";
+        gameOverScreen.Add(gameOverText);
+        scoreText = new Label();
+        scoreText.AddToClassList("score-text");
+        scoreText.text = "";
+        gameOverScreen.Add(scoreText);
+        var restartButton = new Button();
+        restartButton.AddToClassList("restart-button");
+        restartButton.text = "Restart";
+        restartButton.RegisterCallback<MouseUpEvent>((evt) => gameMaster.RestartGame());
+        gameOverScreen.Add(restartButton);
+        root.Add(gameOverScreen);
+    }
     public void UpdateLifeBar(float life, float maxLife)
     {
         coreLifeBar.value = life;
@@ -177,4 +199,16 @@ public class PlayerHUD : MonoBehaviour
     {
         rankIconText.text = level;
     }
+
+    public void showGameOverScreen()
+    {
+        scoreText.text = $"Rank: {rankIconText.text} Score: {gameMaster.xp}";
+        gameOverScreen.style.display = DisplayStyle.Flex;
+    }
+
+    public void hideGameOverScreen()
+    {
+        gameOverScreen.style.display = DisplayStyle.None;
+    }
+
 }

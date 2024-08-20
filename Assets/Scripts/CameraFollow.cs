@@ -3,13 +3,18 @@ using UnityEngine.InputSystem;
 
 public class CameraFollow : MonoBehaviour
 {
-    public float minY = 4;
-    public float maxY = 20;
+    private float minY = 2;
+    private float maxY = 8;
     public float spd = 25f;
     public float smooth = 0.25f;
     private Vector2 movementInput;
     private Vector3 dir;
     private bool fastMove;
+
+    private void Start()
+    {
+        gameObject.transform.position = Core.instance.gameObject.transform.position + new Vector3(0, 4);
+    }
 
     public void getMovementInput(InputAction.CallbackContext value)
     {
@@ -35,6 +40,10 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, gameObject.transform.position + dir * Time.deltaTime * spd * (fastMove ? 4 : 1), smooth);
+        var newPos = Vector3.Lerp(gameObject.transform.position, gameObject.transform.position + dir * Time.deltaTime * spd * (fastMove ? 4 : 1), smooth);
+        if (Vector2.Distance(new Vector2(newPos.x, newPos.z), new Vector2(Core.instance.gameObject.transform.position.x, Core.instance.gameObject.transform.position.z)) <= (GameMaster.Instance.size / 2 - 3))
+        {
+            gameObject.transform.position = newPos;
+        }
     }
 }

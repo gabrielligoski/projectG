@@ -74,8 +74,8 @@ public class CharacterController : MonoBehaviour
                 bs.Waypoints.Add(waypoint);
                 break;
             case CharacterType.enemy:
-                bs.Waypoints.Add(Core.core.bWaypoint);
-                bs.Waypoints.Add(Core.core.bWaypoint);
+                bs.Waypoints.Add(Core.instance.bWaypoint);
+                bs.Waypoints.Add(Core.instance.bWaypoint);
                 break;
         }
     }

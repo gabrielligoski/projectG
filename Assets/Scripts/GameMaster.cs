@@ -11,7 +11,7 @@ public class GameMaster : MonoBehaviour
     public GameObject mapParent;
     [SerializeField] private int maxSize;
     [SerializeField] private int mapUpgradeAmount;
-    [SerializeField] private int size;
+    [SerializeField] public int size;
     [SerializeField] private float roomGap;
     [SerializeField] private List<GameObject> rooms = new List<GameObject>();
     [SerializeField] private GameObject floorPfb;

@@ -9,13 +9,13 @@ public class Core : Room
         return RoomType.core;
     }
 
-    public static Core core;
+    public static Core instance;
     public BreezeWaypoint bWaypoint;
 
 
     private void Awake()
     {
-        core = this;
+        instance = this;
         bWaypoint = GetComponent<BreezeWaypoint>();
         bWaypoint.NextWaypoint = bWaypoint.gameObject;
         bWaypoint.MaxIdleLength = int.MaxValue;

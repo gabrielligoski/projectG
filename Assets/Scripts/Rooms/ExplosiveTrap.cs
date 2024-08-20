@@ -15,6 +15,8 @@ public class ExplosiveTrap : Room
 
     private List<CharacterController> enemies;
 
+
+    [SerializeField] private AudioClip explodeSound;
     [SerializeField] private float damage;
     [SerializeField] private float countdown;
     [SerializeField] private bool coroutine;
@@ -63,6 +65,14 @@ public class ExplosiveTrap : Room
                 dealHit(enemy);
             }
         }
+        SFXManager.Instance.playSFXClip(explodeSound,transform,1f);
+        destroy();
+    }
+
+    public void destroy()
+    {
+        GameMaster.Instance.swapRoom(gameObject, Room.RoomType.empty);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider collider)

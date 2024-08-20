@@ -44,6 +44,7 @@ public class Core : Room
         if(life <= 0)
         {
             Destroy(gameObject);
+            playerHUD.showGameOverScreen();
         }
     }
 

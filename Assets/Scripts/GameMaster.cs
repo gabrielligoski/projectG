@@ -3,6 +3,7 @@ using Unity.AI.Navigation;
 using UnityEngine;
 using System;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
@@ -183,7 +184,6 @@ public class GameMaster : MonoBehaviour
 
     }
 
-
     public void swapRoom(GameObject target, Room.RoomType newRoomType)
     {
         if (isPossibleToSwap(target, newRoomType))
@@ -216,4 +216,8 @@ public class GameMaster : MonoBehaviour
 
     }
 
+    public void RestartGame() {
+        //TODO: Restart the game
+        playerHUD.hideGameOverScreen();
+    }
 }

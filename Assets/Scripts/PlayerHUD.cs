@@ -98,7 +98,7 @@ public class PlayerHUD : MonoBehaviour
     {
         var coreLifeBar = new ProgressBar();
         coreLifeBar.AddToClassList("core-life-bar");
-        coreLifeBar.value = gameMaster.GetComponent<GameMaster>().life;
+        //coreLifeBar.value = gameMaster.GetComponent<GameMaster>().life;
         root.Add(coreLifeBar);
     }
 
@@ -106,7 +106,7 @@ public class PlayerHUD : MonoBehaviour
     {
         var coreExpBar = new ProgressBar();
         coreExpBar.AddToClassList("core-exp-bar");
-        coreExpBar.value = gameMaster.GetComponent<GameMaster>().exp;
+        //coreExpBar.value = gameMaster.GetComponent<GameMaster>().exp;
         root.Add(coreExpBar);
     }
 

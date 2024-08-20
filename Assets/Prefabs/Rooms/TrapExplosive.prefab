@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6138797499350442279}
   - component: {fileID: -1086286444799677231}
   - component: {fileID: 7229545532328361794}
-  - component: {fileID: -3145206179043351327}
+  - component: {fileID: -9186058937078366861}
   m_Layer: 0
   m_Name: TrapExplosive
   m_TagString: Untagged
@@ -90,7 +90,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &-3145206179043351327
+--- !u!114 &-9186058937078366861
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,12 +99,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5745954314644160665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 108790db5fd6aae48ab5277b1aa68c2d, type: 3}
+  m_Script: {fileID: 11500000, guid: e3c0bbedc9ccd5444a27b40532807015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 13
-  cost: 200
+  name: 0
+  cost: 0
   description: 
+  damage: 0
+  countdown: 0
+  coroutine: 0
 --- !u!1001 &1365720429621661438
 PrefabInstance:
   m_ObjectHideFlags: 0

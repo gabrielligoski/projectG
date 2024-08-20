@@ -106,6 +106,9 @@ MonoBehaviour:
   name: 12
   cost: 50
   description: 
+  damage: 0
+  cooldown: 0
+  coroutine: 0
 --- !u!1 &8915489441854366993
 GameObject:
   m_ObjectHideFlags: 0

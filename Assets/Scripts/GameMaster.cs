@@ -82,11 +82,14 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-    private void increaseResource(int amount)
+    public void increaseResource(int amount)
     {
         if (resource + amount < maxResource)
         {
             resource += amount;
+        }
+        else {
+            resource = maxResource;
         }
         PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
     }

@@ -1779,6 +1779,8 @@ namespace Breeze.Core
 
             DetectionAngle /= 1.4f;
             DetectionDistance /= 1.4f;
+
+            WaypointWander();
         }
 
         //Check Incoming Sound

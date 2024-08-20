@@ -21,8 +21,8 @@ public class SFXManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         var soundObject = new GameObject(clip.name);
-        var SFXObject = soundObject.AddComponent<AudioSource>();
-        AudioSource source = Instantiate(SFXObject, spawnTranform.position, Quaternion.identity);
+        soundObject.transform.position = spawnTranform.position;
+        var source = soundObject.AddComponent<AudioSource>();
 
         source.clip = clip;
 

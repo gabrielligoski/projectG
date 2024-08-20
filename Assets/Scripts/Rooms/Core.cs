@@ -4,6 +4,7 @@ using UnityEngine;
 public class Core : Room
 {
     public float life = 100f;
+    public float maxLife = 100f;
     public override RoomType roomType()
     {
         return RoomType.core;
@@ -18,7 +19,7 @@ public class Core : Room
     {
         core = this;
         playerHUD = PlayerHUD.Instance;
-        playerHUD.UpdateLifeBar(life);
+        playerHUD.UpdateLifeBar(life, maxLife);
         bWaypoint = GetComponent<BreezeWaypoint>();
         bWaypoint.NextWaypoint = bWaypoint.gameObject;
         bWaypoint.MaxIdleLength = int.MaxValue;
@@ -39,7 +40,7 @@ public class Core : Room
     public void takeDamage(float damageAmount) 
     { 
         life -= damageAmount;
-        playerHUD.UpdateLifeBar(life);
+        playerHUD.UpdateLifeBar(life, maxLife);
         if(life <= 0)
         {
             Destroy(gameObject);

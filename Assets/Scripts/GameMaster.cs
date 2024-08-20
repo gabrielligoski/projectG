@@ -13,10 +13,12 @@ public class GameMaster : MonoBehaviour
     [SerializeField] private int mapUpgradeAmount;
     [SerializeField] private int size;
     [SerializeField] private float roomGap;
-    [SerializeField] private List<GameObject> rooms = new List<GameObject>();
+    [SerializeField] public List<GameObject> rooms = new List<GameObject>();
     [SerializeField] private GameObject floorPfb;
 
     private PlayerHUD playerHUD = null;
+
+    private string[] levels = { "F", "E", "D", "C", "B", "A" };
 
     public static NavMeshSurface navMeshSurface;
 
@@ -46,6 +48,7 @@ public class GameMaster : MonoBehaviour
     {
         playerHUD = PlayerHUD.Instance;
         PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
+        PlayerHUD.Instance.UpdateRankIcon(levels[currentLevel]);
         var coreRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.core);
         var rockRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.rock);
         (map, floor, core) = GenerateMap.createMap(maxSize, size, roomGap, mapParent, coreRoom, rockRoom, floorPfb);
@@ -73,6 +76,7 @@ public class GameMaster : MonoBehaviour
 
     private void upgradeMaxAmount() {
         maxResource = (int)Math.Pow(currentLevel+1,2)*100;
+        PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
     }
     public int calculateLevel() {
         return (int)Math.Floor(Math.Sqrt(xp/(float)100));
@@ -95,9 +99,12 @@ public class GameMaster : MonoBehaviour
             upgradeMaxAmount();
             GenerateMap.upgradeMap(map, mapParent, size, maxSize, mapUpgradeAmount, roomGap, rockRoom);
             size += mapUpgradeAmount;
-;
+            string level = currentLevel <= 5 ? levels[currentLevel] : "".PadLeft(currentLevel - 5, 'S');
+;           PlayerHUD.Instance.UpdateRankIcon(level);
             Debug.Log("Upou!");
         }
+
+
     }
 
     private bool compareAdjacentsTo(GameObject target, Room.RoomType roomType) {

@@ -96,13 +96,13 @@
 /* Core life bar and EXP bar */
 
 .core-resource-bar {
-	height: 16px;
+	height: 25px;
 	background-color: rgba(0,0,0,0);
 	border-radius: 5px;
 	border-color: rgba(100,100,100,1);
 	border-width: 1px;
 	color: rgba(255,255,255,1);
-	font-size: 25px;
+	font-size: 14px;
 	border-color: rgba(0,0,0,1);
 	background-color: rgba(0,0,0,0.9);
 	padding: 0px;
@@ -111,7 +111,7 @@
 
 .core-resource-bar .unity-progress-bar__progress {
 	background-color: rgba(26, 100, 255, 0.8);
-	height: 8px;
+	height: 16px;
 	border-radius: 5px;
 	border-color: rgba(250,250,0,1);
 }
@@ -124,11 +124,12 @@
 .core-life-bar {
 	height: 25px;
 	background-color: rgba(0,0,0,0);
+	margin-top: 0px;
 	border-radius: 5px;
 	border-color: rgba(100,100,100,1);
 	border-width: 1px;
 	color: rgba(255,255,255,1);
-	font-size: 25px;
+	font-size: 14px;
 	border-color: rgba(0,0,0,1);
 	background-color: rgba(0,0,0,0.9);
 	padding: 0px;
@@ -175,4 +176,24 @@
 .core-exp-bar .unity-progress-bar__background {
 	background-color: rgba(0,0,0,0);
 	border-color: rgba(0,0,0,0);
+}
+
+.tooltip {
+	background-color: rgba(26, 100, 255, 1);
+	position: absolute;
+	width: auto;
+	border-radius: 5px;
+	border-color: rgba(100,100,100,1);
+	border-width: 1px;
+	color: rgba(255,255,255,1);
+	font-size: 16px;
+	bottom: 5px;
+	align-self: center;
+	display: none;
+}
+
+.rank-icon-text {
+	font-size: 25px;
+	align-self: center;
+	color: rgba(138, 226, 46, 1);
 }

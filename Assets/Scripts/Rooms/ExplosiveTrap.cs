@@ -25,6 +25,7 @@ public class ExplosiveTrap : Room
     private void Start()
     {
         enemies = new List<CharacterController>();
+        effects = new List<Effect>();
     }
     //private void Update()
     //{
@@ -39,7 +40,7 @@ public class ExplosiveTrap : Room
         yield return new WaitForSeconds(effect.duration());
         controller.removeEffect(effect);
     }
-    void applyDebuffs(CharacterController controller)
+    private void applyDebuffs(CharacterController controller)
     {
         effects.ForEach(effect => {
             StartCoroutine(debuff(controller, effect));
@@ -72,7 +73,7 @@ public class ExplosiveTrap : Room
     public void destroy()
     {
         GameMaster.Instance.swapRoom(gameObject, Room.RoomType.empty);
-        Destroy(gameObject);
+        Destroy(gameObject, countdown+1);
     }
 
     private void OnTriggerEnter(Collider collider)

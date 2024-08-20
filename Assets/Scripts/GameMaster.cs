@@ -30,7 +30,8 @@ public class GameMaster : MonoBehaviour
     public int xp;
 
     public int currentLevel;
-
+    public int mineRate;
+    public int mineRatio;
     public int resource;
     public int maxResource;
     public float dificulty = 1f;
@@ -82,11 +83,14 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-    private void increaseResource(int amount)
+    public void increaseResource(int amount)
     {
         if (resource + amount < maxResource)
         {
             resource += amount;
+        }
+        else {
+            resource = maxResource;
         }
         PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
     }

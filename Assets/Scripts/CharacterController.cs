@@ -14,8 +14,9 @@ public class CharacterController : MonoBehaviour
     [SerializeField] public CharacterType type;
 
     public float walkSpeed; 
-    public float runSpeed; 
+    public float runSpeed;
 
+    public int xpValue;
 
     public float damage = 30f;
 
@@ -26,12 +27,17 @@ public class CharacterController : MonoBehaviour
 
     private BreezeSystem bs; 
 
+    public BreezeWaypoint waypoint;
+
     private void OnDestroy()
     {
         spawn.spawns.Remove(gameObject);
     }
 
-    public BreezeWaypoint waypoint;
+
+    public void onDeath() {
+        GameMaster.Instance.addXP(xpValue);
+    }
 
     public void updateBreeze() {
         var bs = GetComponent<BreezeSystem>();

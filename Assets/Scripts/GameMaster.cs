@@ -30,7 +30,8 @@ public class GameMaster : MonoBehaviour
     public int xp;
 
     public int currentLevel;
-
+    public int mineRate;
+    public int mineRatio;
     public int resource;
     public int maxResource;
     public float dificulty = 1f;

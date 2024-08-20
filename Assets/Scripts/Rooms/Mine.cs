@@ -4,24 +4,24 @@ using UnityEngine;
 public class Mine : Room
 {
 
-    public int rate = 5;
+    
     public override RoomType roomType()
     {
         return RoomType.mining;
     }
 
-    IEnumerator generateResource(int rate) {
+    IEnumerator generateResource(int rate, int ratio) {
         for(; ; )
         {
-            GameMaster.Instance.increaseResource(rate);
+            GameMaster.Instance.increaseResource(ratio);
             Debug.Log("generate!");
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(rate);
         }
     }
 
     private void Start()
     {
-        StartCoroutine(generateResource(rate));
+        StartCoroutine(generateResource(GameMaster.Instance.mineRate, GameMaster.Instance.mineRatio));
     }
 
 }

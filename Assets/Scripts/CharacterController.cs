@@ -43,21 +43,6 @@ public class CharacterController : MonoBehaviour
         bs.WalkSpeed = walkSpeed;
     }
 
-    public void takeDamage(float amount) {
-        switch (type)
-        {
-            case CharacterType.monster:
-                bs.Waypoints.Add(waypoint);
-                bs.Waypoints.Add(waypoint);
-                break;
-            case CharacterType.enemy:
-                bs.Waypoints.Add(Core.instance.bWaypoint);
-                bs.Waypoints.Add(Core.instance.bWaypoint);
-                break;
-        }
-        //GetComponent<BreezeSystem>().TakeDamage(amount, gameObject, true, false);
-    }
-
     public void applyEffect(Effect effect)
     {
         Debug.Log("slow aplicado");

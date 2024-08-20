@@ -58,8 +58,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.2, z: 1}
+  m_Center: {x: 0, y: -0.4, z: 0}
 --- !u!114 &-1086286444799677231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ MonoBehaviour:
   cost: 50
   description: 
   sfxClip: {fileID: 8300000, guid: e9c494ffdf5079e4b9455a430975b0c1, type: 3}
-  damage: 50
+  damage: 3
   cooldown: 1
   coroutine: 0
 --- !u!95 &1722092167219548015

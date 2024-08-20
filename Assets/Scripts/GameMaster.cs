@@ -104,6 +104,7 @@ public class GameMaster : MonoBehaviour
 
     private void upgradeMaxAmount()
     {
+        mineRatio++;
         maxResource = (int)Math.Pow(currentLevel + 1, 2) * 100;
         PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
     }
@@ -125,6 +126,7 @@ public class GameMaster : MonoBehaviour
     public void addXP(int xpAmount)
     {
         xp += xpAmount;
+        dificulty = 1 + xp / 500;
         PlayerHUD.Instance.UpdateExpBar(percentCurrentLevel());
         if (currentLevel < calculateLevel())
         {
@@ -156,7 +158,8 @@ public class GameMaster : MonoBehaviour
             switch (newRoomType)
             {
                 case Room.RoomType.empty:
-                    if (target.TryGetComponent(out Room r) && r.roomType() == Room.RoomType.bomb_trap) {
+                    if (target.TryGetComponent(out Room r) && r.roomType() == Room.RoomType.bomb_trap)
+                    {
                         return true;
                     }
                     return !compareAdjacentsTo(target, Room.RoomType.rock) && room.roomType() == Room.RoomType.rock;
@@ -213,21 +216,6 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-    public IEnumerator SpawnWaves()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(30);
-            Dictionary<string, int> robotsToSpawn = new Dictionary<string, int>();
-
-            robotsToSpawn.Add("dummy_1", (int)((dificulty - .9f) * 10));
-            if (dificulty > 1.5f)
-                robotsToSpawn.Add("dummy_2", (int)((dificulty - 1.5f) * 5));
-            if (dificulty > 2)
-                robotsToSpawn.Add("dummy_3", (int)(dificulty - 1));
-            robotSpawners.ForEach(spawner => spawner.Spawn(robotsToSpawn));
-        }
-    }
 
     public void swapRoom(GameObject target, Room.RoomType newRoomType)
     {
@@ -243,6 +231,7 @@ public class GameMaster : MonoBehaviour
 
                 var cost = newRoom.GetComponent<Room>().cost;
                 useResource(cost);
+                PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
                 map[targetPos.Item1][targetPos.Item2] = Instantiate(newRoom, target.transform.position, Quaternion.identity, target.transform.parent);
                 Instantiate(breakBlockVFX, target.transform.position, Quaternion.identity, null);
                 map[targetPos.Item1][targetPos.Item2].GetComponent<Room>().pos = targetPos;
@@ -262,7 +251,8 @@ public class GameMaster : MonoBehaviour
 
     }
 
-    public void RestartGame() {
+    public void RestartGame()
+    {
         //TODO: Restart the game
         playerHUD.hideGameOverScreen();
     }

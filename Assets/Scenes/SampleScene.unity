@@ -899,6 +899,50 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!1 &1957165336
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1957165338}
+  - component: {fileID: 1957165337}
+  m_Layer: 0
+  m_Name: Sound PAI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1957165337
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957165336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 890ce7dbe033ee94e85717c20d6787c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1957165338
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957165336}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4652964985249385615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -977,6 +1021,22 @@ PrefabInstance:
       value: 501
       objectReference: {fileID: 0}
     - target: {fileID: 482176564975802772, guid: c261813ada68c5f4d8ab0f3eec0f095c, type: 3}
+      propertyPath: mineRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 482176564975802772, guid: c261813ada68c5f4d8ab0f3eec0f095c, type: 3}
+      propertyPath: resource
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 482176564975802772, guid: c261813ada68c5f4d8ab0f3eec0f095c, type: 3}
+      propertyPath: mineRatio
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 482176564975802772, guid: c261813ada68c5f4d8ab0f3eec0f095c, type: 3}
+      propertyPath: maxResource
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 482176564975802772, guid: c261813ada68c5f4d8ab0f3eec0f095c, type: 3}
       propertyPath: breakBlockVFX
       value: 
       objectReference: {fileID: 395031058680739610, guid: b2f0b8902a31c8a46a1c4bb24ed9ea36, type: 3}
@@ -1041,6 +1101,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1957165338}
   - {fileID: 21539070}
   - {fileID: 1609920799}
   - {fileID: 326258685}

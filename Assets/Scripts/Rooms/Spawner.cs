@@ -2,6 +2,7 @@ using Breeze.Core;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Spawner : Room
 {
@@ -42,7 +43,8 @@ public class Spawner : Room
     {
         for (int i = 0; i < quantity && spawns.Count < maxQuantity; i++)
         {
-            var spawnedInstance = Instantiate(pfb, gameObject.transform.position, Quaternion.identity);
+            var spawnPos = Random.insideUnitCircle;
+            var spawnedInstance = Instantiate(pfb, gameObject.transform.position + new Vector3(spawnPos.x, 0, spawnPos.y), Quaternion.identity);
             spawnedInstance.GetComponent<CharacterController>().waypoint = breezeWaypoint;
             spawnedInstance.GetComponent<CharacterController>().spawn = this;
             spawns.Add(spawnedInstance);

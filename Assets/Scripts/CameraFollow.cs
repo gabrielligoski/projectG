@@ -41,7 +41,10 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         var newPos = Vector3.Lerp(gameObject.transform.position, gameObject.transform.position + dir * Time.deltaTime * spd * (fastMove ? 4 : 1), smooth);
-        if (Vector2.Distance(new Vector2(newPos.x, newPos.z), new Vector2(Core.instance.gameObject.transform.position.x, Core.instance.gameObject.transform.position.z)) <= (GameMaster.Instance.size / 2))
+        if (Core.instance.transform.position.x - GameMaster.Instance.size / 2 <= newPos.x &&
+            Core.instance.transform.position.x + GameMaster.Instance.size / 2 >= newPos.x &&
+            Core.instance.transform.position.z - GameMaster.Instance.size / 2 <= newPos.z &&
+            Core.instance.transform.position.z + GameMaster.Instance.size / 2 >= newPos.z)
         {
             gameObject.transform.position = newPos;
         }

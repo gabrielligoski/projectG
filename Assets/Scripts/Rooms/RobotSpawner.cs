@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 
 public class RobotSpawner : Room
 {
@@ -26,7 +26,10 @@ public class RobotSpawner : Room
     {
         foreach (var robot in robotsToSpawn)
             for (int i = 0; i < robot.Value; i++)
-                Instantiate(robotPfb.Find(rb => rb.name.Equals(robot.Key)), gameObject.transform.position, Quaternion.identity);
+            {
+                var spawnPos = Random.insideUnitCircle;
+                Instantiate(robotPfb.Find(rb => rb.name.Equals(robot.Key)), gameObject.transform.position + new Vector3(spawnPos.x, 0, spawnPos.y), Quaternion.identity);
+            }
 
     }
 

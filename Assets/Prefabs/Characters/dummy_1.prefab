@@ -195,8 +195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BreezeSounds: {fileID: 0}
-  StartingHealth: 100
-  MaximumHealth: 100
+  StartingHealth: 10
+  MaximumHealth: 10
   RegenerateHealth: 0
   RegenerateCondition: 0
   RegenerateFrequency: 1
@@ -276,7 +276,7 @@ MonoBehaviour:
   CFollowingDistance: 4.5
   CSprintFollowDistance: 12
   CTooCloseDistance: 1.5
-  CurrentHealthDebug: 100
+  CurrentHealthDebug: 10
   RegeneratingHealthDebug: 0
   CurrentAIState: Idle
   IsAlertedDebug: 0
@@ -388,13 +388,13 @@ MonoBehaviour:
   AttackAnims:
   - AttackAnim: {fileID: 7400000, guid: e277a6b25fbebf341b7a34d98d20cab4, type: 3}
     MinDamage: 1
-    MaxDamage: 9
+    MaxDamage: 3
   - AttackAnim: {fileID: 7400000, guid: b8c13f21d0088ec4fb2e01972e2302f6, type: 3}
     MinDamage: 1
-    MaxDamage: 9
+    MaxDamage: 3
   - AttackAnim: {fileID: 7400000, guid: 113a32c65f90de6448913a8dab4ade96, type: 3}
     MinDamage: 1
-    MaxDamage: 9
+    MaxDamage: 3
   HitAnims:
   - {fileID: 7400000, guid: 73ad5a7d3a9d0634e952439544cc0d66, type: 3}
   EquipAnim: {fileID: 0}

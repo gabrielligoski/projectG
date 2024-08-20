@@ -657,17 +657,17 @@ MonoBehaviour:
   CMirrorRunLAnim: 0
   AttackAnims:
   - AttackAnim: {fileID: 7400000, guid: 2b01161d61e34b3429fe8842fbdfa35d, type: 3}
-    MinDamage: 1
-    MaxDamage: 9
+    MinDamage: 10
+    MaxDamage: 20
   - AttackAnim: {fileID: 7400000, guid: b948528705f70e44ca1c51545ec3b96d, type: 3}
-    MinDamage: 1
-    MaxDamage: 9
+    MinDamage: 10
+    MaxDamage: 20
   - AttackAnim: {fileID: 7400000, guid: da2a775f01c2bce4e80f3f187f112e6c, type: 3}
-    MinDamage: 1
-    MaxDamage: 9
+    MinDamage: 10
+    MaxDamage: 20
   - AttackAnim: {fileID: 7400000, guid: 760b0aa7e3c0de04ca1c7e78f15309e9, type: 3}
-    MinDamage: 1
-    MaxDamage: 9
+    MinDamage: 10
+    MaxDamage: 20
   HitAnims:
   - {fileID: 7400000, guid: 01bf58608766b3d45af02964fb9bf969, type: 3}
   EquipAnim: {fileID: 0}

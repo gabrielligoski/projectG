@@ -567,10 +567,10 @@ MonoBehaviour:
   CMirrorRunLAnim: 0
   AttackAnims:
   - AttackAnim: {fileID: 7400000, guid: 24fa0784156742e6a26969f3a65909e0, type: 3}
-    MinDamage: 1
+    MinDamage: 6
     MaxDamage: 9
   - AttackAnim: {fileID: 7400000, guid: bd01f8a76c6243e2bb95424ee5e4151d, type: 3}
-    MinDamage: 1
+    MinDamage: 6
     MaxDamage: 9
   HitAnims:
   - {fileID: 7400000, guid: dfc0c7d331994fcfa8507c5499fc8eea, type: 3}

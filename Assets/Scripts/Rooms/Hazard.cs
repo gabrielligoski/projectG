@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Hazard : Room
 {
@@ -16,7 +17,11 @@ public class Hazard : Room
     {
         // +1 enemy for each 10% increase in dificulty
         for (int i = 0; i < quantity + (Math.Abs(GameMaster.Instance.dificulty - 1) * 10); i++)
-            Instantiate(pfb, gameObject.transform.position, Quaternion.identity);
+        {
+            var spawnPos = Random.insideUnitCircle;
+            Instantiate(pfb, gameObject.transform.position + new Vector3(spawnPos.x, 0, spawnPos.y), Quaternion.identity);
+        }
+            
 
     }
 

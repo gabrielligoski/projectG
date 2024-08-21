@@ -13,7 +13,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
-        gameObject.transform.position = Core.instance.gameObject.transform.position + new Vector3(0, 4, -2);
+        gameObject.transform.position = GameMaster.Instance.map.getCorePosition() + new Vector3(0, 4, -2);
     }
 
     public void getMovementInput(InputAction.CallbackContext value)
@@ -41,10 +41,10 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         var newPos = Vector3.Lerp(gameObject.transform.position, gameObject.transform.position + dir * Time.deltaTime * spd * (fastMove ? 4 : 1), smooth);
-        if (Core.instance.transform.position.x - GameMaster.Instance.size / 2 <= newPos.x &&
-            Core.instance.transform.position.x + GameMaster.Instance.size / 2 >= newPos.x &&
-            Core.instance.transform.position.z - GameMaster.Instance.size / 2 <= newPos.z &&
-            Core.instance.transform.position.z + GameMaster.Instance.size / 2 >= newPos.z)
+        if (GameMaster.Instance.map.getCorePosition().x - GameMaster.Instance.map.getMapSize() / 2 <= newPos.x &&
+            GameMaster.Instance.map.getCorePosition().x + GameMaster.Instance.map.getMapSize() / 2 >= newPos.x &&
+            GameMaster.Instance.map.getCorePosition().z - GameMaster.Instance.map.getMapSize() / 2 <= newPos.z &&
+            GameMaster.Instance.map.getCorePosition().z + GameMaster.Instance.map.getMapSize() / 2 >= newPos.z)
         {
             gameObject.transform.position = newPos;
         }

@@ -11,13 +11,11 @@ public class Core : Room
     }
     private PlayerHUD playerHUD = null;
 
-    public static Core instance;
     public BreezeWaypoint bWaypoint;
 
 
     private void Awake()
     {
-        instance = this;
         playerHUD = PlayerHUD.Instance;
         playerHUD.UpdateLifeBar(life, maxLife);
         bWaypoint = GetComponent<BreezeWaypoint>();

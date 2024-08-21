@@ -8,14 +8,15 @@ using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
-    public List<List<GameObject>> map = new List<List<GameObject>>();
+    // public List<List<GameObject>> map = new List<List<GameObject>>();
+    public Map map;
     [SerializeField] private int safeZoneSize = 2;
     public GameObject mapParent;
-    [SerializeField] private int maxSize;
+    // [SerializeField] private int maxSize;
     [SerializeField] private int mapUpgradeAmount;
-    [SerializeField] public int size;
-    [SerializeField] private float roomGap;
-    [SerializeField] public List<GameObject> rooms = new List<GameObject>();
+    // [SerializeField] public int size;
+    // [SerializeField] private float roomGap;
+    // [SerializeField] public List<GameObject> rooms = new List<GameObject>();
     [SerializeField] public List<RobotSpawner> robotSpawners = new List<RobotSpawner>();
     [SerializeField] private GameObject floorPfb;
     [SerializeField] private GameObject breakBlockVFX;
@@ -28,7 +29,6 @@ public class GameMaster : MonoBehaviour
 
     public static NavMeshSurface navMeshSurface;
 
-    public static GameObject core;
     public static GameObject floor;
 
     public static GameMaster Instance { get; private set; }
@@ -69,9 +69,9 @@ public class GameMaster : MonoBehaviour
         playerHUD = PlayerHUD.Instance;
         PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
         PlayerHUD.Instance.UpdateRankIcon(levels[currentLevel]);
-        var coreRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.core);
-        var rockRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.rock);
-        (map, floor, core) = GenerateMap.createMap(maxSize, size, roomGap, mapParent, coreRoom, rockRoom, floorPfb);
+        // var coreRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.core);
+        // var rockRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.rock);
+        // (map, floor, core) = GenerateMap.createMap(maxSize, size, roomGap, mapParent, coreRoom, rockRoom, floorPfb);
         navMeshSurface = floor.GetComponent<NavMeshSurface>();
         navMeshSurface.BuildNavMesh();
     }
@@ -130,25 +130,15 @@ public class GameMaster : MonoBehaviour
         if (currentLevel < calculateLevel())
         {
             currentLevel++;
-            var rockRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.rock);
+            // var rockRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.rock);
             upgradeMaxAmount();
-            GenerateMap.upgradeMap(map, mapParent, size, maxSize, mapUpgradeAmount, roomGap, rockRoom);
-            size += mapUpgradeAmount;
+            // GenerateMap.upgradeMap(map, mapParent, size, maxSize, mapUpgradeAmount, roomGap, rockRoom);
+            // size += mapUpgradeAmount;
             string level = currentLevel <= 5 ? levels[currentLevel] : "".PadLeft(currentLevel - 5, 'S');
             PlayerHUD.Instance.UpdateRankIcon(level);
         }
     }
 
-    private bool compareAdjacentsTo(GameObject target, Room.RoomType roomType)
-    {
-        (int, int) pos = target.GetComponent<Room>().pos;
-        var adj0 = pos.Item1 - 1 >= ((maxSize / 2) - (size / 2)) ? map[pos.Item1 - 1][pos.Item2].GetComponent<Room>().roomType() == roomType : true;
-        var adj1 = pos.Item1 + 1 < ((maxSize / 2) + (size / 2)) ? map[pos.Item1 + 1][pos.Item2].GetComponent<Room>().roomType() == roomType : true;
-        var adj2 = pos.Item2 - 1 >= ((maxSize / 2) - (size / 2)) ? map[pos.Item1][pos.Item2 - 1].GetComponent<Room>().roomType() == roomType : true;
-        var adj3 = pos.Item2 + 1 < ((maxSize / 2) + (size / 2)) ? map[pos.Item1][pos.Item2 + 1].GetComponent<Room>().roomType() == roomType : true;
-
-        return adj0 && adj1 && adj2 && adj3;
-    }
 
     private bool isPossibleToSwap(GameObject target, Room.RoomType newRoomType)
     {
@@ -157,11 +147,7 @@ public class GameMaster : MonoBehaviour
             switch (newRoomType)
             {
                 case Room.RoomType.empty:
-                    if (target.TryGetComponent(out Room r) && r.roomType() == Room.RoomType.bomb_trap)
-                    {
-                        return true;
-                    }
-                    return !compareAdjacentsTo(target, Room.RoomType.rock) && room.roomType() == Room.RoomType.rock;
+                    return true;
                 default:
                     return room.roomType() == Room.RoomType.empty;
             }
@@ -175,27 +161,27 @@ public class GameMaster : MonoBehaviour
 
     private GameObject chooseRandomBlock((int, int) xz)
     {
-        var (coreX, coreZ) = core.GetComponent<Room>().pos;
+        var (coreX, coreZ) = map.coreCoordinates;
         bool isInSafeZone = coreX - safeZoneSize <= xz.Item1 && coreX + safeZoneSize >= xz.Item1 && coreZ - safeZoneSize <= xz.Item2 && coreZ + safeZoneSize >= xz.Item2;
 
         if (!isInSafeZone && Random.value <= badBlockChance)
         {
             badBlockChance = 0.025f;
-            return rooms.Find(room => room.GetComponent<Room>().roomType() == badRooms[Random.Range(0, badRooms.Count)]);
+            return map.getTileByType(badRooms[Random.Range(0, badRooms.Count)]);
         }
 
 
         if (Random.value <= goodBlockChance)
         {
             goodBlockChance = 0.05f;
-            return rooms.Find(room => room.GetComponent<Room>().roomType() == goodRooms[Random.Range(0, goodRooms.Count)]);
+            return map.getTileByType(goodRooms[Random.Range(0, goodRooms.Count)]);
         }
 
         // raise the chance of something happens
         goodBlockChance += 0.01f / dificulty;
         badBlockChance += 0.05f * dificulty;
 
-        return rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.empty);
+        return map.getTileByType(Room.RoomType.empty);
 
     }
 
@@ -218,11 +204,15 @@ public class GameMaster : MonoBehaviour
 
     public void swapRoom(GameObject target, Room.RoomType newRoomType)
     {
-        if (isPossibleToSwap(target, newRoomType))
+        target.TryGetComponent<Room>(out Room room);
+        if(room.roomType() == Room.RoomType.rock){
+            map.openPath(room.pos.Item1, room.pos.Item2);
+        }
+        else if (isPossibleToSwap(target, newRoomType))
         {
             try
             {
-                var newRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == newRoomType);
+                var newRoom = map.getTileByType(newRoomType);
 
                 var targetPos = target.GetComponent<Room>().pos;
                 if (target.GetComponent<Room>().roomType() == Room.RoomType.rock)
@@ -231,11 +221,7 @@ public class GameMaster : MonoBehaviour
                 var cost = newRoom.GetComponent<Room>().cost;
                 useResource(cost);
                 PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
-                map[targetPos.Item1][targetPos.Item2] = Instantiate(newRoom, target.transform.position, Quaternion.identity, target.transform.parent);
-                Instantiate(breakBlockVFX, target.transform.position, Quaternion.identity, null);
-                map[targetPos.Item1][targetPos.Item2].GetComponent<Room>().pos = targetPos;
-                Destroy(target);
-
+                map.swapTile(targetPos.Item1, targetPos.Item2, newRoom);
             }
             catch (Exception ex)
             {

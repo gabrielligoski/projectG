@@ -15,7 +15,7 @@ public class EnemyHandler : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.SetDestination(GameMaster.core.transform.position);
+        agent.SetDestination(GameMaster.Instance.map.getCorePosition());
     }
 
     public void TakeDamage(int damage)

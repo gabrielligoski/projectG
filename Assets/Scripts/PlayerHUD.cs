@@ -104,7 +104,7 @@ public class PlayerHUD : MonoBehaviour
             var cost = UnityEngine.Random.Range(10, 10000);
             try
             {
-                cost = gameMaster.rooms.Find(r => r.GetComponent<Room>().roomType() == room).GetComponent<Room>().cost;
+                cost = gameMaster.map.getTileByType(room).GetComponent<Room>().cost;
             }
             catch (Exception ex)
             {

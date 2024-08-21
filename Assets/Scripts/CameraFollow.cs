@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour
     private Vector3 dir;
     private bool fastMove;
 
-    private void Start()
+    public void StartCamera()
     {
         gameObject.transform.position = Core.instance.gameObject.transform.position + new Vector3(0, 4, -2);
     }
@@ -40,6 +40,9 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
+        if (!Core.instance)
+            return;
+
         var newPos = Vector3.Lerp(gameObject.transform.position, gameObject.transform.position + dir * Time.deltaTime * spd * (fastMove ? 4 : 1), smooth);
         if (Core.instance.transform.position.x - GameMaster.Instance.size / 2 <= newPos.x &&
             Core.instance.transform.position.x + GameMaster.Instance.size / 2 >= newPos.x &&

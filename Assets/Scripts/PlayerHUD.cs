@@ -31,9 +31,13 @@ public class PlayerHUD : MonoBehaviour
         Room.RoomType.bomb_trap
     };
 
-    private void Start()
+    private void Awake()
     {
         Instance = this;
+    }
+
+    private void Start()
+    {
         gameMaster = GameMaster.Instance;
         var root = doc.rootVisualElement;
         root.styleSheets.Add(css);
@@ -57,6 +61,9 @@ public class PlayerHUD : MonoBehaviour
 
         CreateCoreLifeBar(divBar);
         CreateResourceBar(divBar);
+
+        UpdateResourceBar(gameMaster.resource, gameMaster.maxResource);
+        UpdateRankIcon(gameMaster.levels[gameMaster.currentLevel]);
     }
 
     public void selectRoomType(Button roomButton, Room.RoomType room, MouseUpEvent evt, StyleBackground selectedStyle)
@@ -152,7 +159,6 @@ public class PlayerHUD : MonoBehaviour
     {
         coreResourceBar = new ProgressBar();
         coreResourceBar.AddToClassList("core-resource-bar");
-
         root.Add(coreResourceBar);
     }
 
@@ -171,7 +177,7 @@ public class PlayerHUD : MonoBehaviour
         var restartButton = new Button();
         restartButton.AddToClassList("restart-button");
         restartButton.text = "Restart";
-        restartButton.RegisterCallback<MouseUpEvent>((evt) => gameMaster.RestartGame());
+        restartButton.RegisterCallback<MouseUpEvent>((evt) => { gameMaster.restartGame(); root.Remove(gameOverScreen); });
         gameOverScreen.Add(restartButton);
         root.Add(gameOverScreen);
     }

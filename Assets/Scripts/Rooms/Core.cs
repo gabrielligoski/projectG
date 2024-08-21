@@ -18,6 +18,10 @@ public class Core : Room
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
         playerHUD = PlayerHUD.Instance;
         playerHUD.UpdateLifeBar(life, maxLife);
         bWaypoint = GetComponent<BreezeWaypoint>();
@@ -28,8 +32,9 @@ public class Core : Room
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.TryGetComponent(out CharacterController e)) {
-            if(e.type == CharacterController.CharacterType.enemy)
+        if (collider.TryGetComponent(out CharacterController e))
+        {
+            if (e.type == CharacterController.CharacterType.enemy)
             {
                 takeDamage(e.damageToCore);
                 Destroy(e.gameObject);
@@ -37,11 +42,11 @@ public class Core : Room
         }
     }
 
-    public void takeDamage(float damageAmount) 
+    public void takeDamage(float damageAmount)
     {
         life -= damageAmount;
         playerHUD.UpdateLifeBar(life, maxLife);
-        if(life <= 0)
+        if (life <= 0)
         {
             playerHUD.showGameOverScreen();
         }

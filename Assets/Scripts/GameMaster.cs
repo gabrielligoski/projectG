@@ -5,6 +5,7 @@ using System;
 using Random = UnityEngine.Random;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class GameMaster : MonoBehaviour
 {
@@ -19,12 +20,13 @@ public class GameMaster : MonoBehaviour
     [SerializeField] public List<RobotSpawner> robotSpawners = new List<RobotSpawner>();
     [SerializeField] private GameObject floorPfb;
     [SerializeField] private GameObject breakBlockVFX;
+    [SerializeField] private AudioClip sfxClip;
 
     public bool hasStartedWaves;
 
     private PlayerHUD playerHUD = null;
 
-    private string[] levels = { "F", "E", "D", "C", "B", "A" };
+    public string[] levels = { "F", "E", "D", "C", "B", "A" };
 
     public static NavMeshSurface navMeshSurface;
 
@@ -54,9 +56,37 @@ public class GameMaster : MonoBehaviour
             Room.RoomType.mining
         };
 
-    private void Awake()
+
+    public void restartGame()
+    {
+        robotSpawners.ForEach(r => Destroy(r));
+        robotSpawners.Clear();
+        Destroy(mapParent);
+        startGame();
+    }
+
+    private void startGame()
     {
         mapParent = new GameObject("Map");
+        resource = 100;
+        maxResource = 100;
+        xp = 0;
+        currentLevel = 0;
+        size = 21;
+        
+        var coreRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.core);
+        var rockRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.rock);
+        (map, floor, core) = GenerateMap.createMap(maxSize, size, roomGap, mapParent, coreRoom, rockRoom, floorPfb);
+        navMeshSurface = floor.GetComponent<NavMeshSurface>();
+        navMeshSurface.BuildNavMesh();
+
+        Camera.main.GetComponent<CameraFollow>().StartCamera();
+
+        playerHUD = PlayerHUD.Instance;
+    }
+
+    private void Awake()
+    {
         Instance = this;
         resource = 100;
         maxResource = 100;
@@ -66,14 +96,7 @@ public class GameMaster : MonoBehaviour
 
     void Start()
     {
-        playerHUD = PlayerHUD.Instance;
-        PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
-        PlayerHUD.Instance.UpdateRankIcon(levels[currentLevel]);
-        var coreRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.core);
-        var rockRoom = rooms.Find(room => room.GetComponent<Room>().roomType() == Room.RoomType.rock);
-        (map, floor, core) = GenerateMap.createMap(maxSize, size, roomGap, mapParent, coreRoom, rockRoom, floorPfb);
-        navMeshSurface = floor.GetComponent<NavMeshSurface>();
-        navMeshSurface.BuildNavMesh();
+        startGame();
     }
 
     private void useResource(int amount)
@@ -233,6 +256,7 @@ public class GameMaster : MonoBehaviour
                 PlayerHUD.Instance.UpdateResourceBar(resource, maxResource);
                 map[targetPos.Item1][targetPos.Item2] = Instantiate(newRoom, target.transform.position, Quaternion.identity, target.transform.parent);
                 Instantiate(breakBlockVFX, target.transform.position, Quaternion.identity, null);
+                SFXManager.Instance.playSFXClip(sfxClip, transform, 1f, 0.05f);
                 map[targetPos.Item1][targetPos.Item2].GetComponent<Room>().pos = targetPos;
                 Destroy(target);
 
@@ -246,9 +270,4 @@ public class GameMaster : MonoBehaviour
 
     }
 
-    public void RestartGame()
-    {
-        //TODO: Restart the game
-        playerHUD.hideGameOverScreen();
-    }
 }

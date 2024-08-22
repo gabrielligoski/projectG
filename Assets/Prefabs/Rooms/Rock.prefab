@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 7229545532328361794}
   - component: {fileID: -8844671862936090994}
   - component: {fileID: -2286944246748293025}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rock
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 201527690600894336}
   - component: {fileID: 8161834836968731653}
   - component: {fileID: 2430222880913161901}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: '[MR] [S=On] Rock'
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -141,11 +141,6 @@ namespace Breeze.Core
                 errorId = 19;
                 NormalError("Make sure to add the 'BreezeAttackEvent' animation event to your attack animations, or your AI won't damage.");
             }
-            else if (system.System.WeaponType == BreezeEnums.WeaponType.Shooter && system.System.UseHandIK && system.ReloadAnim != null && system.ReloadAnim.events.ToList().Where(y => y.functionName.Equals("EnableHandIK")).ToList().Count <= 0)
-            {
-                errorId = 20;
-                NormalError("Make sure to add the 'EnableHandIK' animation event to your reload animation, or IK system won't work.");
-            }
             else if (system.System.UseEquipSystem && system.EquipAnim != null && system.EquipAnim.events.ToList().Where(y => y.functionName.Equals("BreezeEquip")).ToList().Count <= 0)
             {
                 errorId = 21;
@@ -155,16 +150,6 @@ namespace Breeze.Core
             {
                 errorId = 22;
                 NormalError("Make sure to add the 'BreezeHolster' animation event to your holster animation, or your weapon won't work.");
-            }
-            else if (system.System.UseEquipSystem && system.EquipAnim != null && system.System.UseHandIK && system.EquipAnim.events.ToList().Where(y => y.functionName.Equals("EnableHandIK")).ToList().Count <= 0)
-            {
-                errorId = 23;
-                NormalError("Make sure to add the 'EnableHandIK' animation event to your equip animation, or IK system won't work.");
-            }
-            else if (system.System.UseEquipSystem && system.UnEquipAnim != null && system.System.UseHandIK && system.UnEquipAnim.events.ToList().Where(y => y.functionName.Equals("DisableHandIK")).ToList().Count <= 0)
-            {
-                errorId = 24;
-                NormalError("Make sure to add the 'DisableHandIK' animation event to your holster animation, or IK system won't work.");
             }
             else
             {

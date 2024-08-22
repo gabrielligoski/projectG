@@ -2,27 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-#if !Breeze_AI_Pathfinder_Enabled
 using UnityEngine.AI;
-#else
-using Pathfinding;
-#endif
-#if FIRST_PERSON_CONTROLLER || THIRD_PERSON_CONTROLLER
-using Opsive.UltimateCharacterController.Traits;
-#endif
-#if SURVIVAL_TEMPLATE_PRO
-using PolymindGames;
-#endif
-#if INVECTOR_MELEE
-using Invector;
-using Invector.vCharacterController;
-#endif
-#if HQ_FPS_TEMPLATE
-using HQFPSTemplate;
-#endif
-#if NEOFPS
-using NeoFPS;
-#endif
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -45,13 +25,7 @@ namespace Breeze.Core
     [Serializable]
     public class particles
     {
-#if UNITY_EDITOR
-        [TagSelector(UseDefaultTagFieldDrawer = true)]
-#endif
         public string ObjectTag = "Untagged";
-
-        public BreezeMeleeWeapon.impactEffect.effectType EffectType =
-            BreezeMeleeWeapon.impactEffect.effectType.Normal;
 
         public Transform CustomTransform;
         public Vector3 SpawnOffset = new Vector3(0, 1, 0);
@@ -98,7 +72,6 @@ namespace Breeze.Core
         public float MinIdleLength = 4;
         public float MaxIdleLength = 8;
         public float RotationSpeed = 1.4f;
-        public bool UseRootMotion = true;
         public float WalkSpeed = 1f;
         public float RunSpeed = 1.5f;
         public float WalkBackwardsSpeed = 0.7f;
@@ -125,8 +98,7 @@ namespace Breeze.Core
 
         //Detection Variables
         public BreezeEnums.YesNo NotifyCloseUnits = BreezeEnums.YesNo.Yes;
-        [Range(5, 250)] public float NotifyDistanceLimit = 30;
-        [Range(3, 999)] public float SoundDetectionLimit = 35;
+        [Range(1, 250)] public float NotifyDistanceLimit = 1;
         public BreezeEnums.DetectionType DetectionType = BreezeEnums.DetectionType.LineOfSight;
         public BreezeEnums.DetectionLock DetectionLock = BreezeEnums.DetectionLock.Closest;
         public float DetectionFrequency = 0.25f;
@@ -135,16 +107,6 @@ namespace Breeze.Core
         public LayerMask DetectionLayers = 0;
         public LayerMask ObstacleLayers = 0;
         public Transform HeadTransform;
-
-        //Inverse Kinematics Variables
-        public bool UseHandIK;
-        public bool OnlyLeftHand = true;
-        public float HandSmoothAmount = 0.3f;
-        public bool UseAimIK;
-        public float AimSmoothAmount = 0.2f;
-        public List<HumanBodyBones> BonesToUse = new List<HumanBodyBones>();
-        public Vector3 AimOffset = new Vector3(0, 0.5f, 0);
-        [Range(30, 135)] public float AngleLimit = 75f;
 
         //Factions Variables
         [Serializable]
@@ -161,18 +123,8 @@ namespace Breeze.Core
         }
 
         public BreezeEnums.Factions CurrentAIFaction = BreezeEnums.Factions.Creature;
-        public BreezeEnums.BehaviourType AIPlayerBehaviour = BreezeEnums.BehaviourType.Enemy;
         public List<FactionsList> AIFactionsList = new List<FactionsList>();
-        public string BreezeTag = "Untagged";
-        public string PlayerTag = "Player";
-
-        //Companion Variables
-        public BreezeEnums.AttackBehaviour AttackBehaviour = BreezeEnums.AttackBehaviour.Aggressive;
-        [Range(5, 90)]
-        public int FriendlyDamageThreshold = 40;
-        public float CFollowingDistance = 4.5f;
-        public float CSprintFollowDistance = 12f;
-        public float CTooCloseDistance = 1.5f;
+        public string BreezeTag = "AI";
 
         //Debug Variables
         public float CurrentHealthDebug;
@@ -186,11 +138,7 @@ namespace Breeze.Core
         public string CurrentTargetTypeDebug = "AI";
         public float TargetDistanceDebug;
         public Animator AnimatorDebug;
-#if !Breeze_AI_Pathfinder_Enabled
         public NavMeshAgent NavmeshAgentDebug;
-#else
-        public AIPath NavmeshAgentDebug;
-#endif
         public Collider ColliderDebug;
         public BreezeSystem SystemDebug;
 
@@ -202,46 +150,20 @@ namespace Breeze.Core
 
         #region System Variables
 
-        public bool weaponHubInitialized;
         public bool stopAI;
         public bool hasErrors;
         private bool disableErrorCheck = true;
 
-        //Ik
-        private Transform[] boneTransforms;
-        public Transform AimTransform;
-        public bool UseIK;
-        public float state;
-        public float elapsedTime;
-        private float DistanceFixLerp;
-        public float BodyWeight;
-        private bool FirstIKDetect = true;
-        private bool WeightDown;
-        private float YOffset;
-        private Vector3 TheVel = Vector3.zero;
-        private Vector3 FixedLookPosition;
-        private Vector3 lastone;
-        public Transform RightHandIK;
-        public Transform LeftHandIK;
-
         //Components
-#if !Breeze_AI_Pathfinder_Enabled
         public NavMeshAgent nav;
-#else
-        public AIPath nav;
-#endif
         public Animator anim;
         public Collider col;
-        public BreezePlayer PlayerScript;
         public BreezeSystem TargetAIScript;
-        public BreezeWeaponHub BreezeWeaponHub;
         public BreezeEvents BreezeEvents;
         public BreezeSystem System { get; set; }
 
         //Objects
         public GameObject CurrentTarget;
-        public Transform playerObject;
-        public bool TargetIsPlayer;
         private List<GameObject> IgnoredObjects = new List<GameObject>();
         private List<GameObject> VisibleTargets = new List<GameObject>();
         public List<BreezeWaypoint> Waypoints = new List<BreezeWaypoint>();
@@ -265,16 +187,10 @@ namespace Breeze.Core
         private bool FirstWaypoint = true;
         public bool Blocking;
         public bool GettingHit;
-        public bool EquippedWeapon;
-        public bool EquipEventCalled;
         private bool HitStarted;
-        public bool Reloading;
         private bool TempBrave;
         private int ExitNeutral;
-        public bool SingleCanFire = true;
         private float currentDamageAmount;
-        public bool switchingWeapon = false;
-        private bool UseCompanionLookIK;
 
         //Stats
         public float CurrentHealth = 100;
@@ -331,13 +247,6 @@ namespace Breeze.Core
             if (Application.isPlaying)
                 return;
 
-            if (FindObjectOfType<BreezeSoundManager>() == null && BreezeSoundManager.Instance == null)
-            {
-                GameObject obj = new GameObject("Sound PAI");
-                obj.AddComponent<BreezeSoundManager>();
-                obj.hideFlags = HideFlags.HideInHierarchy;
-            }
-
             //Initialize Hit Position
             if (HitPosition == null)
                 HitPosition = transform;
@@ -372,15 +281,9 @@ namespace Breeze.Core
 
             if (nav == null)
             {
-#if !Breeze_AI_Pathfinder_Enabled
                 nav = GetComponent<NavMeshAgent>() == null
                     ? gameObject.AddComponent<NavMeshAgent>()
                     : GetComponent<NavMeshAgent>();
-#else
-                nav = GetComponent<AIPath>() == null
-                    ? gameObject.AddComponent<AIPath>()
-                    : GetComponent<AIPath>();        
-#endif
             }
 
             if (col == null)
@@ -402,13 +305,6 @@ namespace Breeze.Core
         private void Awake()
         {
             System = this;
-
-            if (BreezeSoundManager.Instance == null)
-            {
-                GameObject obj = new GameObject("Sound PAI");
-                obj.AddComponent<BreezeSoundManager>();
-                obj.hideFlags = HideFlags.HideInHierarchy;
-            }
         }
 
         private void disableErrorChecking()
@@ -420,54 +316,13 @@ namespace Breeze.Core
         private void Start()
         {
             System = this;
-            if (anim.avatar.isHuman)
-            {
-                boneTransforms = new Transform[BonesToUse.Count];
-                for (int b = 0; b < boneTransforms.Length; b++)
-                {
-                    if (BonesToUse[b] is HumanBodyBones.Head)
-                    {
-                        continue;
-                    }
-
-                    boneTransforms[b] = anim.GetBoneTransform(BonesToUse[b]);
-                }
-            }
 
             InvokeRepeating(nameof(Detection), 0, DetectionFrequency);
 
-            if (col == null && GetComponent<Collider>() != null)
-            {
-                col = GetComponent<Collider>();
-            }
-
-            //Check & Add Required Components
-            if (anim == null)
-            {
-                anim = GetComponent<Animator>() == null
-                    ? gameObject.AddComponent<Animator>()
-                    : GetComponent<Animator>();
-            }
-
-            if (nav == null)
-            {
-#if !Breeze_AI_Pathfinder_Enabled
-                nav = GetComponent<NavMeshAgent>() == null
-                    ? gameObject.AddComponent<NavMeshAgent>()
-                    : GetComponent<NavMeshAgent>();
-#else
-                nav = GetComponent<AIPath>() == null
-                    ? gameObject.AddComponent<AIPath>()
-                    : GetComponent<AIPath>();        
-#endif
-            }
-
-            if (col == null)
-            {
-                col = GetComponent<Collider>() == null
-                    ? null
-                    : GetComponent<Collider>();
-            }
+            col = GetComponent<Collider>();
+            anim = GetComponent<Animator>();
+            nav = GetComponent<NavMeshAgent>();
+            col = GetComponent<Collider>();
 
             Collider[] colliders = GetComponentsInChildren<Collider>();
             Rigidbody[] rigidbodys = GetComponentsInChildren<Rigidbody>();
@@ -496,134 +351,8 @@ namespace Breeze.Core
 
             CurrentHealth = StartingHealth;
 
-            anim.SetBool("Equips", UseEquipSystem);
-
-            if (!PlayerTag.Equals("Untagged"))
-            {
-                GameObject player = GameObject.FindWithTag(PlayerTag);
-
-                if (player != null && player.GetComponent<BreezePlayer>() != null)
-                {
-                    playerObject = player.transform;
-                    if (AIBehaviour == BreezeEnums.AIBehaviour.Companion)
-                    {
-                        PlayerScript = player.GetComponent<BreezePlayer>();
-                        PlayerScript.gotAttackedEvent.AddListener(playerWasAttacked);
-                    }
-                }
-            }
-
-            if (ExtendedAttackDistance <= AttackDistance)
-                ExtendedAttackDistance = AttackDistance + 3f;
-
-            if (AttackDistance > 25f)
-            {
-                AttackDistance = 25f;
-                ExtendedAttackDistance = 30f;
-            }
-
-            if (DetectionDistance <= AttackDistance)
-                DetectionDistance = AttackDistance + 3f;
-
-            foreach (var particle in ParticlesList.Where(particle => particle.EffectObject == null))
-            {
-                ParticlesList.Remove(particle);
-            }
-
-            EquipEventCalled = !UseEquipSystem;
-
             BreezeEvents = GetComponent<BreezeEvents>();
             Invoke(nameof(disableErrorChecking), 3f);
-            initializeIntegrations();
-        }
-
-        //Check For Automatic Integrations
-        private void initializeIntegrations()
-        {
-#if NEOFPS
-            if (FindObjectOfType<BasicHealthManager>())
-            {
-                gameObject.AddComponent<BreezeNeoFPS>();
-                
-                BreezeDamageBase[] bones = GetComponentsInChildren<BreezeDamageBase>();
-
-                foreach (var bone in bones)
-                {
-                    if (bone.GetComponent<BreezeNeoFPS>() == null)
-                    {
-                        bone.gameObject.AddComponent<BreezeNeoFPS>();
-                    }
-                }
-            }
-#endif
-
-#if HQ_FPS_TEMPLATE
-            if (FindObjectOfType<Player>())
-            {
-                gameObject.AddComponent<BreezeHQFPS>();
-                
-                BreezeDamageBase[] bones = GetComponentsInChildren<BreezeDamageBase>();
-
-                foreach (var bone in bones)
-                {
-                    if (bone.GetComponent<BreezeHQFPS>() == null)
-                    {
-                        bone.gameObject.AddComponent<BreezeHQFPS>();
-                    }
-                }
-            }
-#endif
-
-#if SURVIVAL_TEMPLATE_PRO
-            if (FindObjectOfType<Player>())
-            {
-                gameObject.AddComponent<BreezeSTP>();
-                
-                BreezeDamageBase[] bones = GetComponentsInChildren<BreezeDamageBase>();
-
-                foreach (var bone in bones)
-                {
-                    if (bone.GetComponent<BreezeSTP>() == null)
-                    {
-                        bone.gameObject.AddComponent<BreezeSTP>();
-                    }
-                }
-            }
-#endif
-
-#if INVECTOR_MELEE
-            if (FindObjectOfType<vThirdPersonController>())
-            {
-                gameObject.AddComponent<BreezeInvector>();
-                
-                BreezeDamageBase[] bones = GetComponentsInChildren<BreezeDamageBase>();
-
-                foreach (var bone in bones)
-                {
-                    if (bone.GetComponent<BreezeInvector>() == null)
-                    {
-                        bone.gameObject.AddComponent<BreezeInvector>();
-                    }
-                }
-            }
-#endif
-
-#if FIRST_PERSON_CONTROLLER || THIRD_PERSON_CONTROLLER
-            if (FindObjectOfType<CharacterHealth>())
-            {
-                gameObject.AddComponent<BreezeOpsive>();
-                
-                BreezeDamageBase[] bones = GetComponentsInChildren<BreezeDamageBase>();
-
-                foreach (var bone in bones)
-                {
-                    if (bone.GetComponent<BreezeOpsive>() == null)
-                    {
-                        bone.gameObject.AddComponent<BreezeOpsive>();
-                    }
-                }
-            }
-#endif
         }
 
         #endregion
@@ -632,77 +361,12 @@ namespace Breeze.Core
 
         private void Update()
         {
-            //Check editor errors
-            if (hasErrors && !disableErrorCheck)
-            {
-                if (PlayerPrefs.HasKey("DontShowAgainPAIError") &&
-                    PlayerPrefs.GetInt("DontShowAgainPAIError").Equals(1))
-                {
-                    nav.enabled = false;
-                    anim.enabled = false;
-                    stopAI = true;
-                    gameObject.SetActive(false);
-                    enabled = false;
-                    return;
-                }
-#if UNITY_EDITOR
-                if (EditorUtility.DisplayDialog("Warning",
-                        "Your AI object [" + name +
-                        "] has errors on it's setup. Please check the errors on the inspector and fix them. Your AI object will be disabled now.",
-                        "Okay.", "Don't show again."))
-                {
-                    nav.enabled = false;
-                    anim.enabled = false;
-                    stopAI = true;
-                    gameObject.SetActive(false);
-                    enabled = false;
-                }
-                else
-                {
-                    PlayerPrefs.SetInt("DontShowAgainPAIError", 1);
-                    nav.enabled = false;
-                    anim.enabled = false;
-                    stopAI = true;
-                    gameObject.SetActive(false);
-                    enabled = false;
-                }
-#else
-                PlayerPrefs.SetInt("DontShowAgainPAIError", 1);
-                nav.enabled = false;
-                anim.enabled = false;
-                stopAI = true;
-                gameObject.SetActive(false);
-                enabled = false;
-#endif
-            }
-
             //Check Current Target Health & Stop State
-            if (CurrentHealth <= 0)
-            {
-                return;
-            }
-
-            //Check Sound
-            if (searchingSound)
-            {
-                SetNavMovement(false);
-                SetDestination(soundSource.position);
-                PlayAnimation(BreezeEnums.AnimationType.Walk);
-                // RotateToObject(soundSource.gameObject);
-
-                if ((GetDistanceReached() && anim.GetFloat("Speed") > 0.1f) || GetTarget() != null)
-                {
-                    ResetNav();
-                    searchingSound = false;
-                    stopAI = false;
-                    soundSource = null;
-                }
-            }
+            if (CurrentHealth <= 0) return;
 
             UpdateMovement();
 
-            if (stopAI)
-                return;
+            if (stopAI) return;
 
             //Check If Movement Changed
             if (savedMovement != CurrentMovement)
@@ -723,18 +387,6 @@ namespace Breeze.Core
                 }
             }
 
-            TargetIsPlayer = PlayerScript != null && TargetAIScript == null;
-
-
-            //Check If The AI Target Really Lost
-            if (UseAimIK && AIConfidence == BreezeEnums.AIConfidence.Brave && BodyWeight > 0.25f &&
-                GetTarget() == null)
-            {
-                CancelInvoke(nameof(AttackWithDelay));
-                ResetAnimParams();
-                CheckNotTargetRightHelper();
-            }
-
             //Check Getting Hit State Of The AI
             if (CheckCurrentStateTag("Hit") && !HitStarted)
             {
@@ -747,7 +399,6 @@ namespace Breeze.Core
                 HitStarted = false;
                 GettingHit = false;
                 Attacking = false;
-                SingleCanFire = true;
 
                 if (ExitNeutral > 0)
                 {
@@ -756,55 +407,12 @@ namespace Breeze.Core
                         TempBrave = true;
                         AIConfidence = BreezeEnums.AIConfidence.Brave;
                     }
-
-                    if (ExitNeutral == 2)
-                    {
-                        TargetAIScript = null;
-                        PlayerScript = ExitSender.GetComponent<BreezePlayer>();
-                    }
-                    else
-                    {
-                        PlayerScript = null;
-                        TargetAIScript = ExitSender.GetComponent<BreezeSystem>();
-                    }
+                    TargetAIScript = ExitSender.GetComponent<BreezeSystem>();
 
                     ExitNeutral = 0;
                     CurrentTarget = ExitSender;
                     ExitSender = null;
                 }
-
-                if (!EquipEventCalled)
-                    return;
-
-                if (UseAimIK)
-                {
-                    //Enables AIM IK
-                    if (GetTarget() != null && UseAimIK && BodyWeight <= 0.25f && (EquippedWeapon || !UseEquipSystem))
-                        StartCoroutine(FadeInBodyIK());
-                }
-
-                if (UseHandIK)
-                {
-                    EnableHandIKCommand();
-                }
-            }
-
-            float layerGoal = WeaponType switch
-            {
-                //Adjust Animation Layer Weight
-                BreezeEnums.WeaponType.Shooter => (anim.GetCurrentAnimatorStateInfo(0).IsTag("Layer") ||
-                                                      anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack") ||
-                                                      anim.GetCurrentAnimatorStateInfo(0).IsTag("Reload")) &&
-                                                     !GettingHit
-                    ? 1
-                    : 0,
-                BreezeEnums.WeaponType.Melee => 0,
-                _ => 0
-            };
-
-            if (WeaponType != BreezeEnums.WeaponType.Unarmed)
-            {
-                anim.SetLayerWeight(1, Mathf.Lerp(anim.GetLayerWeight(1), layerGoal, (GettingHit ? 3f : 1.5f) * Time.deltaTime));
             }
 
             //Update Core Movement & Debugs
@@ -819,18 +427,8 @@ namespace Breeze.Core
             if (GetTarget() == null && LastKnownTargetPosition == Vector3.zero)
             {
                 Fleeing = false;
-                if (AIBehaviour == BreezeEnums.AIBehaviour.Companion)
-                {
-                    CompanionFunctions();
-                }
-                else
-                {
-                    UpdateWandering();
-                }
-            }
-            else
-            {
-                setCompanionLook(false);
+                UpdateWandering();
+
             }
 
             //Brave AI Functions
@@ -844,7 +442,6 @@ namespace Breeze.Core
                 }
                 else if (LastKnownTargetPosition != Vector3.zero)
                 {
-                    //Search For Player
                     FirstWaypoint = true;
                     FirstWander = true;
                     PlayAnimation(BreezeEnums.AnimationType.Walk);
@@ -866,7 +463,7 @@ namespace Breeze.Core
                 }
 
                 //Enter Combat State
-                if (GetTarget() != null && !anim.GetBool("Combating") && !Combating && !switchingWeapon)
+                if (GetTarget() != null && !anim.GetBool("Combating") && !Combating)
                 {
                     BreezeEvents.OnAlertState.Invoke(true);
                     BreezeSounds.PlaySound(SoundType.Alerted);
@@ -875,7 +472,6 @@ namespace Breeze.Core
 
                     if (WeaponType == BreezeEnums.WeaponType.Shooter && !UseEquipSystem)
                     {
-                        EnableIK();
                         OnEquipChanged.Invoke(true, false);
                     }
                 }
@@ -933,19 +529,11 @@ namespace Breeze.Core
             }
 
             //Attach Target Scripts
-            if (TargetAIScript == null && PlayerScript == null && GetTarget() != null)
+            if (TargetAIScript == null && GetTarget() != null)
             {
-                if (TargetIsPlayer)
-                {
-                    PlayerScript = GetTarget().GetComponent<BreezePlayer>();
-                }
-                else
-                {
-                    TargetAIScript = GetTarget().GetComponent<BreezeSystem>();
-                }
+                TargetAIScript = GetTarget().GetComponent<BreezeSystem>();
             }
 
-            PlayerScript = CurrentTarget == null ? null : PlayerScript;
             TargetAIScript = CurrentTarget == null ? null : TargetAIScript;
         }
 
@@ -974,12 +562,6 @@ namespace Breeze.Core
             {
                 if (WeaponType != BreezeEnums.WeaponType.Shooter)
                     CancelInvoke(nameof(AttackWithDelay));
-
-                if (BackAway())
-                {
-                    if (WeaponType != BreezeEnums.WeaponType.Shooter)
-                        return;
-                }
             }
 
             backingAway = false;
@@ -991,10 +573,8 @@ namespace Breeze.Core
                 Vector3 pos = GetTarget().transform.position;
 
                 //Check Distance
-                if ((Attacking && GetTargetDistance() > ExtendedAttackDistance &&
-                     WeaponType != BreezeEnums.WeaponType.Shooter) ||
-                    (Attacking && GetTargetDistance() > AttackDistance &&
-                     WeaponType == BreezeEnums.WeaponType.Shooter) ||
+                if ((Attacking && GetTargetDistance() > ExtendedAttackDistance) ||
+                    (Attacking && GetTargetDistance() > AttackDistance) ||
                     (!Attacking && GetTargetDistance() > AttackDistance))
                 {
                     if (WeaponType != BreezeEnums.WeaponType.Shooter)
@@ -1033,30 +613,11 @@ namespace Breeze.Core
                     }
                 }
                 //Check If Ready To Attack
-                else if (!Blocking && (SingleCanFire || WeaponType != BreezeEnums.WeaponType.Shooter))
+                else if (!Blocking)
                 {
-                    //Check If AI Is Switching Weapon
-                    if (switchingWeapon)
-                    {
-                        Attacking = false;
-                        SingleCanFire = true;
-                        CancelInvoke(nameof(AttackWithDelay));
-                        return;
-                    }
-
-                    //Check If Weapon Is Equipped
-                    if (WeaponType != BreezeEnums.WeaponType.Unarmed && !EquippedWeapon)
-                    {
-                        if (UseEquipSystem)
-                            return;
-                    }
-
                     //Check If It's Currently Attacking
                     if (!Attacking && !anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
                     {
-                        // if(WeaponType != BreezeEnums.WeaponType.Shooter && TargetAIScript != null && TargetAIScript.Attacking)
-                        //     return;
-
                         //Attack!
                         if (FirstAttack && GetTargetDistance() <= ExtendedAttackDistance)
                         {
@@ -1070,25 +631,8 @@ namespace Breeze.Core
                     }
                 }
             }
-            else if (!Blocking && SingleCanFire)
+            else if (!Blocking)
             {
-                //Check If AI Is Switching Weapon
-                if (switchingWeapon)
-                {
-                    Attacking = false;
-                    SingleCanFire = true;
-                    CancelInvoke(nameof(AttackWithDelay));
-                    return;
-                }
-
-                //Check If Weapon Is Equipped
-                if (WeaponType != BreezeEnums.WeaponType.Unarmed && !EquippedWeapon)
-                {
-                    if (UseEquipSystem)
-                        return;
-                }
-
-
                 RotateToObject(GetTarget());
 
                 //Check If It's Currently Attacking
@@ -1151,40 +695,22 @@ namespace Breeze.Core
                 {
                     if (effect.ObjectTag.Equals(GetTarget().tag))
                     {
-                        if (!TargetIsPlayer)
-                        {
-                            if ((effect.EffectType == BreezeMeleeWeapon.impactEffect.effectType.Blocked &&
-                                 TargetAIScript.Blocking) ||
-                                effect.EffectType == BreezeMeleeWeapon.impactEffect.effectType.Normal &&
-                                !TargetAIScript.Blocking)
-                            {
-                                Destroy(Instantiate(effect.EffectObject,
-                                    (effect.CustomTransform == null
-                                        ? GetTarget().transform.position + effect.SpawnOffset
-                                        : effect.CustomTransform.position), Quaternion.identity), effect.DestroyAfter);
-                            }
-                        }
-                        else
+                        if (!TargetAIScript.Blocking)
                         {
                             Destroy(Instantiate(effect.EffectObject,
                                 (effect.CustomTransform == null
                                     ? GetTarget().transform.position + effect.SpawnOffset
                                     : effect.CustomTransform.position), Quaternion.identity), effect.DestroyAfter);
                         }
+
                     }
                 }
             }
 
             //Initialize Damage
-            if (TargetIsPlayer)
+            if (!TargetAIScript.Blocking)
             {
-                PlayerScript.TakeDamage(currentDamageAmount, gameObject);
-                BreezeEvents.OnDealDamage.Invoke(currentDamageAmount);
-                BreezeSounds.PlaySound(SoundType.AttackSuccessful);
-            }
-            else if (!TargetAIScript.Blocking)
-            {
-                TargetAIScript.TakeDamage(currentDamageAmount, gameObject, false);
+                TargetAIScript.TakeDamage(currentDamageAmount, gameObject);
                 BreezeEvents.OnDealDamage.Invoke(currentDamageAmount);
                 BreezeSounds.PlaySound(SoundType.AttackSuccessful);
             }
@@ -1251,122 +777,6 @@ namespace Breeze.Core
 
         #endregion
 
-        #region Companion Functions
-
-        //Check Player Attack
-        private void playerWasAttacked(GameObject sender)
-        {
-            if (GetTarget() != null || AIBehaviour != BreezeEnums.AIBehaviour.Companion)
-                return;
-
-            BreezeEvents.OnAnimationEvent.Invoke("PlayerWasAttacked");
-
-            TargetIsPlayer = false;
-            TargetAIScript = sender.GetComponent<BreezeSystem>();
-            if (TargetAIScript == null)
-                return;
-            CurrentTarget = sender;
-        }
-
-        private bool GetPlayerAngle()
-        {
-            Vector3 direction = (new Vector3(playerObject.transform.position.x,
-                playerObject.transform.position.y + playerObject.transform.position.y / 2,
-                playerObject.transform.position.z)) - HeadTransform.position;
-            float angle = Vector3.Angle(new Vector3(direction.x, 0, direction.z), transform.forward);
-
-            return angle <= 55;
-        }
-
-        private void setCompanionLook(bool on)
-        {
-            if (on)
-            {
-                if (!GetPlayerAngle())
-                {
-                    UseCompanionLookIK = false;
-                    return;
-                }
-
-                UseCompanionLookIK = true;
-            }
-            else
-            {
-                UseCompanionLookIK = false;
-            }
-        }
-
-        //Companion Functions
-        private void CompanionFunctions()
-        {
-            //Check Too Close Distance
-            if ((GetPlayerDistance() <= CTooCloseDistance && !backingAway) ||
-                (GetPlayerDistance() <= CTooCloseDistance * BackawayMultiplier && backingAway))
-            {
-                if (BackAwayCompanion())
-                {
-                    setCompanionLook(true);
-                    return;
-                }
-            }
-
-            //Variables For Path Checking
-            Vector3 pos = playerObject.position;
-
-            //Check Distance
-            if (GetPlayerDistance() > CSprintFollowDistance)
-            {
-                setCompanionLook(false);
-                //Check Path
-                Vector3 newPos = CheckPath(pos);
-                if (!newPos.Equals(Vector3.zero))
-                {
-                    pos = newPos;
-                }
-                else
-                {
-                    ResetNav();
-                    SetNavMovement();
-                    PlayAnimation(BreezeEnums.AnimationType.Idle);
-                    return;
-                }
-
-                // RotateToObject(playerObject.gameObject);
-                PlayAnimation(BreezeEnums.AnimationType.Run);
-                SetDestination(pos);
-            }
-            else if (GetPlayerDistance() > CFollowingDistance)
-            {
-                setCompanionLook(false);
-                //Check Path
-                Vector3 newPos = CheckPath(pos);
-                if (!newPos.Equals(Vector3.zero))
-                {
-                    pos = newPos;
-                }
-                else
-                {
-                    ResetNav();
-                    SetNavMovement();
-                    PlayAnimation(BreezeEnums.AnimationType.Idle);
-                    return;
-                }
-
-                // RotateToObject(playerObject.gameObject);
-                PlayAnimation(BreezeEnums.AnimationType.Walk);
-                SetDestination(pos);
-            }
-            else
-            {
-                setCompanionLook(true);
-                ResetNav();
-                SetNavMovement();
-                PlayAnimation(BreezeEnums.AnimationType.Idle);
-            }
-        }
-
-        #endregion
-
         #region Movement Functions
 
         //Patrol Wandering Method
@@ -1415,8 +825,6 @@ namespace Breeze.Core
         //Updates the speed of the agent & animator
         private void UpdateMovement()
         {
-            anim.applyRootMotion = UseRootMotion;
-
             if (stopAI && nav.hasPath)
             {
                 if (GetDistanceReached())
@@ -1438,15 +846,6 @@ namespace Breeze.Core
                 {
                     anim.SetFloat("Speed", 2, 0.15f, Time.deltaTime);
                 }
-
-                if (!UseRootMotion)
-                {
-#if !Breeze_AI_Pathfinder_Enabled
-                    nav.speed = RunSpeed;
-#else
-                    nav.maxSpeed = RunSpeed;
-#endif
-                }
             }
             else if (CurrentMovement == BreezeEnums.MovementType.Walking)
             {
@@ -1459,14 +858,6 @@ namespace Breeze.Core
                     anim.SetFloat("Speed", 1, 0.15f, Time.deltaTime);
                 }
 
-                if (!UseRootMotion)
-                {
-#if !Breeze_AI_Pathfinder_Enabled
-                    nav.speed = WalkSpeed;
-#else
-                    nav.maxSpeed = WalkSpeed;
-#endif
-                }
             }
             else if (CurrentMovement == BreezeEnums.MovementType.Backaway)
             {
@@ -1484,14 +875,7 @@ namespace Breeze.Core
                     anim.SetFloat("Speed", -1, 0.15f, Time.deltaTime);
                 }
 
-                if (!UseRootMotion)
-                {
-#if !Breeze_AI_Pathfinder_Enabled
-                    nav.speed = WalkBackwardsSpeed;
-#else
-                    nav.maxSpeed = WalkBackwardsSpeed;
-#endif
-                }
+                nav.speed = WalkBackwardsSpeed;
             }
             else
             {
@@ -1519,30 +903,11 @@ namespace Breeze.Core
             {
                 anim.SetFloat("Direction", 0f);
             }
-
-            //Update Root-Motion
-            if (UseRootMotion)
-            {
-#if !Breeze_AI_Pathfinder_Enabled
-                nav.speed = 0.1f;
-#else
-                nav.maxSpeed = 0.1f;
-#endif
-            }
-
-#if !Breeze_AI_Pathfinder_Enabled
-            nav.nextPosition = transform.position;
-#endif
-
-
         }
 
         //Back away from Target
         private bool BackAway()
         {
-            if (switchingWeapon)
-                return false;
-
             //Get New Position Point
             Vector3 difftest = transform.position - GetTarget().transform.position;
             difftest.y = 0;
@@ -1564,40 +929,6 @@ namespace Breeze.Core
             }
             RotateToObject(GetTarget());
 
-            SetDestination(BackupDestinationtest);
-            PlayAnimation(BreezeEnums.AnimationType.BackAway);
-            backingAway = true;
-            return true;
-        }
-
-        //Back away from Companion Player
-        private bool BackAwayCompanion()
-        {
-            if (switchingWeapon)
-                return false;
-
-            //Get New Position Point
-            Vector3 difftest = transform.position - playerObject.transform.position;
-            difftest.y = 0;
-            Vector3 BackupDestinationtest =
-                playerObject.transform.position + difftest.normalized * (2f * CTooCloseDistance);
-
-            //Check If It's reachable
-            if (!CalculatePath(BackupDestinationtest))
-            {
-                return false;
-            }
-
-            if (Physics.Raycast(transform.position,
-                    difftest.normalized, out _,
-                    ((int)Vector3.Distance(BackupDestinationtest, transform.position) + 1f), ObstacleLayers,
-                    QueryTriggerInteraction.Ignore))
-            {
-                return false;
-            }
-
-
-            RotateToObject(playerObject.gameObject);
             SetDestination(BackupDestinationtest);
             PlayAnimation(BreezeEnums.AnimationType.BackAway);
             backingAway = true;
@@ -1638,7 +969,7 @@ namespace Breeze.Core
                         PlayAnimation(BreezeEnums.AnimationType.Idle);
                         Invoke(nameof(EndWaypoint),
                             Random.Range(Waypoints[currentWaypoint].MinIdleLength,
-                                Waypoints[currentWaypoint].MaxIdleLength + 1f));
+                                Waypoints[currentWaypoint].MaxIdleLength));
                     }
                     else
                     {
@@ -1718,14 +1049,7 @@ namespace Breeze.Core
             //End Waypoint Movement
             if (WaypointOrder == BreezeEnums.WaypointOrder.InOrder)
             {
-                if (currentWaypoint == (Waypoints.Count - 1))
-                {
-                    currentWaypoint = 0;
-                }
-                else
-                {
-                    currentWaypoint++;
-                }
+                currentWaypoint = (currentWaypoint + 1) % Waypoints.Count;
             }
             else
             {
@@ -1762,7 +1086,6 @@ namespace Breeze.Core
             if (VisibleTargets.Count > 0)
                 return;
 
-            StartCoroutine(FadeOutBodyIK());
             BreezeSounds.PlaySound(SoundType.LostTarget);
         }
 
@@ -1783,61 +1106,6 @@ namespace Breeze.Core
             WaypointWander();
         }
 
-        //Check Incoming Sound
-        private bool searchingSound;
-        private Transform soundSource;
-        public void NotifySound(GameObject source, bool IsPlayer = false)
-        {
-            if (source == null || searchingSound || GetTarget() != null)
-                return;
-
-            if (Vector3.Distance(transform.position, source.transform.position) >= SoundDetectionLimit)
-                return;
-
-            bool soundConfirmed = false;
-
-            if (IsPlayer)
-            {
-                BreezePlayer player = source.GetComponent<BreezePlayer>();
-
-                if (player == null)
-                    return;
-
-                if (AIPlayerBehaviour != BreezeEnums.BehaviourType.Friendly)
-                {
-                    soundConfirmed = true;
-                }
-            }
-            else if (source.GetComponent<BreezeSystem>() != null)
-            {
-                if (CheckFaction(source.GetComponent<BreezeSystem>().CurrentAIFaction))
-                {
-                    soundConfirmed = true;
-                }
-            }
-            else
-            {
-                soundConfirmed = true;
-            }
-
-            if (soundConfirmed)
-            {
-                tempSource = source;
-                Invoke(nameof(checkHitTakenFirst), 0.3f);
-            }
-        }
-
-        private GameObject tempSource;
-        private void checkHitTakenFirst()
-        {
-            if (CheckCurrentStateTag("Hit") || GetTarget() != null)
-                return;
-
-            stopAI = true;
-            soundSource = tempSource.transform;
-            searchingSound = true;
-            tempSource = null;
-        }
         //Regen Health Overtime
         private IEnumerator RegainHealthOverTime()
         {
@@ -1881,22 +1149,12 @@ namespace Breeze.Core
                     return;
 
                 TargetAIScript = system;
-                PlayerScript = null;
                 BreezeEvents.OnFoundTarget.Invoke(target);
                 CurrentTarget = target;
             }
             else
             {
-                BreezePlayer player = target.GetComponent<BreezePlayer>();
-
-                if (player == null || AIBehaviour == BreezeEnums.AIBehaviour.Companion)
-                    return;
-
-                if (AIPlayerBehaviour != BreezeEnums.BehaviourType.Enemy)
-                    return;
-
                 TargetAIScript = null;
-                PlayerScript = player;
                 BreezeEvents.OnFoundTarget.Invoke(target);
                 CurrentTarget = target;
             }
@@ -1912,8 +1170,6 @@ namespace Breeze.Core
             if (UseLodOptimization == BreezeEnums.YesNo.No || LodRenderer == null)
                 return;
 
-            if (AIBehaviour == BreezeEnums.AIBehaviour.Companion)
-                return;
 
             if (!LodRenderer.isVisible && !LodDisabled)
             {
@@ -1936,25 +1192,12 @@ namespace Breeze.Core
             }
         }
 
-        //Companion Functions
 
-        private float GetPlayerDistance()
-        {
-            if (playerObject == null)
-                return -1;
-
-            return Vector3.Distance(transform.position, playerObject.position);
-        }
-
+        private Collider[] pTargets = new Collider[10000];
         private void Detection()
         {
-            if (FocusOnTarget != null)
-            {
-                return;
-            }
+            if (FocusOnTarget != null) return;
 
-
-            Collider[] pTargets = new Collider[1000];
             Physics.OverlapSphereNonAlloc(transform.position, DetectionDistance, pTargets, DetectionLayers);
 
             if (DetectionLock == BreezeEnums.DetectionLock.Closest && pTargets[0] != null)
@@ -1983,41 +1226,20 @@ namespace Breeze.Core
 
                     BreezeDamageable damageBase = tar.gameObject.GetComponent<BreezeDamageable>();
 
-                    if (damageBase == null)
+
+                    if (damageBase.System.gameObject.Equals(GetTarget()))
                     {
-                        BreezePlayer player = tar.gameObject.GetComponent<BreezePlayer>();
-
-                        if (player == null)
-                            continue;
-
-                        if (player.gameObject.Equals(GetTarget()))
+                        if (Physics.Linecast(transform.position + new Vector3(0, 1, 0),
+                                GetTarget().transform.position + new Vector3(0, 1, 0), out _,
+                                ObstacleLayers, QueryTriggerInteraction.Ignore))
                         {
-                            if (Physics.Linecast(transform.position + new Vector3(0, 1, 0),
-                                    GetTarget().transform.position + new Vector3(0, 1, 0), out _,
-                                    ObstacleLayers, QueryTriggerInteraction.Ignore))
-                            {
-                                break;
-                            }
-
-                            TargetVisible = true;
                             break;
                         }
-                    }
-                    else
-                    {
-                        if (damageBase.System.gameObject.Equals(GetTarget()))
-                        {
-                            if (Physics.Linecast(transform.position + new Vector3(0, 1, 0),
-                                    GetTarget().transform.position + new Vector3(0, 1, 0), out _,
-                                    ObstacleLayers, QueryTriggerInteraction.Ignore))
-                            {
-                                break;
-                            }
 
-                            TargetVisible = true;
-                            break;
-                        }
+                        TargetVisible = true;
+                        break;
                     }
+
                 }
 
                 if (!TargetVisible)
@@ -2072,22 +1294,6 @@ namespace Breeze.Core
                         continue;
                     }
                 }
-                else if (CheckTarget.tag.Equals(PlayerTag) || (CheckTarget.transform.root != null && CheckTarget.transform.root.tag.Equals(PlayerTag)))
-                {
-                    if (AIBehaviour == BreezeEnums.AIBehaviour.Companion)
-                        continue;
-
-                    CheckTarget = CheckTarget.tag.Equals(PlayerTag)
-                        ? CheckTarget
-                        : CheckTarget.transform.root.gameObject;
-
-
-                    BreezePlayer TargetComponent = CheckTarget.GetComponent<BreezePlayer>();
-                    if (TargetComponent == null || TargetComponent.CurrentHealth <= 0f)
-                    {
-                        continue;
-                    }
-                }
                 else
                 {
                     continue;
@@ -2128,48 +1334,17 @@ namespace Breeze.Core
                 }
             }
 
-            if (AIConfidence == BreezeEnums.AIConfidence.Neutral ||
-                (AIBehaviour == BreezeEnums.AIBehaviour.Companion &&
-                 AttackBehaviour == BreezeEnums.AttackBehaviour.Passive))
+            if (AIConfidence == BreezeEnums.AIConfidence.Neutral)
                 return;
 
             foreach (var target in VisibleTargets)
             {
-                TargetIsPlayer = target.tag.Equals(PlayerTag) || (target.transform.parent != null &&
-                                                                  target.transform.parent.tag.Equals(PlayerTag));
-
-                switch (TargetIsPlayer)
+                if (CheckFaction(target.GetComponent<BreezeDamageable>().System.CurrentAIFaction))
                 {
-                    case true when AIBehaviour == BreezeEnums.AIBehaviour.Companion:
-                        continue;
-
-                    case true:
-                        {
-                            if (AIPlayerBehaviour == BreezeEnums.BehaviourType.Enemy)
-                            {
-                                TargetAIScript = null;
-                                BreezeEvents.OnFoundTarget.Invoke(target);
-                                CurrentTarget = target;
-                                PlayerScript = target.GetComponent<BreezePlayer>();
-                            }
-
-                            break;
-                        }
-
-                    default:
-                        {
-                            if (CheckFaction(target.GetComponent<BreezeDamageable>().System.CurrentAIFaction))
-                            {
-                                PlayerScript = null;
-                                TargetAIScript = target.GetComponent<BreezeDamageable>().System;
-                                BreezeEvents.OnFoundTarget.Invoke(target);
-                                CurrentTarget = target;
-                            }
-
-                            break;
-                        }
+                    TargetAIScript = target.GetComponent<BreezeDamageable>().System;
+                    BreezeEvents.OnFoundTarget.Invoke(target);
+                    CurrentTarget = target;
                 }
-
 
                 if (!Combating && NotifyCloseUnits == BreezeEnums.YesNo.Yes)
                     notifyUnits();
@@ -2196,426 +1371,11 @@ namespace Breeze.Core
             }
         }
 
-        #region Inverse Kinematics
-
-        //Enables General IK Settings
-        private void EnableIK()
-        {
-            if (switchingWeapon)
-                return;
-
-            if (Reloading || CurrentHealth <= 0)
-            {
-                return;
-            }
-
-            //Enables Hand IK
-            if (!UseIK && (AIConfidence != BreezeEnums.AIConfidence.Coward || !UseEquipSystem))
-            {
-                UseIK = true;
-                elapsedTime = 0;
-            }
-
-            //Enables AIM IK
-            if (GetTarget() != null && UseAimIK && BodyWeight <= 0.25f && (EquippedWeapon || !UseEquipSystem))
-                StartCoroutine(FadeInBodyIK());
-        }
-
-        //Called from animator
-        public void DisableHandIK()
-        {
-            BreezeEvents.OnAnimationEvent.Invoke("DisableHandIK");
-            UseIK = false;
-            elapsedTime = 0;
-        }
-
-        public void EnableHandIK()
-        {
-            BreezeEvents.OnAnimationEvent.Invoke("EnableHandIK");
-            UseIK = true;
-            elapsedTime = 0;
-        }
-
-        //System Command
-        private void EnableHandIKCommand()
-        {
-            Invoke(nameof(EnableHandIK), 0f);
-        }
-
-        //Disables General IK Settings
-        private void DisableIK()
-        {
-            //Disables Hand IK
-            UseIK = false;
-            elapsedTime = 0;
-
-            StopCoroutine(FadeInBodyIK());
-            //Disables AIM IK
-            if (BodyWeight > 0)
-                StartCoroutine(FadeOutBodyIK());
-        }
-
-        //Checks General IK Settings
-        private void CheckIK()
-        {
-            if (switchingWeapon)
-                return;
-
-            //Check If AIM Ik Finished
-            if (BodyWeight >= 0.49f)
-                StopCoroutine(FadeOutBodyIK());
-
-            //Check If AIM Ik Is Ready
-            if (UseAimIK && WeaponType == BreezeEnums.WeaponType.Shooter && BodyWeight < 0.35f &&
-                AIConfidence == BreezeEnums.AIConfidence.Brave && !GettingHit && !Reloading && GetTarget() != null)
-            {
-                if (UseEquipSystem && !EquippedWeapon)
-                    return;
-
-                StartCoroutine(FadeInBodyIK());
-            }
-        }
-
-        //Main AIM Ik Functions
-        private Quaternion HeadLookQuaternion;
-        private void LateUpdate()
-        {
-            checkLastLod();
-
-            if (stopAI)
-                return;
-
-            if (anim.avatar != null && !anim.avatar.isHuman && AIBehaviour == BreezeEnums.AIBehaviour.Companion)
-            {
-                Quaternion newRot =
-                    Quaternion.LookRotation((playerObject.transform.position - transform.position).normalized,
-                        Vector3.up);
-
-                newRot.eulerAngles = new Vector3(newRot.eulerAngles.x,
-                    newRot.eulerAngles.y - transform.rotation.eulerAngles.y, newRot.eulerAngles.z);
-
-                HeadLookQuaternion = Quaternion.Lerp(HeadLookQuaternion, UseCompanionLookIK ? newRot : Quaternion.Euler(Vector3.zero), 8 * Time.deltaTime);
-
-                if (!HeadLookQuaternion.eulerAngles.Equals(Vector3.zero))
-                    HeadTransform.localRotation = HeadLookQuaternion;
-            }
-
-            if (AIConfidence == BreezeEnums.AIConfidence.Coward && (EquippedWeapon && UseEquipSystem) && Combating)
-            {
-                BreezeEvents.OnAlertState.Invoke(false);
-                anim.SetBool("Combating", false);
-                Combating = false;
-                DisableIK();
-            }
-
-            if (AIConfidence == BreezeEnums.AIConfidence.Coward && !WeightDown && BodyWeight <= 0.15f)
-            {
-                WeightDown = true;
-            }
-            else if (AIConfidence == BreezeEnums.AIConfidence.Coward && WeightDown)
-            {
-                BodyWeight = 0;
-
-                if (!Combating)
-                {
-                    UseIK = false;
-                    elapsedTime = 0;
-                }
-            }
-
-            if (AIConfidence == BreezeEnums.AIConfidence.Coward)
-            {
-                UseIK = false;
-                elapsedTime = 0;
-            }
-
-            if (GetTarget() == null)
-            {
-                FirstIKDetect = true;
-            }
-
-            CheckIK();
-
-            if (Reloading || GettingHit)
-            {
-                BodyWeight = 0;
-                return;
-            }
-
-            DistanceFixLerp = Mathf.Lerp(DistanceFixLerp, 0, Time.deltaTime * 6);
-
-            if (WeaponType == BreezeEnums.WeaponType.Shooter && UseAimIK && !Reloading &&
-                !GettingHit)
-            {
-                for (int i = 0; i < 10; i++)
-                {
-                    foreach (var bone in boneTransforms)
-                    {
-                        if (GetTarget() == null)
-                        {
-                            AimAtTarget(bone, FixedLookPosition, BodyWeight);
-                        }
-                        else
-                        {
-                            if (CheckAngle(GetTargetPosition()))
-                            {
-                                if (FirstIKDetect)
-                                {
-                                    FixedLookPosition = GetTargetPosition();
-                                    FirstIKDetect = false;
-                                }
-
-                                FixedLookPosition = Vector3.SmoothDamp(FixedLookPosition, GetTargetPosition(),
-                                    ref TheVel,
-                                    AimSmoothAmount, 20);
-                                AimAtTarget(bone, FixedLookPosition, BodyWeight);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        private float HeadWeight;
-
-        //Main Hand IK Function
-        private void OnAnimatorIK(int layerIndex)
-        {
-            if (stopAI)
-                return;
-
-            if (AIBehaviour == BreezeEnums.AIBehaviour.Companion)
-            {
-                if (playerObject != null)
-                    anim.SetLookAtPosition(playerObject.transform.position);
-
-                if (UseCompanionLookIK)
-                {
-                    HeadWeight = Mathf.Lerp(HeadWeight, 1, Time.deltaTime * 4f);
-                    anim.SetLookAtWeight(HeadWeight);
-                }
-                else
-                {
-                    HeadWeight = Mathf.Lerp(HeadWeight, 0, Time.deltaTime * 4f);
-                    anim.SetLookAtWeight(HeadWeight);
-                }
-            }
-
-            if (UseIK)
-            {
-                if (UseHandIK)
-                {
-                    if (elapsedTime < HandSmoothAmount)
-                        elapsedTime += Time.deltaTime;
-
-                    state = Mathf.Lerp(0, 1, elapsedTime / HandSmoothAmount);
-
-                    if (!OnlyLeftHand)
-                    {
-                        anim.SetIKPositionWeight(AvatarIKGoal.RightHand, state);
-                        anim.SetIKRotationWeight(AvatarIKGoal.RightHand, state);
-
-                        anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, state);
-                        anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, state);
-                    }
-                    else
-                    {
-                        anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
-                        anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0);
-
-                        anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, state);
-                        anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, state);
-                    }
-
-                    anim.SetIKPosition(AvatarIKGoal.RightHand, RightHandIK.position);
-                    anim.SetIKRotation(AvatarIKGoal.RightHand, RightHandIK.rotation);
-
-                    anim.SetIKPosition(AvatarIKGoal.LeftHand, LeftHandIK.position);
-                    anim.SetIKRotation(AvatarIKGoal.LeftHand, LeftHandIK.rotation);
-                }
-            }
-            else
-            {
-                if (UseHandIK)
-                {
-                    if (elapsedTime < HandSmoothAmount)
-                        elapsedTime += Time.deltaTime;
-
-                    state = Mathf.Lerp(0, 1, elapsedTime / HandSmoothAmount);
-                    state = 1 - state;
-
-                    if ((UseEquipSystem && !anim.GetBool("Combating")) || GettingHit)
-                        state = 0;
-
-
-                    if (!OnlyLeftHand)
-                    {
-                        anim.SetIKPositionWeight(AvatarIKGoal.RightHand, state);
-                        anim.SetIKRotationWeight(AvatarIKGoal.RightHand, state);
-
-                        anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, state);
-                        anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, state);
-                    }
-                    else
-                    {
-                        anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
-                        anim.SetIKRotationWeight(AvatarIKGoal.RightHand, 0);
-
-                        anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, state);
-                        anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, state);
-                    }
-
-                    anim.SetIKPosition(AvatarIKGoal.RightHand, RightHandIK.position);
-                    anim.SetIKRotation(AvatarIKGoal.RightHand, RightHandIK.rotation);
-
-                    anim.SetIKPosition(AvatarIKGoal.LeftHand, LeftHandIK.position);
-                    anim.SetIKRotation(AvatarIKGoal.LeftHand, LeftHandIK.rotation);
-                }
-            }
-        }
-
-        //Returns Adjusted Target Position
-        Vector3 GetTargetPosition()
-        {
-            Vector3 targetdir;
-
-            if (PlayerScript != null && PlayerScript.HitPosition != null)
-            {
-                targetdir = PlayerScript.HitPosition.position - AimTransform.position;
-            }
-            else if (TargetAIScript != null && TargetAIScript.HitPosition != null)
-            {
-                targetdir = TargetAIScript.HitPosition.position - AimTransform.position;
-            }
-            else
-            {
-                targetdir = GetTarget().transform.position - AimTransform.position;
-            }
-
-            Vector3 aimdirection = AimTransform.forward;
-
-            YOffset = 0;
-
-            targetdir.Set(targetdir.x, targetdir.y + YOffset, targetdir.z);
-
-            Vector3 dir = Vector3.Slerp(targetdir, aimdirection, 0);
-
-            lastone = AimTransform.position + dir + AimOffset;
-
-            float yPos;
-
-            if (PlayerScript != null && PlayerScript.HitPosition != null)
-            {
-                yPos = PlayerScript.HitPosition.position.y;
-            }
-            else if (TargetAIScript != null && TargetAIScript.HitPosition != null)
-            {
-                yPos = TargetAIScript.HitPosition.position.y;
-            }
-            else
-            {
-                yPos = GetTarget().transform.position.y;
-            }
-
-            if (Math.Abs(GetTarget().transform.position.y - transform.position.y) < 1.5f)
-                lastone.y -= (yPos - transform.position.y) / 1.4f;
-            else
-            {
-                lastone.y -= (yPos - transform.position.y) / 4f;
-            }
-
-            return lastone;
-        }
-
-        //Smoothly Aims At Target
-        private void AimAtTarget(Transform bone, Vector3 TargetPos, float weight)
-        {
-            Vector3 RifleDirection = Vector3.Lerp(AimTransform.forward, HeadTransform.forward, DistanceFixLerp);
-            Vector3 AimTransf = (Vector3.Lerp(AimTransform.position, HeadTransform.position, DistanceFixLerp)) +
-                                RifleDirection * -3;
-            Vector3 TargetDirection = TargetPos - AimTransf;
-            Quaternion AimDirect = Quaternion.FromToRotation(RifleDirection * 4, TargetDirection);
-            Quaternion BlendAmount = Quaternion.Slerp(Quaternion.identity, AimDirect, weight);
-            bone.rotation = BlendAmount * bone.rotation;
-        }
-
-        //Returns If Angle Available
-        private bool CheckAngle(Vector3 pos)
-        {
-            Vector3 direction = (new Vector3(pos.x, pos.y + pos.y / 2, pos.z)) - HeadTransform.position;
-            float angle = Vector3.Angle(new Vector3(direction.x, 0, direction.z), transform.forward);
-
-            return angle <= AngleLimit / 2;
-        }
-
-        //Returns Angle
-        private float GetAngle(Vector3 pos)
-        {
-            Vector3 direction = (new Vector3(pos.x, pos.y + pos.y / 2, pos.z)) - HeadTransform.position;
-            float angle = Vector3.Angle(new Vector3(direction.x, 0, direction.z), transform.forward);
-
-            return angle;
-        }
-
-        //Enables AIM Ik
-        public IEnumerator FadeInBodyIK()
-        {
-            if (Reloading || GettingHit || (!EquippedWeapon && UseEquipSystem) || !Combating || switchingWeapon)
-            {
-                BodyWeight = 0;
-                yield return null;
-            }
-
-            float T = 0;
-            float StartingBodyWeight = BodyWeight;
-
-            while (T < 1f)
-            {
-                if (GetTarget() == null || anim.GetCurrentAnimatorStateInfo(0).IsTag("Hit"))
-                    break;
-
-                if (switchingWeapon)
-                {
-                    BodyWeight = 0;
-                    break;
-                }
-
-                T += Time.deltaTime * 0.5f;
-                float Reference = Mathf.LerpAngle(StartingBodyWeight, 0.5f, T);
-                BodyWeight = Reference;
-                yield return null;
-            }
-        }
-
-        //Disables AIM Ik
-        IEnumerator FadeOutBodyIK()
-        {
-            float T = 0f;
-            float StartingBodyWeight = BodyWeight;
-
-
-            while (T < 1f && !Reloading)
-            {
-                if (BodyWeight <= 0.0005f)
-                {
-                    BodyWeight = 0;
-                    break;
-                }
-
-                T += Time.deltaTime * 1.5f;
-                BodyWeight = Mathf.LerpAngle(StartingBodyWeight, 0f, T);
-                yield return null;
-            }
-        }
-
-        #endregion
-
         //Registers The Damage
         private int GotHitAmount;
-        private float GotCompanionDamageAmount;
         private GameObject FocusOnTarget;
 
-        public void TakeDamage(float Amount, GameObject Sender, bool IsPlayer, bool HitReaction = true)
+        public void TakeDamage(float Amount, GameObject Sender, bool HitReaction = true)
         {
             if (CurrentHealth <= 0)
             {
@@ -2637,21 +1397,6 @@ namespace Breeze.Core
 
             BreezeEvents.OnTakeDamage.Invoke(Amount);
 
-            if (AIBehaviour == BreezeEnums.AIBehaviour.Companion && IsPlayer)
-            {
-                GotCompanionDamageAmount += Amount;
-
-                if ((GotCompanionDamageAmount / MaximumHealth) * 100 > FriendlyDamageThreshold)
-                {
-                    AIPlayerBehaviour = BreezeEnums.BehaviourType.Enemy;
-                    DetectionLayers |= 1 << playerObject.gameObject.layer;
-                    AIBehaviour = BreezeEnums.AIBehaviour.Enemy;
-                    CurrentTarget = playerObject.gameObject;
-                    PlayerScript = playerObject.GetComponent<BreezePlayer>();
-                    TargetAIScript = null;
-                    TargetIsPlayer = true;
-                }
-            }
 
             if (CurrentHealth <= 0)
             {
@@ -2664,9 +1409,6 @@ namespace Breeze.Core
             {
                 return;
             }
-
-            if (switchingWeapon)
-                return;
 
             if (GetHitTolerance > 0 && GetTarget() != null)
             {
@@ -2681,11 +1423,8 @@ namespace Breeze.Core
                             FocusOnTarget = Sender;
                             CurrentTarget = Sender;
 
-                            if (!IsPlayer)
-                            {
-                                PlayerScript = null;
-                                TargetAIScript = Sender.GetComponent<BreezeSystem>();
-                            }
+                            TargetAIScript = Sender.GetComponent<BreezeSystem>();
+
 
                             GotHitAmount = 0;
                             LastAtacker = null;
@@ -2720,9 +1459,9 @@ namespace Breeze.Core
 
             if (Sender != null)
             {
-                if (GetTarget() == null && CheckDamageSender(Sender, IsPlayer))
+                if (GetTarget() == null && CheckDamageSender(Sender))
                 {
-                    ExitNeutral = IsPlayer ? 2 : 1;
+                    ExitNeutral = 1;
                     ExitSender = Sender;
 
                     if (!HitWillPlay)
@@ -2735,23 +1474,13 @@ namespace Breeze.Core
                                 AIConfidence = BreezeEnums.AIConfidence.Brave;
                             }
 
-                            if (ExitNeutral != 2)
-                            {
-                                PlayerScript = null;
-                                TargetAIScript = ExitSender.GetComponent<BreezeSystem>();
-                            }
+                            TargetAIScript = ExitSender.GetComponent<BreezeSystem>();
 
                             ExitNeutral = 0;
                             CurrentTarget = ExitSender;
                             ExitSender = null;
                         }
 
-                        if (UseAimIK)
-                        {
-                            //Enables AIM IK
-                            if (GetTarget() != null && UseAimIK && BodyWeight <= 0.25f && (EquippedWeapon || !UseEquipSystem))
-                                StartCoroutine(FadeInBodyIK());
-                        }
                     }
                 }
             }
@@ -2806,7 +1535,6 @@ namespace Breeze.Core
             if (WeaponType != BreezeEnums.WeaponType.Unarmed)
                 anim.SetLayerWeight(1, 0);
 
-            DisableIK();
             StopCoroutine(RegainHealthOverTime());
             CurrentHealth = 0f;
             CurrentTarget = null;
@@ -2824,16 +1552,8 @@ namespace Breeze.Core
         //Check Target Health
         private bool CheckTargetHealth()
         {
-            if (GetTarget() == null || (PlayerScript == null && TargetAIScript == null))
+            if (GetTarget() == null)
                 return false;
-
-            if (PlayerScript != null)
-            {
-                if (PlayerScript.CurrentHealth <= 0f)
-                    BreezeEvents.OnKilledTarget.Invoke();
-
-                return PlayerScript.CurrentHealth > 0f;
-            }
 
             if (TargetAIScript.CurrentHealth <= 0f)
                 BreezeEvents.OnKilledTarget.Invoke();
@@ -2844,41 +1564,26 @@ namespace Breeze.Core
         //Check Path
         public Vector3 CheckPath(Vector3 dest)
         {
-#if !Breeze_AI_Pathfinder_Enabled
             if (NavMesh.SamplePosition(dest, out var hit, 4, nav.areaMask))
             {
                 return hit.position;
             }
-#else
-            GraphNode currentNode = AstarPath.active.GetNearest(transform.position, NNConstraint.Default).node;
-            GraphNode goalNode = AstarPath.active.GetNearest(dest, NNConstraint.Default).node;
-            if (PathUtilities.IsPathPossible(currentNode, goalNode))
-            {
-                return dest;
-            }
-#endif
-
 
             BreezeEvents.OnPathUnreachable.Invoke();
             return Vector3.zero;
         }
 
         //Checks The Attacker
-        private bool CheckDamageSender(GameObject sender, bool isPlayer)
+        private bool CheckDamageSender(GameObject sender)
         {
             if (sender != null)
             {
-                if (isPlayer && AIPlayerBehaviour != BreezeEnums.BehaviourType.Friendly)
+                if (!sender.TryGetComponent(out BreezeSystem bs))
                 {
                     return true;
                 }
 
-                if (!isPlayer && !sender.TryGetComponent(out BreezeSystem bs))
-                {
-                    return true;
-                }
-
-                if (!isPlayer && CheckFaction(sender.GetComponent<BreezeSystem>().CurrentAIFaction))
+                if (CheckFaction(sender.GetComponent<BreezeSystem>().CurrentAIFaction))
                 {
                     return true;
                 }
@@ -2887,45 +1592,6 @@ namespace Breeze.Core
             return false;
         }
 
-        //Equip & Un Equip Methods
-        public void BreezeEquip()
-        {
-            OnEquipChanged.Invoke(true, false);
-
-            BreezeEvents.OnAnimationEvent.Invoke("BreezeEquip");
-
-            EquipEventCalled = true;
-
-            foreach (var t in anim.runtimeAnimatorController.animationClips)
-            {
-                foreach (var Event in t.events)
-                {
-                    if (Event.functionName == "BreezeEquip")
-                    {
-                        Invoke(nameof(EnableAttack), (t.length - Event.time) - 0.2f);
-                        break;
-                    }
-                }
-            }
-        }
-
-        public void BreezeHolster()
-        {
-            EquipEventCalled = false;
-            EquippedWeapon = false;
-            BreezeEvents.OnAnimationEvent.Invoke("BreezeHolster");
-
-            if (switchingWeapon)
-                BodyWeight = 0;
-
-            OnEquipChanged.Invoke(false, false);
-        }
-
-        private void EnableAttack()
-        {
-            EquippedWeapon = true;
-            EnableIK();
-        }
 
         //Sets a new navmesh agent destination
         public void SetDestination(Vector3 pos)
@@ -2933,23 +1599,13 @@ namespace Breeze.Core
             if (CurrentHealth <= 0)
                 return;
 
-#if !Breeze_AI_Pathfinder_Enabled
             nav.SetDestination(pos);
-#else
-            nav.destination = pos;
-            nav.SearchPath();
-#endif
 
         }
 
-        //Returns the NavmeshAgent's stopping distance + offset
         private float StopDistance()
         {
-#if !Breeze_AI_Pathfinder_Enabled
             return nav.stoppingDistance;
-#else
-            return nav.endReachedDistance;
-#endif
         }
 
         private bool GetDistanceReached()
@@ -2959,11 +1615,7 @@ namespace Breeze.Core
 
         public void ResetNav()
         {
-#if !Breeze_AI_Pathfinder_Enabled
             nav.ResetPath();
-#else
-            nav.SetPath(null);
-#endif
         }
 
         private Vector3 GetDestination()
@@ -2973,14 +1625,8 @@ namespace Breeze.Core
 
         private bool CalculatePath(Vector3 pos)
         {
-#if !Breeze_AI_Pathfinder_Enabled
             NavMeshPath path = new NavMeshPath();
             return nav.CalculatePath(pos, path);
-#else
-            GraphNode currentNode = AstarPath.active.GetNearest(transform.position, NNConstraint.Default).node;
-            GraphNode goalNode = AstarPath.active.GetNearest(pos, NNConstraint.Default).node;
-            return PathUtilities.IsPathPossible(currentNode, goalNode);
-#endif
         }
 
         private bool NavHasPath()
@@ -3181,16 +1827,6 @@ namespace Breeze.Core
 
                     ResetAnimParams();
 
-                    if (WeaponType == BreezeEnums.WeaponType.Melee)
-                    {
-                        BreezeMeleeWeapon weapon =
-                            BreezeWeaponHub.WeaponClasses[BreezeWeaponHub.currentIndex].weaponScript as
-                                BreezeMeleeWeapon;
-
-                        if (weapon != null)
-                            weapon.Playsound("Swinged");
-                    }
-
                     FirstAttack = false;
                     Attacking = true;
                     int rand = RandomAnimIndex(type);
@@ -3216,8 +1852,6 @@ namespace Breeze.Core
                     if (CurrentAIState == "Getting Hit")
                         break;
 
-                    BodyWeight = 0;
-                    DisableIK();
                     ResetAnimParams();
                     anim.SetInteger("Hit Index", RandomAnimIndex(type));
                     CurrentMovement = BreezeEnums.MovementType.None;
@@ -3227,15 +1861,11 @@ namespace Breeze.Core
                     break;
 
                 case BreezeEnums.AnimationType.Reload:
-                    if (Reloading)
-                        break;
-
                     ResetAnimParams();
                     CurrentMovement = BreezeEnums.MovementType.None;
                     anim.SetTrigger("Reload");
                     Invoke(nameof(ResetTriggerAnim), 0.3f);
                     SetNavMovement();
-                    Reloading = true;
                     break;
 
                 case BreezeEnums.AnimationType.Block:
@@ -3270,12 +1900,6 @@ namespace Breeze.Core
         {
             if (CheckCurrentStateTag("Hit"))
                 return;
-
-            if (UseAimIK && BodyWeight >= 0.4f && GetTarget() != null)
-            {
-                if ((GetAngle(GetTargetPosition()) * 2) <= AngleLimit - 25f)
-                    return;
-            }
 
             Vector3 targetRotation = obj.transform.position - transform.position;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(targetRotation),
@@ -3371,12 +1995,9 @@ namespace Breeze.Core
         private void UpdateDebug()
         {
             VisibleTargetsDebug = VisibleTargets;
-            CurrentTargetTypeDebug = TargetIsPlayer ? "Player" : "AI";
-            CurrentTargetDebug =
-                AIBehaviour == BreezeEnums.AIBehaviour.Enemy ? GetTarget() : playerObject.gameObject;
-            TargetDistanceDebug = AIBehaviour == BreezeEnums.AIBehaviour.Enemy
-                ? GetTargetDistance()
-                : GetPlayerDistance();
+            CurrentTargetTypeDebug = "AI";
+            CurrentTargetDebug = GetTarget();
+            TargetDistanceDebug = GetTargetDistance();
             CurrentHealthDebug = CurrentHealth;
             RegeneratingHealthDebug = isRegenHealth;
             IsAlertedDebug = anim.GetBool("Combating");
@@ -3390,17 +2011,9 @@ namespace Breeze.Core
             {
                 CurrentAIState = "Dead";
             }
-            else if (switchingWeapon)
-            {
-                CurrentAIState = "Switching Weapon";
-            }
             else if (anim.GetCurrentAnimatorStateInfo(0).IsTag("Hit"))
             {
                 CurrentAIState = "Getting Hit";
-            }
-            else if (Reloading)
-            {
-                CurrentAIState = "Reloading";
             }
             else if (IsAttacking())
             {

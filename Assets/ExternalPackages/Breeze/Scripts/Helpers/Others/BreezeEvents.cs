@@ -32,7 +32,6 @@ namespace Breeze.Core
         //Combat Events
         public UnityEvent<float> OnDealDamage = new UnityEvent<float>();
         public UnityEvent OnKilledTarget = new UnityEvent();
-        public UnityEvent<weaponClass> OnSwappedWeapon = new UnityEvent<weaponClass>();
         public UnityEvent<bool> OnAlertState = new UnityEvent<bool>();
 
         //Detection Events

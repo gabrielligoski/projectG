@@ -7,14 +7,16 @@ TagManager:
   - Floor
   - Core
   - AI
+  - FxTemporaire
+  - Building
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - AI
   - Water
   - UI
-  - 
+  - Wall
   - 
   - 
   - 

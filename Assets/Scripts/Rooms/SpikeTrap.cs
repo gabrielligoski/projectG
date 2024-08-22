@@ -52,7 +52,7 @@ public class SpikeTrap : Room
     {
         if (controller && controller.TryGetComponent(out BreezeSystem bs) && bs.CurrentHealth > 0)
         {
-            bs.TakeDamage(damage, gameObject, true, false);
+            bs.TakeDamage(damage, gameObject, false);
             applyDebuffs(controller);
         }
     }

@@ -388,9 +388,7 @@ namespace Breeze.Core
 
             system.AIBehaviour = AIBehaviour;
             system.AIConfidence = AIConfidence;
-            system.AttackBehaviour = AICompanionBehaviour;
             system.WeaponType = AIWeaponType;
-            system.UseRootMotion = UseRootMotion == BreezeEnums.YesNo.Yes;
             system.WanderType = AIWanderingType;
             system.DeathMethod = AIDeathType;
             system.UseLodOptimization = DeactivateWhenNotVisible;

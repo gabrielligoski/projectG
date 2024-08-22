@@ -53,7 +53,7 @@ public class ExplosiveTrap : Room
         var e = controller.GetComponent<BreezeSystem>();
         if (e.CurrentHealth > 0)
         {
-            controller.GetComponent<BreezeSystem>().TakeDamage(damage, gameObject, true);
+            controller.GetComponent<BreezeSystem>().TakeDamage(damage, gameObject);
             Instantiate(explosionVFX, transform.position + new Vector3(0, 1), Quaternion.identity, null);
             applyDebuffs(controller);
         }

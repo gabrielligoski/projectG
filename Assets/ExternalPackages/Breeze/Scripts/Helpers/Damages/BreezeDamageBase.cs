@@ -13,12 +13,12 @@ namespace Breeze.Core
         [Space] public float DamageMultiplier = 1f;
 
         public BreezeSystem System { get; set; }
-        public void TakeDamage(float Amount, GameObject Sender, bool IsPlayer, bool HitReaction = true)
+        public void TakeDamage(float Amount, GameObject Sender, bool HitReaction = true)
         {
             if(System == null || !CanReceiveDamage)
                 return;
             
-            System.TakeDamage(Amount * DamageMultiplier, Sender, IsPlayer, HitReaction);
+            System.TakeDamage(Amount * DamageMultiplier, Sender, HitReaction);
         }
     }
 }

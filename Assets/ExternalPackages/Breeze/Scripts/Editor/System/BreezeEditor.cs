@@ -11,12 +11,12 @@ namespace Breeze.Core
     public class BreezeEditor : Editor
     {
         private BreezeSystem system = null;
-        
+
         //Toolbar Variables
         private int TabNumber = 0;
         private int WarningNumber = 0;
         private bool TabChanged = false;
-        private GUIContent[] Buttons = {new GUIContent(" Health \n Settings"), new GUIContent(" General \n Settings"), new GUIContent(" Combat \n Settings"), new GUIContent(" Detection \n Settings"), new GUIContent(" Faction \n Settings"), new GUIContent(" Companion \n Settings"), new GUIContent(" Inverse \n Kinematics"), new GUIContent("  Debug \n Panel")};
+        private GUIContent[] Buttons = { new GUIContent(" Health \n Settings"), new GUIContent(" General \n Settings"), new GUIContent(" Combat \n Settings"), new GUIContent(" Detection \n Settings"), new GUIContent(" Faction \n Settings"), new GUIContent("  Debug \n Panel") };
 
         private void OnEnable()
         {
@@ -32,14 +32,14 @@ namespace Breeze.Core
                 if (PlayerPrefs.HasKey(system.gameObject.GetInstanceID() + " tab Core"))
                     TabNumber = PlayerPrefs.GetInt(system.gameObject.GetInstanceID() + " tab Core");
             }
-            
+
             List<string> warningMessages = new List<string>();
             var errorAvailable = true;
             var errorId = 0;
-            
+
             //Checker
             EditorGUILayout.Space(4);
-            
+
             //Errors 
             if (system.HeadTransform == null)
             {
@@ -56,7 +56,7 @@ namespace Breeze.Core
             {
                 errorId = 2;
                 NormalError("Either your scene don't have a valid navmesh area baked, or your AI object isn't placed on a navmesh area. Your AI won't be able to move.");
-            }  
+            }
 #endif
             else if (system.WanderType == BreezeEnums.AIWanderingType.Waypoint && system.Waypoints.Count <= 1)
             {
@@ -67,11 +67,6 @@ namespace Breeze.Core
             {
                 errorId = 4;
                 NormalError("Detection layers cannot be 'Nothing', please add detection layers.");
-            }
-            else if (system.UseAimIK && system.BonesToUse.Count <= 0)
-            {
-                errorId = 5;
-                NormalError("To use AIM IK for your AI object, please add 'Bones To Use' in the detection tab.");
             }
             else if (system.DeathMethod == BreezeEnums.AIDeathType.Ragdoll && system.GetComponentsInChildren<Rigidbody>().Length <= 0)
             {
@@ -94,7 +89,7 @@ namespace Breeze.Core
                     fixButton(errorId);
                 }
             }
-            
+
             //Warnings
             if (system.nav.radius.Equals(0.5f))
             {
@@ -102,9 +97,9 @@ namespace Breeze.Core
             }
             if (!Application.isPlaying && system.GetComponent<CapsuleCollider>() != null && system.GetComponent<CapsuleCollider>().radius.Equals(0.5f))
             {
-                WarningError("Make sure to adjust your collider radius to fit your AI object.", warningMessages);   
+                WarningError("Make sure to adjust your collider radius to fit your AI object.", warningMessages);
             }
-            if(system.anim.avatar == null)
+            if (system.anim.avatar == null)
             {
                 WarningError("Make sure to assign an proper avatar mask to your animator component for the best performance.", warningMessages);
             }
@@ -122,14 +117,14 @@ namespace Breeze.Core
                 GUI.backgroundColor = new Color(1, 1, 0f, 0.275f);
                 EditorGUILayout.HelpBox(warningMessages[WarningNumber], MessageType.Warning);
                 GUI.backgroundColor = Color.white;
-                
+
                 EditorGUILayout.BeginHorizontal();
                 if (GUILayout.Button("FIX NOW", GUILayout.Width(65f), GUILayout.Height(22f)))
                 {
                     fixButton(WarningNumber, false);
                 }
-                
-                
+
+
                 GUILayout.FlexibleSpace();
                 EditorGUI.BeginDisabledGroup(WarningNumber <= 0);
                 if (GUILayout.Button("<", GUILayout.Width(27f), GUILayout.Height(19f)))
@@ -137,9 +132,9 @@ namespace Breeze.Core
                     WarningNumber--;
                 }
                 EditorGUI.EndDisabledGroup();
-                
+
                 EditorGUILayout.Space(2.5f);
-                
+
                 EditorGUI.BeginDisabledGroup(WarningNumber == warningMessages.Count - 1);
                 if (GUILayout.Button(">", GUILayout.Width(27f), GUILayout.Height(19f)))
                 {
@@ -149,7 +144,7 @@ namespace Breeze.Core
                 EditorGUILayout.Space(0.3f);
                 EditorGUILayout.EndHorizontal();
             }
-            
+
             GUI.backgroundColor = Color.white;
             EditorGUILayout.Space(6);
 
@@ -162,10 +157,10 @@ namespace Breeze.Core
                 alignment = TextAnchor.MiddleCenter,
                 fontStyle = FontStyle.Bold
             };
-            TabNumber = GUILayout.SelectionGrid(TabNumber, Buttons, 4, ToolbarStyle, GUILayout.Height(68), GUILayout.Width(EditorGUIUtility.currentViewWidth-50));
+            TabNumber = GUILayout.SelectionGrid(TabNumber, Buttons, 4, ToolbarStyle, GUILayout.Height(68), GUILayout.Width(EditorGUIUtility.currentViewWidth - 50));
             EditorGUILayout.EndVertical();
             PlayerPrefs.SetInt(system.gameObject.GetInstanceID() + " tab Core", TabNumber);
-            
+
             //[Variables]
 
             //Stats Tab
@@ -200,7 +195,7 @@ namespace Breeze.Core
                 }
                 EditorGUILayout.EndVertical();
             }
-            
+
             //General Settings Tab
             if (TabNumber == 1)
             {
@@ -213,13 +208,6 @@ namespace Breeze.Core
                 EditorGUILayout.Space(0.75f);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("AIConfidence"));
                 EditorGUILayout.Space(0.75f);
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("WeaponType"));
-                if (system.WeaponType != BreezeEnums.WeaponType.Unarmed)
-                {
-                    EditorGUILayout.Space(0.75f);
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("UseEquipSystem"));
-                }
-                EditorGUILayout.Space(0.75f);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("WanderType"));
                 EditorGUILayout.Space(0.75f);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("DeathMethod"));
@@ -231,22 +219,17 @@ namespace Breeze.Core
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("DestroyDelay"));
                 }
                 EditorGUILayout.Space(24f);
-                
+
                 //Movement
                 EditorGUILayout.LabelField("MOVEMENT", EditorStyles.boldLabel);
                 EditorGUILayout.Space(2);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("RotationSpeed"));
-                EditorGUILayout.Space(1.25f);
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("UseRootMotion"));
-                if (!system.UseRootMotion)
-                {
-                    EditorGUILayout.Space(0.75f);
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("WalkSpeed"));
-                    EditorGUILayout.Space(0.75f);
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("RunSpeed"));
-                    EditorGUILayout.Space(0.75f);
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("WalkBackwardsSpeed"));
-                }
+                EditorGUILayout.Space(0.75f);
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("WalkSpeed"));
+                EditorGUILayout.Space(0.75f);
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("RunSpeed"));
+                EditorGUILayout.Space(0.75f);
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("WalkBackwardsSpeed"));
                 EditorGUILayout.Space(1.4f);
                 EditorGUI.BeginDisabledGroup(system.WanderType != BreezeEnums.AIWanderingType.Patrol);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("PatrolRadius"));
@@ -254,18 +237,10 @@ namespace Breeze.Core
                 EditorGUILayout.Space(1.25f);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("FleeDistance"));
                 EditorGUILayout.Space(1.25f);
-                
-                if (system.weaponHubInitialized)
-                {
-                    GUI.backgroundColor = new Color(10f, 0.0f, 0.0f, 0.25f);
-                    EditorGUILayout.LabelField("[Edit This On Weapon Hub Component]", EditorStyles.helpBox);
-                    GUI.backgroundColor = Color.white;
-                }
 
-                EditorGUI.BeginDisabledGroup(system.weaponHubInitialized);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("EnemyTooCloseDistance"));
                 EditorGUI.EndDisabledGroup();
-                
+
                 EditorGUILayout.Space(1.25f);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("BackawayMultiplier"));
                 EditorGUILayout.Space(1.25f);
@@ -274,11 +249,11 @@ namespace Breeze.Core
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("MinIdleLength"), new GUIContent("Idle Length:                                                Min "));
                 GUILayout.Label("    Max");
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("MaxIdleLength"), GUIContent.none ,true,GUILayout.Width(59));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("MaxIdleLength"), GUIContent.none, true, GUILayout.Width(59));
                 GUILayout.FlexibleSpace();
                 EditorGUILayout.EndHorizontal();
                 EditorGUILayout.Space(24f);
-                
+
                 //Optimization
                 EditorGUILayout.LabelField("OPTIMIZATION", EditorStyles.boldLabel);
                 EditorGUILayout.Space(2);
@@ -289,7 +264,7 @@ namespace Breeze.Core
                 EditorGUI.EndDisabledGroup();
                 EditorGUILayout.EndVertical();
             }
-            
+
             //Combat Tab
             if (TabNumber == 2)
             {
@@ -312,53 +287,30 @@ namespace Breeze.Core
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("GetHitTolerance"));
                 EditorGUILayout.Space(0.75f);
 
-                if (system.weaponHubInitialized)
-                {
-                    GUI.backgroundColor = new Color(10f, 0.0f, 0.0f, 0.25f);
-                    EditorGUILayout.LabelField("[Edit This On Weapon Hub Component]", EditorStyles.helpBox);
-                    GUI.backgroundColor = Color.white;
-                }
-
-                EditorGUI.BeginDisabledGroup(system.weaponHubInitialized);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("AttackDistance"));
                 EditorGUI.EndDisabledGroup();
-                
+
                 EditorGUILayout.Space(0.75f);
-                
-                if (system.weaponHubInitialized)
-                {
-                    GUI.backgroundColor = new Color(10f, 0.0f, 0.0f, 0.25f);
-                    EditorGUILayout.LabelField("[Edit This On Weapon Hub Component]", EditorStyles.helpBox);
-                    GUI.backgroundColor = Color.white;
-                }
-                
-                EditorGUI.BeginDisabledGroup(system.weaponHubInitialized);
+
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("ExtendedAttackDistance"));
                 EditorGUI.EndDisabledGroup();
-                
+
                 EditorGUILayout.Space(1.60f);
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("MinAttackDelay"), new GUIContent("Attack Delay:                                           Min "));
                 GUILayout.Label("    Max");
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("MaxAttackDelay"), GUIContent.none ,true,GUILayout.Width(59));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("MaxAttackDelay"), GUIContent.none, true, GUILayout.Width(59));
                 GUILayout.FlexibleSpace();
                 EditorGUILayout.EndHorizontal();
                 EditorGUILayout.Space(1.60f);
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("minAlertLength"), new GUIContent("Stay Alerted Length:                              Min "));
                 GUILayout.Label("    Max");
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("maxAlertLength"), GUIContent.none ,true,GUILayout.Width(59));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("maxAlertLength"), GUIContent.none, true, GUILayout.Width(59));
                 GUILayout.FlexibleSpace();
                 EditorGUILayout.EndHorizontal();
                 EditorGUILayout.Space(1f);
-                
-                if (system.WeaponType == BreezeEnums.WeaponType.Shooter)
-                {
-                    system.UseBlockingSystem = false;
-                    GUI.backgroundColor = new Color(10f, 0.0f, 0.0f, 0.25f);
-                    EditorGUILayout.LabelField("[Not Available For Shooters]", EditorStyles.helpBox);
-                    GUI.backgroundColor = Color.white;
-                }
+
                 EditorGUI.BeginDisabledGroup(system.WeaponType == BreezeEnums.WeaponType.Shooter);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("UseBlockingSystem"));
                 if (system.UseBlockingSystem)
@@ -369,12 +321,12 @@ namespace Breeze.Core
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("CanBlockWhileAttacking"));
                 }
                 EditorGUI.EndDisabledGroup();
-                
+
                 EditorGUILayout.Space(14);
                 EditorGUILayout.LabelField("EFFECTS", EditorStyles.boldLabel);
                 EditorGUILayout.Space(7);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("ParticlesList"));
-                
+
                 EditorGUILayout.Space(14);
                 EditorGUILayout.LabelField("OTHERS", EditorStyles.boldLabel);
                 EditorGUILayout.Space(7);
@@ -386,7 +338,7 @@ namespace Breeze.Core
 
                 EditorGUILayout.EndVertical();
             }
-            
+
             //Detection Tab
             if (TabNumber == 3)
             {
@@ -400,15 +352,7 @@ namespace Breeze.Core
                 EditorGUILayout.Space(0.75f);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("DetectionFrequency"));
                 EditorGUILayout.Space(0.75f);
-                
-                if (system.weaponHubInitialized)
-                {
-                    GUI.backgroundColor = new Color(10f, 0.0f, 0.0f, 0.25f);
-                    EditorGUILayout.LabelField("[Edit This On Weapon Hub Component]", EditorStyles.helpBox);
-                    GUI.backgroundColor = Color.white;
-                }
 
-                EditorGUI.BeginDisabledGroup(system.weaponHubInitialized);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("DetectionDistance"));
                 EditorGUI.EndDisabledGroup();
 
@@ -425,7 +369,7 @@ namespace Breeze.Core
                 EditorGUILayout.Space(6f);
                 GUILayout.BeginHorizontal();
                 int iButtonWidth = 165;
-                GUILayout.Space((Screen.width/2 - iButtonWidth /2) + 14.25f);
+                GUILayout.Space((Screen.width / 2 - iButtonWidth / 2) + 14.25f);
                 if (GUILayout.Button("Auto Find Head Transform", GUILayout.Width(iButtonWidth), GUILayout.Height(23)))
                 {
                     foreach (Transform t in system.transform.GetComponentsInChildren<Transform>())
@@ -449,7 +393,7 @@ namespace Breeze.Core
                     }
                 }
                 GUILayout.EndHorizontal();
-                
+
                 EditorGUILayout.Space(14);
                 EditorGUILayout.LabelField("MISC", EditorStyles.boldLabel);
                 EditorGUILayout.Space(2);
@@ -457,13 +401,11 @@ namespace Breeze.Core
                 EditorGUILayout.Space(0.75f);
                 EditorGUI.BeginDisabledGroup(system.NotifyCloseUnits == BreezeEnums.YesNo.No);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("NotifyDistanceLimit"));
-                EditorGUILayout.Space(2);
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("SoundDetectionLimit"));
                 EditorGUI.EndDisabledGroup();
-                
+
                 EditorGUILayout.EndVertical();
             }
-            
+
             //Factions Tab
             if (TabNumber == 4)
             {
@@ -476,8 +418,6 @@ namespace Breeze.Core
                 GUI.backgroundColor = Color.white;
                 EditorGUILayout.Space(0.25f);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("CurrentAIFaction"));
-                EditorGUILayout.Space(0.75f);
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("AIPlayerBehaviour"));
                 EditorGUILayout.Space(2f);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("AIFactionsList"));
                 EditorGUILayout.Space(2f);
@@ -489,79 +429,12 @@ namespace Breeze.Core
                 GUI.backgroundColor = new Color(1f, 1f, 0f, 0.49f);
                 EditorGUILayout.LabelField("This tag should be same for all of your AI objects, It will be used to detect other AI objects!", EditorStyles.helpBox);
                 GUI.backgroundColor = Color.white;
-                EditorGUILayout.Space(0.75f);
-                var newPlayerTag = EditorGUILayout.TagField("Player Tag", serializedObject.FindProperty("PlayerTag").stringValue);
-                if (EditorGUI.EndChangeCheck())
-                    serializedObject.FindProperty("PlayerTag").stringValue = newPlayerTag;
-                EditorGUILayout.Space(0.25f);
-                GUI.backgroundColor = new Color(1f, 1f, 0f, 0.49f);
-                EditorGUILayout.LabelField("This tag should be your Player's tag, and it's really important for the detection system!", EditorStyles.helpBox);
-                GUI.backgroundColor = Color.white;
-                
-                EditorGUILayout.EndVertical();
-            }
-            
-            //Companion
-            if (TabNumber == 5)
-            {
-                EditorGUILayout.Space(10);
-                EditorGUILayout.BeginVertical("Box");
-                EditorGUILayout.LabelField("COMPANION", EditorStyles.boldLabel);
-                EditorGUILayout.Space(2);
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("AttackBehaviour"));
-                EditorGUILayout.Space(0.75f);
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("FriendlyDamageThreshold"), new GUIContent("Friendly Damage Threshold %"));
-                EditorGUILayout.Space(0.75f);
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("CFollowingDistance"), new GUIContent("Following Distance"));
-                EditorGUILayout.Space(0.75f);
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("CSprintFollowDistance"), new GUIContent("Sprint Follow Distance"));
-                EditorGUILayout.Space(0.75f);
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("CTooCloseDistance"), new GUIContent("Too Close Distance"));
-                EditorGUILayout.EndVertical();
-            }
-            
-            //IK Tab
-            if (TabNumber == 6)
-            {
-                if (system.WeaponType != BreezeEnums.WeaponType.Shooter)
-                {
-                    EditorGUILayout.Space(2);
-                    GUI.backgroundColor = new Color(1.0f, 0.0f, 0.0f, 0.25f);
-                    EditorGUILayout.LabelField("[Inverse Kinematics Is Only Available For Shooter AI]", EditorStyles.helpBox);
-                    GUI.backgroundColor = Color.white;
-                    EditorGUI.BeginDisabledGroup(true);
-                }
-                EditorGUILayout.Space(10);
-                EditorGUILayout.BeginVertical("Box");
-                EditorGUILayout.LabelField("Hand IK", EditorStyles.boldLabel);
-                EditorGUILayout.Space(2);
-                GUI.backgroundColor = new Color(0.0f, 1.0f, 0.0f, 0.25f);
-                EditorGUILayout.LabelField("[Enable Hand IK On Your Weapon Script]", EditorStyles.helpBox);
-                GUI.backgroundColor = Color.white;
-                EditorGUILayout.Space(0.25f);
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("OnlyLeftHand"));
-                EditorGUILayout.Space(0.75f);
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("HandSmoothAmount"));
-                EditorGUILayout.Space(14);
-                
-                EditorGUILayout.LabelField("Aim IK", EditorStyles.boldLabel);
-                EditorGUILayout.Space(2);
-                GUI.backgroundColor = new Color(0.0f, 1.0f, 0.0f, 0.25f);
-                EditorGUILayout.LabelField("[Enable Aim IK On Your Weapon Script]", EditorStyles.helpBox);
-                GUI.backgroundColor = Color.white;
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("AimSmoothAmount"));
-                EditorGUILayout.Space(0.75f);
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("BonesToUse"));
-                EditorGUILayout.Space(0.75f);
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("AimOffset"));
-                EditorGUILayout.Space(0.75f);
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("AngleLimit"));
-                EditorGUI.EndDisabledGroup();
+
                 EditorGUILayout.EndVertical();
             }
 
             //Debug Tab
-            if (TabNumber == 7)
+            if (TabNumber == 5)
             {
                 EditorGUILayout.Space(10);
                 EditorGUILayout.BeginVertical("Box");
@@ -572,7 +445,7 @@ namespace Breeze.Core
                 EditorGUILayout.Space(0.75f);
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("RegeneratingHealthDebug"), new GUIContent("Regenerating Health:"));
                 EditorGUI.EndDisabledGroup();
-                
+
                 EditorGUILayout.Space(12);
                 EditorGUILayout.LabelField("COMBAT", EditorStyles.boldLabel);
                 EditorGUILayout.Space(2);
@@ -589,12 +462,12 @@ namespace Breeze.Core
                 if (system.CurrentTargetDebug != null)
                 {
                     EditorGUILayout.Space(0.75f);
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("TargetDistanceDebug"), new GUIContent("Target Distance:"));   
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("TargetDistanceDebug"), new GUIContent("Target Distance:"));
                     EditorGUILayout.Space(0.75f);
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("CurrentTargetTypeDebug"), new GUIContent("Current Target Type:"));   
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("CurrentTargetTypeDebug"), new GUIContent("Current Target Type:"));
                 }
                 EditorGUI.EndDisabledGroup();
-                
+
                 EditorGUILayout.Space(12);
                 EditorGUILayout.LabelField("COMPONENTS", EditorStyles.boldLabel);
                 EditorGUILayout.Space(2);
@@ -606,14 +479,14 @@ namespace Breeze.Core
                 if (system.ColliderDebug != null)
                 {
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("ColliderDebug"), new GUIContent("Collider Component:"));
-                    EditorGUILayout.Space(0.75f);   
+                    EditorGUILayout.Space(0.75f);
                 }
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("SystemDebug"), new GUIContent("System Component:"));
                 EditorGUILayout.Space(1.25f);
 
                 EditorGUILayout.EndVertical();
             }
-            
+
             //Apply Changes
             serializedObject.ApplyModifiedProperties();
         }
@@ -639,8 +512,8 @@ namespace Breeze.Core
                                 break;
                         }
                         break;
-                    
-                    case 1: 
+
+                    case 1:
                         id = EditorUtility.DisplayDialogComplex("Solution",
                             "Animator controller can't be null on your animator component. It's required for animations to be played, please create one!",
                             "Okay.", "Close.", "How?");
@@ -652,8 +525,8 @@ namespace Breeze.Core
                                 break;
                         }
                         break;
-                    
-                    case 2: 
+
+                    case 2:
                         id = EditorUtility.DisplayDialogComplex("Solution",
                             "AI objects move on navmesh areas, and your AI can't find a proper navmesh area to use. Please make sure that your scene has a valid navmesh area baked.",
                             "Okay.", "Close.", "How?");
@@ -665,12 +538,12 @@ namespace Breeze.Core
                                 break;
                         }
                         break;
-                    
+
                     case 3:
                         id = EditorUtility.DisplayDialogComplex("Solution",
                             "To use waypoint as your AI's wandering type, you need to have atleast 2 waypoints. To create more, please navigate to 'Waypoint Editor' window.",
                             "Okay.", "Close.", "How?");
-                        
+
                         switch (id)
                         {
                             case 2:
@@ -679,12 +552,12 @@ namespace Breeze.Core
                                 break;
                         }
                         break;
-                    
+
                     case 4:
                         id = EditorUtility.DisplayDialogComplex("Solution",
                             "Detection system requires layers to check. Please add AI layers to the detection layers field for the detection system to work properly.",
                             "Okay.", "Close.", "How?");
-                        
+
                         switch (id)
                         {
                             case 0:
@@ -695,12 +568,12 @@ namespace Breeze.Core
                                 break;
                         }
                         break;
-                    
+
                     case 5:
                         id = EditorUtility.DisplayDialogComplex("Solution",
                             "AIM IK system requires bones to work. Please add 'Bones To Use' in the required field for the aim IK to work properly.",
                             "Okay.", "Close.", "How?");
-                        
+
                         switch (id)
                         {
                             case 0:
@@ -711,12 +584,12 @@ namespace Breeze.Core
                                 break;
                         }
                         break;
-                    
+
                     case 6:
                         id = EditorUtility.DisplayDialogComplex("Solution",
                             "Ragdoll is a system built-in for Unity Engine. You must create an ragdoll structure in order to use the 'Ragoll Death Method'.",
                             "Okay.", "Close.", "How?");
-                        
+
                         switch (id)
                         {
                             case 2:
@@ -724,7 +597,7 @@ namespace Breeze.Core
                                 break;
                         }
                         break;
-                }   
+                }
             }
             else
             {
@@ -742,7 +615,7 @@ namespace Breeze.Core
                                 break;
                         }
                         break;
-                    case 1: 
+                    case 1:
                         id = EditorUtility.DisplayDialogComplex("Solution",
                             "Adjusting AI collider radius for your AI object can help imporving your AI's combat performance.",
                             "Okay.", "Close.", "How?");
@@ -752,9 +625,9 @@ namespace Breeze.Core
                             case 2:
                                 Application.OpenURL("https://docs.breezeassets.net/error-solutions/breeze-system#capsule-collider-radius-should-fit-your-ai-object");
                                 break;
-                        } 
+                        }
                         break;
-                    case 2: 
+                    case 2:
                         id = EditorUtility.DisplayDialogComplex("Solution",
                             "Assigning an avatar mask to your animator component can improve your AI's animation quality.",
                             "Okay.", "Close.", "How?");
@@ -772,7 +645,7 @@ namespace Breeze.Core
 
         private void WarningError(string st, List<string> lt)
         {
-            if(!lt.Contains(st))
+            if (!lt.Contains(st))
                 lt.Add(st);
         }
 

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6605886794258337607}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RigRibcageGizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8373635635792076767}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RigSpine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5654053395719368904}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RigRArm2Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5146380777830465980}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 8029916046188608928}
   - component: {fileID: -4523513626113788286}
   - component: {fileID: -5771095535791206877}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: dummy_2
   m_TagString: AI
   m_Icon: {fileID: 0}
@@ -282,7 +282,6 @@ MonoBehaviour:
   MinIdleLength: 4
   MaxIdleLength: 8
   RotationSpeed: 1.4
-  UseRootMotion: 0
   WalkSpeed: 1
   RunSpeed: 1.5
   WalkBackwardsSpeed: 0.7
@@ -304,8 +303,7 @@ MonoBehaviour:
   ParticlesList: []
   HitPosition: {fileID: 6746060647345249041}
   NotifyCloseUnits: 0
-  NotifyDistanceLimit: 30
-  SoundDetectionLimit: 35
+  NotifyDistanceLimit: 1
   DetectionType: 1
   DetectionLock: 0
   DetectionFrequency: 0.25
@@ -313,33 +311,18 @@ MonoBehaviour:
   DetectionAngle: 70
   DetectionLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8
   ObstacleLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   HeadTransform: {fileID: 2434658240273851469}
-  UseHandIK: 0
-  OnlyLeftHand: 1
-  HandSmoothAmount: 0.3
-  UseAimIK: 0
-  AimSmoothAmount: 0.2
-  BonesToUse: 
-  AimOffset: {x: 0, y: 0.5, z: 0}
-  AngleLimit: 75
   CurrentAIFaction: 3
-  AIPlayerBehaviour: 0
   AIFactionsList:
   - Factions: 0
     behaviourType: 0
   - Factions: 1
     behaviourType: 0
   BreezeTag: AI
-  PlayerTag: Player
-  AttackBehaviour: 0
-  FriendlyDamageThreshold: 40
-  CFollowingDistance: 4.5
-  CSprintFollowDistance: 12
-  CTooCloseDistance: 1.5
   CurrentHealthDebug: 30
   RegeneratingHealthDebug: 0
   CurrentAIState: Idle
@@ -356,37 +339,20 @@ MonoBehaviour:
   SystemDebug: {fileID: 3360988402035341598}
   UseLodOptimization: 1
   LodRenderer: {fileID: 0}
-  weaponHubInitialized: 0
   stopAI: 0
   hasErrors: 1
-  AimTransform: {fileID: 0}
-  UseIK: 0
-  state: 0
-  elapsedTime: 0
-  BodyWeight: 0
-  RightHandIK: {fileID: 0}
-  LeftHandIK: {fileID: 0}
   nav: {fileID: 1898084454268482698}
   anim: {fileID: 4919595449235809346}
   col: {fileID: 6466079614482348135}
-  PlayerScript: {fileID: 0}
   TargetAIScript: {fileID: 0}
-  BreezeWeaponHub: {fileID: 0}
   BreezeEvents: {fileID: 0}
   CurrentTarget: {fileID: 0}
-  playerObject: {fileID: 0}
-  TargetIsPlayer: 0
   Waypoints: []
   CurrentMovement: 0
   Combating: 0
   Attacking: 0
   Blocking: 0
   GettingHit: 0
-  EquippedWeapon: 0
-  EquipEventCalled: 0
-  Reloading: 0
-  SingleCanFire: 1
-  switchingWeapon: 0
   CurrentHealth: 100
   AttackDamagesList:
   - minDamage: 1
@@ -528,9 +494,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnKilledTarget:
-    m_PersistentCalls:
-      m_Calls: []
-  OnSwappedWeapon:
     m_PersistentCalls:
       m_Calls: []
   OnAlertState:
@@ -738,7 +701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7292883111188069476}
   - component: {fileID: 4972575794696275710}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Target Dummy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -833,7 +796,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3040347500117066279}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RigRArm1Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -864,7 +827,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5479820333130357857}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RigPelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -898,7 +861,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2475499190552480956}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RigPelvisGizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -929,7 +892,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1061422178618687052}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RigRArm2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -961,7 +924,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6746060647345249041}
   - component: {fileID: 5982734078398139623}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hit Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1004,7 +967,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 550700669492014678}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RigLLeg1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1035,7 +998,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2445399547021584823}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RigLArm2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1066,7 +1029,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 839632213849418230}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RigLLegPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1097,7 +1060,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2975839757898079298}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RigLArm2Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1128,7 +1091,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7416312990464706276}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RigRArm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1160,7 +1123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2149856911035432707}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RigLArm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1192,7 +1155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5509693754878885881}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RigRLegPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1223,7 +1186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4834628897567517765}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RigRibcage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1256,7 +1219,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 518845647833929765}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RigLArm1Gizmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1287,7 +1250,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3782489514457388139}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RigRLeg1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,6 +11,6 @@ AssetOrigin:
   productId: 4010
   packageName: Cartoon FX Remaster
   packageVersion: R 1.4
-  assetPath: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr ring mesh
-    local space smoother.asset
+  assetPath: Assets/ExternalPackages/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr
+    ring mesh local space smoother.asset
   uploadId: 667770

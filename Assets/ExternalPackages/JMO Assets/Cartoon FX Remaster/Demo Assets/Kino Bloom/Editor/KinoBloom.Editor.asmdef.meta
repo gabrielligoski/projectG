@@ -10,5 +10,6 @@ AssetOrigin:
   productId: 4010
   packageName: Cartoon FX Remaster
   packageVersion: R 1.4
-  assetPath: Assets/JMO Assets/Cartoon FX Remaster/Demo Assets/Kino Bloom/Editor/KinoBloom.Editor.asmdef
+  assetPath: Assets/ExternalPackages/JMO Assets/Cartoon FX Remaster/Demo Assets/Kino
+    Bloom/Editor/KinoBloom.Editor.asmdef
   uploadId: 667770

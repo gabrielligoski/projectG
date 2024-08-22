@@ -10,5 +10,6 @@ AssetOrigin:
   productId: 4010
   packageName: Cartoon FX Remaster
   packageVersion: R 1.4
-  assetPath: Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Texts/CFXR _SMASH_.prefab
+  assetPath: Assets/ExternalPackages/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Texts/CFXR
+    _SMASH_.prefab
   uploadId: 667770

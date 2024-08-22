@@ -101,5 +101,6 @@ AssetOrigin:
   productId: 4010
   packageName: Cartoon FX Remaster
   packageVersion: R 1.4
-  assetPath: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr particle_electric_arc_2.fbx
+  assetPath: Assets/ExternalPackages/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr
+    particle_electric_arc_2.fbx
   uploadId: 667770

@@ -10,6 +10,6 @@ AssetOrigin:
   productId: 4010
   packageName: Cartoon FX Remaster
   packageVersion: R 1.4
-  assetPath: Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Screen Distortion/CFXR
-    ScreenDistortion Ring.prefab
+  assetPath: Assets/ExternalPackages/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Screen
+    Distortion/CFXR ScreenDistortion Ring.prefab
   uploadId: 667770

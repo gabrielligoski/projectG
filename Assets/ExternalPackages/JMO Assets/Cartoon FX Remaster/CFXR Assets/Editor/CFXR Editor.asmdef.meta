@@ -10,5 +10,6 @@ AssetOrigin:
   productId: 4010
   packageName: Cartoon FX Remaster
   packageVersion: R 1.4
-  assetPath: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Editor/CFXR Editor.asmdef
+  assetPath: Assets/ExternalPackages/JMO Assets/Cartoon FX Remaster/CFXR Assets/Editor/CFXR
+    Editor.asmdef
   uploadId: 667770

@@ -10,6 +10,5 @@ AssetOrigin:
   productId: 4010
   packageName: Cartoon FX Remaster
   packageVersion: R 1.4
-  assetPath: Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Explosions/CFXR Explosion
-    1.prefab
+  assetPath: Assets/Prefabs/VFX/CFXR Explosion 1.prefab
   uploadId: 667770
